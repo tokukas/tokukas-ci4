@@ -1,0 +1,60 @@
+.navbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.navbar .navbar-brand {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.navbar .navbar-brand .text-brand {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 0;
+  color: #0066cb;
+}
+
+.navbar .navbar-brand .text-brand .primary {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.navbar .navbar-brand .text-brand .secondary {
+  font-size: 0.75rem;
+  line-height: 0.8rem;
+  letter-spacing: 0;
+  text-indent: 1px;
+}
+
+.navbar .navbar-collapse .nav-link {
+  color: #1976d2 !important;
+}
+
+.navbar .navbar-collapse .nav-link.active {
+  font-weight: 600;
+}
+
+.navbar .navbar-collapse hr {
+  background-color: #0066cb;
+}
+
+.navbar .navbar-collapse.show .button-group .btn {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 50%;
+          flex: 1 1 50%;
+}
+/*# sourceMappingURL=navbar.css.map */

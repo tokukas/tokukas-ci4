@@ -1,0 +1,128 @@
+@import '../global/var';
+@import '../global/typography';
+
+.jumbotron {
+    padding: 4rem 6rem;
+    background-color: $primaryColor;
+    text-align: center;
+    color: #ffffff;
+
+    .brand-logo {
+        margin-bottom: 1rem;
+    }
+
+    .brand-name {
+        font-size: 2.5rem;
+        font-weight: 800;
+    }
+
+    .slogan {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+}
+
+
+.menus {
+    background-color: $primaryColor;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    padding: 0 4rem;
+    margin-left: -1rem;
+    background-color: map-get($secondaryColor, '1');
+
+    ul {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        overflow-x: auto;
+
+        li {
+            display: inline-flex;
+            list-style-type: none;
+            background-color: map-get($secondaryColor, '1');
+
+            a {
+                display: inline-flex;
+                gap: 0.5rem;
+                align-items: center;
+
+                padding: 1.25rem;
+                height: 100%;
+                font-size: 1.25rem;
+                font-weight: 500;
+                text-decoration: none;
+                color: #ffffff;
+                border: none;
+                cursor: pointer;
+            }
+        }
+
+        li:hover {
+            background-color: $primaryColor;
+        }
+
+        a:hover {
+            font-weight: bolder;
+        }
+    }
+}
+
+
+.content {
+    padding: 2rem 4rem;
+    margin-bottom: 2rem;
+
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: $primaryColor;
+        font-weight: 800;
+    }
+
+    hr {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        background-color: $primaryColor;
+    }
+
+    .tokukas {
+        color: $primaryColor;
+        font-weight: 600;
+        font-size: 1.1rem;
+        line-height: 1.25rem;
+    }
+
+    p {
+        text-align: justify;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .jumbotron {
+        padding: 2rem;
+
+        .brand-name {
+            font-size: 2rem;
+        }
+
+        .slogan {
+            font-size: 1rem;
+        }
+    }
+
+    .menus {
+        padding: 0 2rem;
+    }
+
+    .content {
+        padding: 1.25rem 2rem;
+
+        h1 {
+            font-size: 1.25rem;
+        }
+    }
+}

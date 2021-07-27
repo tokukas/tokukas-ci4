@@ -1,0 +1,58 @@
+@import '../global/var';
+
+.navbar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+
+    .navbar-brand {
+        display: inline-flex;
+        gap: 0.25rem;
+
+        .text-brand {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 0;
+            color: $primaryColor;
+
+            .primary {
+                font-size: 1.2rem;
+                line-height: 1.2rem;
+                font-weight: 600;
+                letter-spacing: 1.5px;
+            }
+
+            .secondary {
+                font-size: 0.75rem;
+                line-height: 0.8rem;
+                letter-spacing: 0;
+                text-indent: 1px;
+            }
+        }
+
+    }
+
+    .navbar-collapse {
+        .nav-link {
+            color: map-get($secondaryColor, '1') !important;
+        }
+
+        .nav-link.active {
+            font-weight: 600;
+        }
+
+        hr {
+            background-color: $primaryColor;
+        }
+    }
+
+    .navbar-collapse.show {
+        .button-group {
+            .btn {
+                flex: 1 1 50%;
+            }
+        }
+    }
+
+}

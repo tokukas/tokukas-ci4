@@ -1,0 +1,130 @@
+* {
+  font-family: 'Quicksand', Quicksand, sans-serif;
+}
+
+.jumbotron {
+  padding: 4rem 6rem;
+  background-color: #0066cb;
+  text-align: center;
+  color: #ffffff;
+}
+
+.jumbotron .brand-logo {
+  margin-bottom: 1rem;
+}
+
+.jumbotron .brand-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.jumbotron .slogan {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.menus {
+  background-color: #0066cb;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  padding: 0 4rem;
+  margin-left: -1rem;
+  background-color: #1976d2;
+}
+
+.menus ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+}
+
+.menus ul li {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  list-style-type: none;
+  background-color: #1976d2;
+}
+
+.menus ul li a {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  gap: 0.5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1.25rem;
+  height: 100%;
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.menus ul li:hover {
+  background-color: #0066cb;
+}
+
+.menus ul a:hover {
+  font-weight: bolder;
+}
+
+.content {
+  padding: 2rem 4rem;
+  margin-bottom: 2rem;
+}
+
+.content h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #0066cb;
+  font-weight: 800;
+}
+
+.content hr {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  background-color: #0066cb;
+}
+
+.content .tokukas {
+  color: #0066cb;
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 1.25rem;
+}
+
+.content p {
+  text-align: justify;
+  margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 720px) {
+  .jumbotron {
+    padding: 2rem;
+  }
+  .jumbotron .brand-name {
+    font-size: 2rem;
+  }
+  .jumbotron .slogan {
+    font-size: 1rem;
+  }
+  .menus {
+    padding: 0 2rem;
+  }
+  .content {
+    padding: 1.25rem 2rem;
+  }
+  .content h1 {
+    font-size: 1.25rem;
+  }
+}
+/*# sourceMappingURL=about.css.map */
