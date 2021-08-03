@@ -50,6 +50,7 @@
 
     <!-- App script -->
     <script src="<?= base_url('/scripts/js/app.js'); ?>"></script>
+    <script src="<?= base_url('/scripts/js/tooltips.js'); ?>"></script>
 
     <!-- Custom scripts -->
     <?= $this->renderSection('custom-scripts'); ?>

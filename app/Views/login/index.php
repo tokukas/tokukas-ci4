@@ -18,7 +18,9 @@
         <div class="row">
             <div class="box left-box col-lg-6 order-sm-last">
                 <div class="container text-center">
-                    <img class="cover" src="<?= base_url('/assets/brand-cover.jpg'); ?>" alt="brand cover">
+                    <a href="<?= base_url('/'); ?>">
+                        <img class="cover" src="<?= base_url('/assets/brand-cover.jpg'); ?>" alt="brand cover">
+                    </a>
                     <h3><strong>Yang Bekas Pasti Lebih Murah!</strong></h3>
                 </div>
             </div>
@@ -28,7 +30,7 @@
                         <div class="card-body">
                             <section class="container mb-3 d-flex justify-content-between align-items-center">
                                 <h1 class="title">Masuk</h1>
-                                <a href="<?= base_url('/'); ?>" class="icon-btn" title="Kembali Ke Toko">
+                                <a href="<?= base_url('/'); ?>" class="icon-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Ke Beranda">
                                     <i class="material-icons-outlined">close</i>
                                 </a>
                             </section>
