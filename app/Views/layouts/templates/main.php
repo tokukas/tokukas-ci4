@@ -5,6 +5,7 @@
 <?= $this->section('custom-styles'); ?>
 
 <link rel="stylesheet" href="<?= base_url('/styles/css/navbar.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('/styles/css/footer.css'); ?>">
 
 <?= $this->endSection(); ?>
 
@@ -23,9 +24,8 @@
 
 </main>
 
-<footer>
-
-</footer>
+<!-- import footer -->
+<?= $this->include('layouts/components/footer'); ?>
 
 <?= $this->endSection(); ?>
 

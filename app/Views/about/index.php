@@ -5,6 +5,7 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
+<link rel="stylesheet" href="<?= base_url('/styles/css/footer.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('/styles/css/about.css'); ?>">
 
 <?= $this->endSection(); ?>
@@ -31,9 +32,12 @@
         <hr>
         <p><b><span class="tokukas" title="Toko Buku Bekas">TOKUKAS</span></b> adalah sebuah toko yang menawarkan buku-buku bekas dengan harga yang terjangkau.</p>
         <p>Buku-buku bekas yang dijual oleh <b><span class="tokukas" title="Toko Buku Bekas">TOKUKAS</span></b> didapat dari hasil kerjasama dengan toko buku yang menjual buku bekas secara langsung di toko (luring/<i>offline</i>), dan juga didapat dengan membeli dari masyarakat yang memiliki buku-buku bekas yang ditawarkan kepada toko secara daring melalui formulir yang disediakan oleh toko.</p>
-        <p>Selain dapat diakses dari website, <b><span class="tokukas" title="Toko Buku Bekas">TOKUKAS</span></b> juga hadir di beberapa platform <i>e-commerce</i> populer di Indonesia, seperti Shopee dan Tokopedia.</p>
+        <p>Selain dapat diakses dari website, <b><span class="tokukas" title="Toko Buku Bekas">TOKUKAS</span></b> juga hadir di beberapa platform <i>e-commerce</i> populer di Indonesia, seperti <a href="https://shopee.co.id/tokukas" target="_blank">Shopee</a> dan <a href="http://tokopedia.com/tokukas" target="_blank">Tokopedia</a>.</p>
     </article>
 </section>
+
+<!-- import footer -->
+<?= $this->include('layouts/components/footer'); ?>
 
 <?= $this->endSection(); ?>
 

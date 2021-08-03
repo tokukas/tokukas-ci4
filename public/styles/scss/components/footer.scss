@@ -1,0 +1,99 @@
+@import '../global/var';
+
+.footer {
+    background-color: $primaryColor;
+    color: #ffffff;
+
+    a {
+        text-decoration: none;
+        color: #ffffff;
+    }
+
+    .vr {
+        width: 1px;
+        height: auto;
+        min-height: 1.5rem;
+        background-color: #ffffff;
+        content: none;
+    }
+
+    .col-lg-4 {
+        padding: 2rem 1.5rem;
+    }
+
+    .left-col {
+        .brand {
+            display: inline-flex;
+            gap: 0.25rem;
+
+            .text-brand {
+                display: inline-flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 0;
+                color: #ffffff;
+
+                .primary {
+                    font-size: 1.2rem;
+                    line-height: 1.2rem;
+                    font-weight: 600;
+                    letter-spacing: 1.5px;
+                }
+
+                .secondary {
+                    font-size: 0.75rem;
+                    line-height: 0.8rem;
+                    letter-spacing: 0;
+                    text-indent: 1px;
+                }
+            }
+        }
+
+        .icon-box {
+            display: inline-flex;
+            width: 1.5rem;
+            height: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+        }
+
+        .icon-bar {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+
+            a {
+                color: #ffffff;
+                display: inline-flex;
+                gap: 0.25rem;
+                align-items: center;
+            }
+        }
+    }
+
+    .right-col {
+        .footer-menus {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            background-color: inherit;
+
+            .menu {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+        }
+    }
+
+    .bottom {
+        background-color: map-get($secondaryColor, '1');
+        padding: 1rem;
+        font-size: small;
+    }
+}

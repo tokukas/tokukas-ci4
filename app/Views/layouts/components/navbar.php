@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light container-md">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light container-fluid">
+    <div class="container-md">
         <a class="navbar-brand" href="<?= base_url('/'); ?>">
             <img src="<?= base_url('/assets/brand.svg'); ?>" alt="brand" height="32">
             <div class="text-brand">
@@ -16,7 +16,7 @@
                     <a class="nav-link" href="<?= base_url('/about'); ?>">Tentang Kami</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tawarkan Buku Saya</a>
+                    <a class="nav-link" href="<?= base_url('/bookoffer'); ?>">Ajukan Penawaran</a>
                 </li>
                 <li class="nav-item dropdown d-none">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

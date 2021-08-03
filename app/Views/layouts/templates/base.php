@@ -24,6 +24,8 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined&display=swap">
     </noscript>
 
+    <script src="https://kit.fontawesome.com/a4efd995d2.js" crossorigin="anonymous"></script>
+
 
     <!-- Global app styles -->
     <link rel="stylesheet" href="<?= base_url('/styles/css/base.css'); ?>">

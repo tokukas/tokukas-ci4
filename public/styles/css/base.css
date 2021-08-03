@@ -15,8 +15,9 @@
   gap: 0.5rem;
 }
 
-.material-icons {
+.material-icons, .fas ::before, .fab ::before {
   max-width: 1.5rem;
+  max-height: 1.5rem;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
