@@ -1,9 +1,14 @@
 @import '../global/var';
 
+header {
+    display: inline;
+}
+
 .navbar {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
+    background-color: #ffffff;
 
     .navbar-brand {
         display: inline-flex;

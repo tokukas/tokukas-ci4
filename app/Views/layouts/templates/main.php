@@ -17,7 +17,7 @@
     <?= $this->include('layouts/components/navbar'); ?>
 </header>
 
-<main id="pageTop">
+<main id="top">
 
     <?= $this->renderSection('main'); ?>
 

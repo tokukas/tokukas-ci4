@@ -1,0 +1,94 @@
+@import '../global/var';
+@import '../global/typography';
+
+
+$blueSecondary: map-get($secondaryColor, '1');
+$greyMedium: map-get($grey, 'med');
+
+
+.box {
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.right-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .login-box {
+        min-width: 60%;
+
+        .title {
+            color: $primaryColor;
+            font-weight: 500;
+        }
+
+        .field {
+            margin-bottom: 1.5rem;
+
+            .material-icons {
+                color: $greyMedium;
+            }
+
+        }
+
+        .password-field {
+            .form-control {
+                border-right: none;
+            }
+
+            .show-password-toggle {
+                background-color: inherit;
+                border: 1px solid #ced4da;
+                border-left: none;
+
+                .material-icons {
+                    color: $blueSecondary;
+                }
+            }
+        }
+    }
+}
+
+.left-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    background-color: $blueSecondary;
+    color: #ffffff;
+
+    .cover {
+        margin-bottom: 1.5rem;
+        width: 100%;
+        max-width: 30rem;
+        border-radius: 2rem;
+        object-fit: cover;
+    }
+}
+
+
+
+
+@media screen and (max-width: 640px) {
+    .box {
+        min-height: auto;
+        padding: 1.5rem 1rem;
+    }
+
+    .right-box {
+        display: inline;
+
+        .login-box {
+            width: 100%;
+        }
+    }
+
+    .left-box {
+        h3 {
+            font-size: 1.25rem;
+        }
+    }
+}

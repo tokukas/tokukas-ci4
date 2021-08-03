@@ -1,0 +1,96 @@
+* {
+  font-family: 'Quicksand', Quicksand, sans-serif;
+}
+
+.box {
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.right-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.right-box .login-box {
+  min-width: 60%;
+}
+
+.right-box .login-box .title {
+  color: #0066cb;
+  font-weight: 500;
+}
+
+.right-box .login-box .field {
+  margin-bottom: 1.5rem;
+}
+
+.right-box .login-box .field .material-icons {
+  color: #bebebe;
+}
+
+.right-box .login-box .password-field .form-control {
+  border-right: none;
+}
+
+.right-box .login-box .password-field .show-password-toggle {
+  background-color: inherit;
+  border: 1px solid #ced4da;
+  border-left: none;
+}
+
+.right-box .login-box .password-field .show-password-toggle .material-icons {
+  color: #1976d2;
+}
+
+.left-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #1976d2;
+  color: #ffffff;
+}
+
+.left-box .cover {
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 30rem;
+  border-radius: 2rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media screen and (max-width: 640px) {
+  .box {
+    min-height: auto;
+    padding: 1.5rem 1rem;
+  }
+  .right-box {
+    display: inline;
+  }
+  .right-box .login-box {
+    width: 100%;
+  }
+  .left-box h3 {
+    font-size: 1.25rem;
+  }
+}
+/*# sourceMappingURL=login.css.map */
