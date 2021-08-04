@@ -37,6 +37,10 @@ $routes->get('/', 'Home::index');
 $routes->get('login/(:any)', 'Login::index');
 $routes->post('login', 'Login::auth');
 
+// Register verification
+$routes->get('register/(:any)', 'Register::index');
+$routes->post('register', 'Register::auth');
+
 
 /**
  * --------------------------------------------------------------------

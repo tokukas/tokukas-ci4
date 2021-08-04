@@ -11,6 +11,12 @@ class Register extends BaseController
         ];
 
         return view('register/index', $data);
-        // return view('layouts/templates/two-sides', $data);
+    }
+
+
+    public function auth()
+    {
+        d($this->request->getPost());
+        return 'Masukkan kode verifikasi yang kami kirimkan ke email anda.';
     }
 }

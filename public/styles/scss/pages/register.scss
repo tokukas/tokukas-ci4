@@ -16,7 +16,7 @@ $greyMedium: map-get($grey, 'med');
     align-items: center;
 
     .login-box {
-        min-width: 60%;
+        min-width: 70%;
 
         .title {
             color: $primaryColor;
@@ -24,7 +24,7 @@ $greyMedium: map-get($grey, 'med');
         }
 
         .field {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
 
             .material-icons {
                 color: $greyMedium;

@@ -65,6 +65,7 @@
                         <div class="field d-flex">
                             <button type="submit" class="btn btn-primary flex-fill"><strong>Masuk</strong></button>
                         </div>
+                        <hr>
                         <div class="field text-center">
                             <p>Belum punya akun? <a href="<?= base_url('/register'); ?>">Daftar</a></p>
                         </div>
@@ -95,5 +96,7 @@
 
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
+
+<script src="<?= base_url('/scripts/js/form.js'); ?>"></script>
 
 <?= $this->endSection(); ?>

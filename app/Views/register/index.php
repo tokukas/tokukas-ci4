@@ -81,9 +81,13 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="field text-center">
+                            <p class="form-text text-dark">Dengan mendaftar, anda menyetujui <br><a href="<?= base_url('/terms'); ?>">Syarat Penggunaan</a> dan <a href="<?= base_url('/privacy'); ?>">Kebijakan Privasi</a>.</p>
+                        </div>
                         <div class="field d-flex">
                             <button type="submit" class="btn btn-primary flex-fill"><strong>Daftar</strong></button>
                         </div>
+                        <hr>
                         <div class="field text-center">
                             <p>Sudah punya akun? <a href="<?= base_url('/login'); ?>">Masuk</a></p>
                         </div>
@@ -116,5 +120,7 @@
 
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
+
+<script src="<?= base_url('/scripts/js/form.js'); ?>"></script>
 
 <?= $this->endSection(); ?>

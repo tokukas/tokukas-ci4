@@ -20,7 +20,7 @@
 }
 
 .left-box .login-box {
-  min-width: 60%;
+  min-width: 70%;
 }
 
 .left-box .login-box .title {
@@ -29,7 +29,7 @@
 }
 
 .left-box .login-box .field {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .left-box .login-box .field .material-icons {
