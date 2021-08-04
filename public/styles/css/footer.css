@@ -11,7 +11,7 @@
 .footer .vr {
   width: 1px;
   height: auto;
-  min-height: 1.5rem;
+  min-height: 1rem;
   background-color: #ffffff;
   content: none;
 }
@@ -124,11 +124,26 @@
 .footer .bottom {
   background-color: #1976d2;
   padding: 1rem;
-  font-size: small;
+  font-size: 0.75rem;
 }
 
-@media screen and (max-width: 640px) {
-  .footer .icon-bar {
+.footer .bottom .container-md {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+@media screen and (max-width: 420px) {
+  .footer .bottom .container-md {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;

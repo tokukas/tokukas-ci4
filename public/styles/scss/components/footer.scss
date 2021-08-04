@@ -12,7 +12,7 @@
     .vr {
         width: 1px;
         height: auto;
-        min-height: 1.5rem;
+        min-height: 1rem;
         background-color: #ffffff;
         content: none;
     }
@@ -94,15 +94,25 @@
     .bottom {
         background-color: map-get($secondaryColor, '1');
         padding: 1rem;
-        font-size: small;
+        font-size: 0.75rem;
+
+        .container-md {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
     }
 }
 
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 420px) {
     .footer {
-        .icon-bar {
-            justify-content: center;
+        .bottom {
+            .container-md {
+                justify-content: center;
+            }
         }
     }
 }

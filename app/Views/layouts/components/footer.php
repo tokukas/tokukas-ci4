@@ -37,7 +37,6 @@
                             <img src="<?= base_url('/assets/signal-app-icon-white.svg'); ?>" alt="linktree icon" height="22">
                         </div>
                     </a>
-                    <div class="vr"></div>
                     <a href="https://linktr.ee/tokukas" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Linktree TOKUKAS">
                         <div class="icon-box">
                             <img src="<?= base_url('/assets/linktree-icon-white.svg'); ?>" alt="linktree icon" height="22">
@@ -78,11 +77,11 @@
         </div>
     </div>
     <div class="container-fluid bottom">
-        <div class="container-md d-flex justify-content-between">
+        <div class="container-md">
             <section>
                 <span>&copy; 2021 - TOKUKAS</span>
             </section>
-            <section class="d-inline-flex gap-2">
+            <section class="d-inline-flex gap-2 text-center">
                 <a href="<?= base_url('/terms'); ?>">Syarat Penggunaan</a>
                 <div class="vr"></div>
                 <a href="<?= base_url('/privacy'); ?>">Kebijakan Privasi</a>
