@@ -1,0 +1,11 @@
+.box {
+  min-height: 100vh;
+  padding: 0;
+}
+
+@media screen and (max-width: 640px) {
+  .box {
+    min-height: auto;
+  }
+}
+/*# sourceMappingURL=two-sides.css.map */

@@ -55,9 +55,9 @@
                             <i class="material-icons">chevron_right</i>
                             <span>Tentang Kami</span>
                         </a>
-                        <a href="<?= base_url('/bookoffer'); ?>" class="menu">
+                        <a href="<?= base_url('/sell'); ?>" class="menu">
                             <i class="material-icons">chevron_right</i>
-                            <span>Ajukan Penawaran</span>
+                            <span>Jual Buku</span>
                         </a>
                     </div>
                 </section>

@@ -1,0 +1,18 @@
+@import '../global/var';
+
+$blueSecondary: map-get($secondaryColor, '1');
+$greyMedium: map-get($grey, 'med');
+
+
+.box {
+    min-height: 100vh;
+    padding: 0;
+}
+
+
+
+@media screen and (max-width: 640px) {
+    .box {
+        min-height: auto;
+    }
+}

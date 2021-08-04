@@ -5,7 +5,7 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('/styles/css/login.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('/styles/css/register.css'); ?>">
 
 <?= $this->endSection(); ?>
 
@@ -13,21 +13,31 @@
 <!-- LEFT BOX SECTION -->
 <?= $this->section('left-box'); ?>
 
-
 <div class="left-box bg-light">
     <div class="login-box">
         <div class="card shadow">
             <div class="card-body">
                 <section class="container mb-3 d-flex justify-content-between align-items-center">
-                    <h1 class="title">Masuk</h1>
+                    <h1 class="title">Daftar</h1>
                     <a href="<?= base_url('/'); ?>" class="icon-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Ke Beranda">
                         <i class="material-icons-outlined">close</i>
                     </a>
                 </section>
                 <section class="container">
-                    <form action="<?= base_url('/login'); ?>" method="post">
+                    <form action="<?= base_url('/register'); ?>" method="post">
                         <?= csrf_field(); ?>
-                        <input type="hidden" name="redirect" value="">
+                        <div class="field">
+                            <label for="fullname" class="form-label">Nama Lengkap</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <label for="fullname" class="d-flex">
+                                        <i class="material-icons">badge</i>
+                                    </label>
+                                </div>
+                                <input type="text" name="fullname" id="fullname" class="form-control" required>
+                            </div>
+                            <div class="form-text">Masukkan nama lengkap anda.</div>
+                        </div>
                         <div class="field">
                             <label for="email" class="form-label">Email</label>
                             <div class="input-group">
@@ -38,13 +48,17 @@
                                 </div>
                                 <input type="email" name="email" id="email" class="form-control" required>
                             </div>
+                            <div class="form-text d-flex gap-1 align-items-center">
+                                <span>Gunakan email yang aktif</span>
+                                <i class="material-icons" style="font-size: 1rem;" data-bs-toggle="tooltip" data-bs-placement="top" title="Kami akan mengirimkan kode verifikasi ke email ini.">information</i>
+                            </div>
                         </div>
                         <div class="field password-field">
                             <label for="password" class="form-label">Kata Sandi</label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <label for="password" class="d-flex">
-                                        <i class="material-icons">vpn_key</i>
+                                        <i class="material-icons">lock</i>
                                     </label>
                                 </div>
                                 <input type="password" name="password" id="password" class="form-control" required>
@@ -52,21 +66,26 @@
                                     <i class="material-icons">visibility_off</i>
                                 </button>
                             </div>
-                            <div class="mt-2">
-                                <a href="#">Lupa kata sandi?</a>
-                            </div>
                         </div>
-                        <div class="field">
-                            <div class="form-check">
-                                <input type="checkbox" name="remember_me" id="rememberMe" class="form-check-input">
-                                <label for="rememberMe" class="form-check-label">Ingat saya</label>
+                        <div class="field password-field">
+                            <label for="cpassword" class="form-label">Konfirmasi Kata Sandi</label>
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <label for="cpassword" class="d-flex">
+                                        <i class="material-icons">vpn_key</i>
+                                    </label>
+                                </div>
+                                <input type="password" name="cpassword" id="cpassword" class="form-control" required>
+                                <button type="button" class="input-group-text btn show-password-toggle">
+                                    <i class="material-icons">visibility_off</i>
+                                </button>
                             </div>
                         </div>
                         <div class="field d-flex">
-                            <button type="submit" class="btn btn-primary flex-fill"><strong>Masuk</strong></button>
+                            <button type="submit" class="btn btn-primary flex-fill"><strong>Daftar</strong></button>
                         </div>
                         <div class="field text-center">
-                            <p>Belum punya akun? <a href="<?= base_url('/register'); ?>">Daftar</a></p>
+                            <p>Sudah punya akun? <a href="<?= base_url('/login'); ?>">Masuk</a></p>
                         </div>
                     </form>
                 </section>
@@ -87,6 +106,8 @@
             <img class="cover" src="<?= base_url('/assets/brand-cover.jpg'); ?>" alt="brand cover">
         </a>
         <h3><strong>Yang Bekas Pasti Lebih Murah!</strong></h3>
+        <hr>
+        <p>Anda baru dapat melakukan penjualan buku setelah anda memiliki akun.</p>
     </div>
 </div>
 
