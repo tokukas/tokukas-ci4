@@ -27,58 +27,18 @@
                     <form action="<?= base_url('/register'); ?>" method="post">
                         <?= csrf_field(); ?>
                         <div class="field">
-                            <label for="fullname" class="form-label">Nama Lengkap</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <label for="fullname" class="d-flex">
-                                        <i class="material-icons">badge</i>
-                                    </label>
-                                </div>
-                                <input type="text" name="fullname" id="fullname" class="form-control" required>
-                            </div>
-                            <div class="form-text">Masukkan nama lengkap anda.</div>
-                        </div>
-                        <div class="field">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="email" class="form-label d-inline-flex gap-1 align-items-center">
+                                <span>Email</span>
+                                <i class="material-icons" style="font-size: 1rem; width: 1rem; height: 1rem;" data-bs-toggle="tooltip" data-bs-placement="right" title="Kode verifikasi akan dikirimkan ke email ini.">information</i>
+                            </label>
                             <div class="input-group">
                                 <div class="input-group-text">
                                     <label for="email" class="d-flex">
                                         <i class="material-icons">email</i>
                                     </label>
                                 </div>
-                                <input type="email" name="email" id="email" class="form-control" required>
-                            </div>
-                            <div class="form-text d-flex gap-1 align-items-center">
-                                <span>Gunakan email yang aktif</span>
-                                <i class="material-icons" style="font-size: 1rem;" data-bs-toggle="tooltip" data-bs-placement="top" title="Kami akan mengirimkan kode verifikasi ke email ini.">information</i>
-                            </div>
-                        </div>
-                        <div class="field password-field">
-                            <label for="password" class="form-label">Kata Sandi</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <label for="password" class="d-flex">
-                                        <i class="material-icons">lock</i>
-                                    </label>
-                                </div>
-                                <input type="password" name="password" id="password" class="form-control" required>
-                                <button type="button" class="input-group-text btn show-password-toggle">
-                                    <i class="material-icons">visibility_off</i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="field password-field">
-                            <label for="cpassword" class="form-label">Konfirmasi Kata Sandi</label>
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <label for="cpassword" class="d-flex">
-                                        <i class="material-icons">vpn_key</i>
-                                    </label>
-                                </div>
-                                <input type="password" name="cpassword" id="cpassword" class="form-control" required>
-                                <button type="button" class="input-group-text btn show-password-toggle">
-                                    <i class="material-icons">visibility_off</i>
-                                </button>
+                                <input type="email" name="email" id="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                                <div class="form-text"></div>
                             </div>
                         </div>
                         <div class="field text-center">

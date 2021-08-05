@@ -39,7 +39,8 @@ $routes->post('login', 'Login::auth');
 
 // Register verification
 $routes->get('register/(:any)', 'Register::index');
-$routes->post('register', 'Register::auth');
+$routes->post('register', 'Register::verify');
+$routes->post('register/(:alphanum)', 'Register::verify/$1');
 
 
 /**

@@ -16,7 +16,8 @@ $greyMedium: map-get($grey, 'med');
     align-items: center;
 
     .login-box {
-        min-width: 70%;
+        min-width: 60%;
+        max-width: 24rem;
 
         .title {
             color: $primaryColor;
