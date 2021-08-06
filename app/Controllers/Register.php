@@ -3,16 +3,17 @@
 namespace App\Controllers;
 
 use App\Models\AccountModel;
-use App\Models\EmailVerificationModel;
+use App\Models\EmailVerificatorModel;
 
 class Register extends BaseController
 {
     protected $emailVerificator;
     protected $accountModel;
 
+
     public function __construct()
     {
-        $this->emailVerificator = new EmailVerificationModel();
+        $this->emailVerificator = new EmailVerificatorModel();
         $this->accountModel = new AccountModel();
     }
 

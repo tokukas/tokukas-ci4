@@ -59,12 +59,6 @@ $routes->group('register', function ($register) {
 	$register->get('(:any)', 'Register::index');
 });
 
-// $routes->get('register/(:any)', 'Register::index');
-// $routes->post('register', 'Register::requestCode');
-// $routes->post('register/new', 'Register::new');
-// $routes->post('register/verify', 'Register::verify');
-// $routes->post('register/verify/(:alphanum)', 'Register::verify/$1');
-
 
 /**
  * --------------------------------------------------------------------

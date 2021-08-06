@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\MyModel;
 use CodeIgniter\Config\Services;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
@@ -59,5 +60,8 @@ class BaseController extends Controller
 
 		// validation
 		$this->validation = Services::validation();
+
+		// to access variable from database
+		$this->variable = MyModel::variable();
 	}
 }

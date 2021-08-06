@@ -45,12 +45,11 @@
                     </form>
                     <hr>
                     <div class="text-center">
+                        <p class="m-0">Tidak menerima kode?</p>
+                        <span class="form-text">Coba cek di folder spam atau sampah anda, atau</span>
                         <form action="<?= base_url('/register'); ?>" method="post">
                             <input type="hidden" name="email" value="<?= $verificator['email']; ?>">
-                            <p class="resend-otp d-inline-flex align-items-center gap-1">
-                                <span>Tidak menerima kode?</span>
-                                <button type="submit" class="btn btn-link p-0">Kirim Ulang</button>
-                            </p>
+                            <button type="submit" class="resend-otp btn btn-link btn-sm p-0">Kirim Ulang Kode</button>
                         </form>
                     </div>
                 </section>

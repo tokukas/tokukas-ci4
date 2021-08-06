@@ -3,11 +3,24 @@
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Email_Verification`
--- *already yet
+-- Table structure for table `Variable`
+-- *already executed
 --
 
-CREATE TABLE IF NOT EXISTS `Email_Verification` (
+CREATE TABLE IF NOT EXISTS `Variable` (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
+    `value` VARCHAR(255) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Email_Verificator`
+-- *already executed
+--
+
+CREATE TABLE IF NOT EXISTS `Email_Verificator` (
     `id` VARCHAR(20) PRIMARY KEY NOT NULL,
     `email` VARCHAR(100) NOT NULL,
     `code` VARCHAR(6) NOT NULL,
@@ -20,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `Email_Verification` (
 
 --
 -- Table structure for table `Account`
--- *already yet
+-- *already executed
 --
 
 CREATE TABLE IF NOT EXISTS `Account` (

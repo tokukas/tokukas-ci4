@@ -137,7 +137,7 @@ class MyModel extends Model
         $respons = $this->save($data);
         unset($data);
 
-        return ($respons) ? $newId ?? $respons : $respons;
+        return $newId ?? $respons;
     }
 
 
@@ -163,5 +163,14 @@ class MyModel extends Model
     public function isAlreadyExistIn($field, $value)
     {
         return $this->builder()->where($field, $value)->countAllResults() > 0;
+    }
+
+
+    /**
+     * Create instance of DBVariableModel to access variable that stored in database.
+     */
+    public static function variable()
+    {
+        return new DBVariableModel();
     }
 }
