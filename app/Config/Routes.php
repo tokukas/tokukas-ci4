@@ -52,8 +52,11 @@ $routes->group('register', function ($register) {
 		$verify->post('/', 'EmailVerification::verify');
 	});
 
-	// new
-	$register->get('new', 'Register::new');
+	// create new account
+	$register->group('new', function ($new) {
+		$new->get('/', 'Register::new');
+		$new->post('/', 'Register::insert');
+	});
 
 	// redirect to register page
 	$register->get('(:any)', 'Register::index');

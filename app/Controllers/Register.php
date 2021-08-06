@@ -31,11 +31,95 @@ class Register extends BaseController
 
     public function new()
     {
+        /**
+         * --------------------------------------
+         * Validate Email Verificator
+         * --------------------------------------
+         */
         $verificator = session()->getFlashdata('verificator');
 
         if (empty($verificator)) {
             return redirect()->to(base_url('/register'));
         }
-        dd($verificator);
+
+        if (!$this->emailVerificator->isVerified($verificator['id'])) {
+            $this->emailVerificator->delete($verificator['id']);
+
+            set_alert('Email anda belum terverifikasi. Harap ulangi pendaftaran akun.');
+            return redirect()->to(base_url('/register'));
+        }
+
+        /**
+         * --------------------------------------
+         * Go to create account page
+         * --------------------------------------
+         */
+        $data = [
+            'title' => 'Buat Akun | TOKUKAS',
+            'validation' => $this->validation,
+            'verificator' => $verificator,
+        ];
+
+        return view('register/new', $data);
+    }
+
+
+    public function insert()
+    {
+        /**
+         * --------------------------------------
+         * Validate Email Verificator
+         * --------------------------------------
+         */
+        $verificatorId = $this->request->getPost('id');
+
+        if (empty($verificatorId)) {
+            return redirect()->to(base_url('/register'));
+        }
+
+        if (!$this->emailVerificator->isVerified($verificatorId)) {
+            $this->emailVerificator->delete($verificatorId);
+
+            set_alert('Email anda belum terverifikasi. Harap ulangi pendaftaran akun.');
+            return redirect()->to(base_url('/register'));
+        }
+
+        /**
+         * --------------------------------------
+         * Validate Input
+         * --------------------------------------
+         */
+        $verificator = $this->emailVerificator->find($verificatorId);
+
+        if (!$this->validate('registerAccount')) {
+            session()->setFlashdata('verificator', [
+                'id' => $verificatorId,
+                'email' => $verificator['email'],
+            ]);
+            return redirect()->to(base_url('/register/new'))->withInput();
+        }
+
+        /**
+         * --------------------------------------
+         * Inserting account
+         * --------------------------------------
+         */
+        $accountId = $this->accountModel->smartSave([
+            'email' => htmlspecialchars($this->emailVerificator->getEmail($verificatorId)),
+            'name' => ucwords(htmlspecialchars($this->request->getPost('fullname'))),
+            'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
+        ]);
+
+        $this->emailVerificator->delete($verificatorId);
+
+        // if failed, redirect to register page
+        if (empty($accountId)) {
+            set_alert('Terjadi kesalahan saat mendaftarkan akun anda. Harap coba lagi.');
+            return redirect()->to(base_url('/register'));
+        }
+
+        // if success
+        set_alert('Pendaftaran akun berhasil. Silahkan login untuk memulai transaksi.');
+        return redirect()->to(base_url('/login'));
     }
 }

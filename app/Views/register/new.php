@@ -26,6 +26,7 @@
                 <section class="container">
                     <form action="<?= base_url('/register/new'); ?>" method="post">
                         <?= csrf_field(); ?>
+                        <input type="hidden" name="id" value="<?= $verificator['id']; ?>">
                         <div class="field">
                             <label for="email" class="form-label">Email</label>
                             <div class="input-group">
@@ -48,7 +49,10 @@
                                         <i class="material-icons">badge</i>
                                     </label>
                                 </div>
-                                <input type="text" name="fullname" id="fullname" class="form-control" required>
+                                <input type="text" name="fullname" id="fullname" class="form-control <?= ($validation->hasError('fullname')) ? 'is-invalid' : ''; ?>" value="<?= old('fullname') ?: ''; ?>" required>
+                                <?php if ($validation->hasError('fullname')) : ?>
+                                    <div class="invalid-feedback"><?= $validation->getError('fullname'); ?></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="field password-field">
@@ -59,10 +63,13 @@
                                         <i class="material-icons">lock</i>
                                     </label>
                                 </div>
-                                <input type="password" name="password" id="password" class="form-control" required>
+                                <input type="password" name="password" id="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" required>
                                 <button type="button" class="input-group-text btn show-password-toggle">
                                     <i class="material-icons">visibility_off</i>
                                 </button>
+                                <?php if ($validation->hasError('password')) : ?>
+                                    <div class="invalid-feedback"><?= $validation->getError('password'); ?></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="field password-field">
@@ -73,10 +80,13 @@
                                         <i class="material-icons">vpn_key</i>
                                     </label>
                                 </div>
-                                <input type="password" name="cpassword" id="cpassword" class="form-control" required>
+                                <input type="password" name="cpassword" id="cpassword" class="form-control <?= ($validation->hasError('cpassword')) ? 'is-invalid' : ''; ?>" required>
                                 <button type="button" class="input-group-text btn show-password-toggle">
                                     <i class="material-icons">visibility_off</i>
                                 </button>
+                                <?php if ($validation->hasError('cpassword')) : ?>
+                                    <div class="invalid-feedback"><?= $validation->getError('cpassword'); ?></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="field d-flex">

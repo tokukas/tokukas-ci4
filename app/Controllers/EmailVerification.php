@@ -7,33 +7,10 @@ use CodeIgniter\Config\Services;
 
 class EmailVerification extends BaseController
 {
-    protected $email;
     protected $emailVerificator;
-
-    /**
-     * The sender name.
-     * @var string
-     */
-    protected $senderName;
-
-    /**
-     * The sender email address.
-     *
-     * Need outlook email, or change email configuration file if not using outlook email.
-     * @var string
-     */
-    protected $senderEmailAddress;
-
-    /**
-     * The sender email password.
-     * @var string
-     */
-    protected $senderPassword;
-
 
     public function __construct()
     {
-        $this->email = Services::email();
         $this->emailVerificator = new EmailVerificatorModel();
     }
 
@@ -45,32 +22,28 @@ class EmailVerification extends BaseController
          * Validate Input
          * --------------------------------------
          */
-        if (!$this->validate('formRegister')) {
+        if (!$this->validate('registerEmail')) {
             return redirect()->to(base_url('/register'))->withInput();
         }
 
         // get the email address
-        $emailAddress = $this->request->getPost('email');
-
-        // validate email
-        if (!$this->email->isValidEmail($emailAddress)) {
-            set_alert('Email ini tidak valid.', true);
-            return redirect()->to(base_url('register'))->withInput();
-        }
+        $emailAddress = strtolower(htmlspecialchars($this->request->getPost('email')));
 
         /**
          * --------------------------------------
-         * Generate Verificator
+         * Generate Verification Code
          * --------------------------------------
          */
-        $id = $this->emailVerificator->generateCode($emailAddress);
+        $code = code_generator(6);
+        $id = $this->emailVerificator->smartSave([
+            'email' => $emailAddress,
+            'code' => password_hash($code, PASSWORD_BCRYPT),
+        ]);
 
         if ($id === false) {
             set_alert('Gagal menghasilkan kode verifikasi. Harap tunggu beberapa saat lalu coba lagi.', true);
             return redirect()->to(base_url('register'))->withInput();
         }
-
-        $verificationCode = $this->emailVerificator->getCode($id);
 
         /**
          * --------------------------------------
@@ -78,15 +51,6 @@ class EmailVerification extends BaseController
          * --------------------------------------
          */
         // set sender email
-        $this->senderName = $this->variable->getVar('comp_name');
-        $this->senderEmailAddress = $this->variable->getVar('comp_email_address');
-        $this->senderPassword = $this->variable->getVar('comp_password_email');
-
-        // set email config
-        $config['SMTPUser'] = $this->senderEmailAddress;
-        $config['SMTPPass'] = $this->senderPassword;
-        $this->email->initialize($config);
-
         $this->email->setFrom($this->senderEmailAddress, $this->senderName);
 
         // set recipient email
@@ -95,7 +59,7 @@ class EmailVerification extends BaseController
         // set the email to be sent
         $emailTemplateFile = view('layouts/templates/verification-code-email', [
             'recipient' => $emailAddress,
-            'verificationCode' => $verificationCode,
+            'verificationCode' => $code,
             'minutesUntilCodeExpires' => $this->emailVerificator->getMinutesUntilCodeExpires(),
         ]);
         $this->email->setSubject('Verifikasi Email');
@@ -103,7 +67,7 @@ class EmailVerification extends BaseController
 
         /**
          * --------------------------------------
-         * Respons
+         * Send the email & get the respons
          * --------------------------------------
          */
         // send the email
@@ -205,10 +169,5 @@ class EmailVerification extends BaseController
             'email' => $verificator['email']
         ]);
         return redirect()->to(base_url('/register/new'));
-    }
-
-
-    public function new()
-    {
     }
 }

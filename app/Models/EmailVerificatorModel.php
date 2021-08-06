@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Libraries\CodeGenerator;
 use CodeIgniter\I18n\Time;
 
 class EmailVerificatorModel extends MyModel
@@ -25,7 +24,7 @@ class EmailVerificatorModel extends MyModel
      * How long will the verification code expire. If set to 0, the verification code never can be used.
      * @var integer
      */
-    protected $minutesUntilCodeExpires = 10;
+    protected $minutesUntilCodeExpires = 30;
 
 
     public function getMinutesUntilCodeExpires()
@@ -34,32 +33,20 @@ class EmailVerificatorModel extends MyModel
     }
 
 
-    /**
-     * Generates email verificator with random code.
-     * @param string $email The user email address.
-     * @return string|false Will return verificator id in string if success, or boolean false if failed.
-     */
-    public function generateCode($email)
+    public function getEmail($id)
     {
-        $codeGenerator = new CodeGenerator(6);
-        $code = $codeGenerator->getDecimalCode();
-
-        return $this->smartSave([
-            'email' => $email,
-            'code' => $code,
-        ]);
-    }
-
-
-    public function getCode($id)
-    {
-        return $this->find($id)['code'];
+        $verificator = $this->find($id);
+        return (empty($verificator)) ? null : $verificator['email'];
     }
 
 
     public function isCodeExpired($id)
     {
         $verificator = $this->find($id);
+
+        if (empty($verificator)) {
+            return false;
+        }
 
         // check validity period
         $now = Time::now();
@@ -72,6 +59,13 @@ class EmailVerificatorModel extends MyModel
     public function verifyCode($id, $code)
     {
         $verificator = $this->find($id);
-        return $code === $verificator['code'];
+        return (empty($verificator)) ? null : password_verify($code, $verificator['code']);
+    }
+
+
+    public function isVerified($id)
+    {
+        $verificator = $this->find($id);
+        return (empty($verificator)) ? null : $verificator['verified'];
     }
 }

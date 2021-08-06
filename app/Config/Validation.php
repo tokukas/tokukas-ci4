@@ -40,7 +40,7 @@ class Validation
 	//--------------------------------------------------------------------
 	// Rules
 	//--------------------------------------------------------------------
-	public $formRegister = [
+	public $registerEmail = [
 		'email' => [
 			'rules' => 'required|valid_email|is_unique[Account.email]|max_length[100]',
 			'errors' => [
@@ -48,6 +48,29 @@ class Validation
 				'valid_email' => 'Harap masukkan email dengan benar.',
 				'is_unique' => 'Email \'{value}\' sudah digunakan. Harap gunakan email lain.',
 				'max_length' => 'Email tidak boleh lebih dari {param} karakter.',
+			],
+		]
+	];
+
+	public $registerAccount = [
+		'fullname' => [
+			'rules' => 'required|max_length[255]',
+			'errors' => [
+				'required' => 'Nama wajib diisi',
+				'max_length' => 'Nama tidak boleh lebih dari {param} karakter.',
+			],
+		],
+		'password' => [
+			'rules' => 'required',
+			'errors' => [
+				'required' => 'Kata sandi wajib diisi',
+			],
+		],
+		'cpassword' => [
+			'rules' => 'required|matches[password]',
+			'errors' => [
+				'required' => 'Konfirmasi kata sandi wajib diisi',
+				'matches' => 'Konfirmasi kata sandi tidak cocok',
 			],
 		],
 	];

@@ -74,9 +74,9 @@
             <div class="message">
                 <p>Hai, <b><?= $recipient; ?></b>.</p>
                 <p>Berikut kode untuk memverifikasi email anda :</p>
-                <h1 style="font-weight:500; text-align: center;"><?= $verificationCode; ?></h1>
+                <h1 style="font-weight:500; text-align: center;"><strong><?= $verificationCode; ?></strong></h1>
                 <p>Kode ini hanya berlaku selama <strong><?= $minutesUntilCodeExpires; ?> menit</strong>. Silahkan masukkan kode tersebut pada halaman verifikasi email.</p>
-                <p style="text-align: center;"><strong>!!! Jangan memberitahukan kode tersebut kepada siapapun termasuk ke pihak TOKUKAS. !!!</strong></p>
+                <p><strong>!!! JANGAN MEMBERITAHUKAN KODE INI KEPADA SIAPAPUN termasuk pihak TOKUKAS !!!</strong></p>
             </div>
         </div>
     </div>

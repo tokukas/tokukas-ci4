@@ -18,28 +18,6 @@ class AccountModel extends MyModel
         'use_hex' => true
     ];
 
-    protected $validationRules = [
-        'email' => 'required|valid_email|is_unique[Account.email]|max_length[100]',
-        'name' => 'required|max_length[255]',
-        'password' => 'required',
-    ];
-    protected $validationMessages = [
-        'email' => [
-            'required' => 'Email wajib diisi.',
-            'valid_email' => 'Harap masukkan email dengan benar',
-            'is_unique' => 'Email ini sudah digunakan. Harap gunakan email lain',
-            'max_length' => 'Email tidak boleh lebih dari {param} karakter.',
-        ],
-        'name' => [
-            'required' => 'Nama wajib diisi',
-            'max_length' => 'Nama tidak boleh lebih dari {param} karakter.',
-        ],
-        'password' => [
-            'required' => 'Kata sandi wajib diisi',
-        ],
-    ];
-    protected $skipValidation = false;
-
 
     public function findByEmail($email)
     {
