@@ -1,0 +1,12 @@
+.alert {
+  position: absolute !important;
+  top: 1rem !important;
+  left: 50% !important;
+  -webkit-transform: translateX(-50%) !important;
+          transform: translateX(-50%) !important;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  z-index: 7 !important;
+}
+/*# sourceMappingURL=alert.css.map */

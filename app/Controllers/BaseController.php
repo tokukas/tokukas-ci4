@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\Config\Services;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -36,7 +37,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = [];
+	protected $helpers = ['custom'];
 
 	/**
 	 * Constructor.
@@ -54,5 +55,9 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 		// E.g.: $this->session = \Config\Services::session();
+		session();
+
+		// validation
+		$this->validation = Services::validation();
 	}
 }

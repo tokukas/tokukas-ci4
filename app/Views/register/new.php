@@ -24,7 +24,7 @@
                     <h1 class="title">Daftar</h1>
                 </section>
                 <section class="container">
-                    <form action="<?= base_url('/register'); ?>" method="post">
+                    <form action="<?= base_url('/register/new'); ?>" method="post">
                         <?= csrf_field(); ?>
                         <div class="field">
                             <label for="email" class="form-label">Email</label>
@@ -34,7 +34,7 @@
                                         <i class="material-icons">email</i>
                                     </label>
                                 </div>
-                                <input type="email" id="email" class="form-control" value="<?= $email; ?>" disabled>
+                                <input type="email" id="email" class="form-control" value="<?= $verificator['email']; ?>" disabled>
                                 <a href="<?= base_url('/register'); ?>" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Email">
                                     <i class="material-icons">edit</i>
                                 </a>

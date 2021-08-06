@@ -37,8 +37,10 @@
                                         <i class="material-icons">email</i>
                                     </label>
                                 </div>
-                                <input type="email" name="email" id="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-                                <div class="form-text"></div>
+                                <input type="email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>" value="<?= old('email') ?: ''; ?>" required>
+                                <?php if ($validation->hasError('email')) : ?>
+                                    <div class="invalid-feedback"><?= $validation->getError('email'); ?></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="field text-center">

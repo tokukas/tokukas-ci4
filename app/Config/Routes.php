@@ -38,9 +38,32 @@ $routes->get('login/(:any)', 'Login::index');
 $routes->post('login', 'Login::auth');
 
 // Register verification
-$routes->get('register/(:any)', 'Register::index');
-$routes->post('register', 'Register::verify');
-$routes->post('register/(:alphanum)', 'Register::verify/$1');
+$routes->group('register', function ($register) {
+	// request verification code
+	$register->post('/', 'EmailVerification::requestCode');
+
+	// verify
+	$register->group('verify', function ($verify) {
+
+		// redirect to confirm verification code page
+		$verify->get('/', 'EmailVerification::verify');
+
+		// validate the verification code
+		$verify->post('/', 'EmailVerification::verify');
+	});
+
+	// new
+	$register->get('new', 'Register::new');
+
+	// redirect to register page
+	$register->get('(:any)', 'Register::index');
+});
+
+// $routes->get('register/(:any)', 'Register::index');
+// $routes->post('register', 'Register::requestCode');
+// $routes->post('register/new', 'Register::new');
+// $routes->post('register/verify', 'Register::verify');
+// $routes->post('register/verify/(:alphanum)', 'Register::verify/$1');
 
 
 /**

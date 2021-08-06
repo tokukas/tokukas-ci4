@@ -1,6 +1,7 @@
 <?php
 
 use App\Libraries\CodeGenerator;
+use CodeIgniter\Config\Services;
 
 /**
  * Generates a code consisting of several digits of a random number, plus a specified prefix or suffix.
@@ -52,4 +53,19 @@ function get_url_of_this_page()
 function idn_format_number($num, $decimals = 0, $prefix = '')
 {
     return $prefix . number_format($num, $decimals, ',', '.');
+}
+
+
+/**
+ * Generate new session alert.
+ * @param string $message The message to be send.
+ * @param boolean $isWarning If true, alert will set with alert-danger.
+ */
+function set_alert($message, $isWarning = false)
+{
+    $session = Services::session();
+    $session->setFlashdata('alert', [
+        'warning' => $isWarning,
+        'message' => $message
+    ]);
 }

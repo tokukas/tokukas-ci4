@@ -19,17 +19,11 @@ class AccountModel extends MyModel
     ];
 
     protected $validationRules = [
-        'id' => 'required|is_unique[Account.id]|exact_length[16]',
         'email' => 'required|valid_email|is_unique[Account.email]|max_length[100]',
         'name' => 'required|max_length[255]',
         'password' => 'required',
     ];
     protected $validationMessages = [
-        'id' => [
-            'required' => 'ID akun wajib diisi.',
-            'is_unique' => 'ID akun sudah digunakan.',
-            'exact_length' => 'ID akun harus {param} karakter.',
-        ],
         'email' => [
             'required' => 'Email wajib diisi.',
             'valid_email' => 'Harap masukkan email dengan benar',

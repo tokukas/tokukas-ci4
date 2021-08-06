@@ -40,4 +40,15 @@ class Validation
 	//--------------------------------------------------------------------
 	// Rules
 	//--------------------------------------------------------------------
+	public $formRegister = [
+		'email' => [
+			'rules' => 'required|valid_email|is_unique[Account.email]|max_length[100]',
+			'errors' => [
+				'required' => 'Email wajib diisi.',
+				'valid_email' => 'Harap masukkan email dengan benar.',
+				'is_unique' => 'Email \'{value}\' sudah digunakan. Harap gunakan email lain.',
+				'max_length' => 'Email tidak boleh lebih dari {param} karakter.',
+			],
+		],
+	];
 }

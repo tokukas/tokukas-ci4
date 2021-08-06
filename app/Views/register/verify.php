@@ -24,10 +24,10 @@
                     <h2 class="title">Masukkan Kode Verifikasi</h2>
                 </section>
                 <section class="container mb-3">
-                    <p class="text-center">Masukkan kode verifikasi yang sudah kami kirimkan ke email <strong><?= $email; ?></strong></p>
-                    <form action="<?= base_url('/register/' . $verificationId); ?>" method="post">
+                    <p class="text-center">Masukkan kode verifikasi yang sudah kami kirimkan ke email <strong><?= $verificator['email']; ?></strong></p>
+                    <form action="<?= base_url('/register/verify'); ?>" method="post">
                         <?= csrf_field(); ?>
-                        <input type="hidden" name="email" value="<?= $email; ?>">
+                        <input type="hidden" name="verification_id" value="<?= $verificator['id']; ?>">
                         <div class="field">
                             <label for="verificationCode" class="form-label">Kode Verifikasi</label>
                             <div class="input-group">
@@ -45,7 +45,13 @@
                     </form>
                     <hr>
                     <div class="text-center">
-                        <p class="resend-otp">Tidak menerima kode? <a href="">Kirim Ulang</a></p>
+                        <form action="<?= base_url('/register'); ?>" method="post">
+                            <input type="hidden" name="email" value="<?= $verificator['email']; ?>">
+                            <p class="resend-otp d-inline-flex align-items-center gap-1">
+                                <span>Tidak menerima kode?</span>
+                                <button type="submit" class="btn btn-link p-0">Kirim Ulang</button>
+                            </p>
+                        </form>
                     </div>
                 </section>
             </div>

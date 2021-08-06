@@ -28,6 +28,7 @@
 
 
     <!-- Global app styles -->
+    <link rel="stylesheet" href="<?= base_url('/styles/css/alert.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('/styles/css/base.css'); ?>">
 
     <!-- Custom styles -->
@@ -39,6 +40,8 @@
 </head>
 
 <body>
+    <!-- import alert -->
+    <?= $this->include('layouts/components/alert'); ?>
 
     <?= $this->renderSection('content'); ?>
 
