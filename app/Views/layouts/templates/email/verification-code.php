@@ -74,9 +74,14 @@
             <div class="message">
                 <p>Hai, <b><?= $recipient; ?></b>.</p>
                 <p>Berikut kode untuk memverifikasi email anda :</p>
-                <h1 style="font-weight:500; text-align: center;"><strong><?= $verificationCode; ?></strong></h1>
-                <p>Kode ini hanya berlaku selama <strong><?= $minutesUntilCodeExpires; ?> menit</strong>. Silahkan masukkan kode tersebut pada halaman verifikasi email.</p>
-                <p><strong>!!! JANGAN MEMBERITAHUKAN KODE INI KEPADA SIAPAPUN termasuk pihak TOKUKAS !!!</strong></p>
+                <h1 style="font-weight:500;text-align: center;"><strong><?= $verificationCode; ?></strong></h1>
+                <p>Kode ini hanya berlaku selama <strong><?= $minutesUntilCodeExpires; ?> menit</strong>. Silahkan masukkan
+                    kode tersebut pada halaman
+                    verifikasi email.</p>
+                <hr style="color:inherit;background-color:currentColor;border:0;opacity:0.25;height:1px;">
+                <p style="text-align: center;">
+                    <strong>!!! JANGAN MEMBERITAHUKAN KODE INI KEPADA SIAPAPUN termasuk pihak TOKUKAS !!!</strong>
+                </p>
             </div>
         </div>
     </div>
@@ -100,20 +105,20 @@
                         </tr>
                     </tbody>
                 </table>
+                <p style="font-size: 0.75rem;">
+                    <a href="https://www.google.com/maps/search/tokukas" class="icon-btn" style="text-decoration:none;color:#ffffff;display:inline-block;">
+                        <img src="https://mcusercontent.com/f0c6140a1dcf32deec8308007/images/724b938a-632d-34b7-4aee-1362ee3d6160.png" alt="icon" class="i" role="img" style="border:0;color:#ffffff;height:1rem;width:1rem;font-size:small;vertical-align:middle;">
+                        <span>Jalan Pabean Kencana Raya No. 32, Desa Pabean Udik,
+                            Kec. Indramayu, Kab. Indramayu, Jawa Barat 45219, Indonesia.</span>
+                    </a>
+                </p>
             </div>
             <div class="section" style="text-align:center;">
-                <a href="https://www.google.com/maps/search/" class="icon-btn" style="text-decoration:none;color:#ffffff;display:inline-block;">
-                    <img src="https://mcusercontent.com/f0c6140a1dcf32deec8308007/images/724b938a-632d-34b7-4aee-1362ee3d6160.png" alt="icon" class="i" role="img" style="border:0;color:#ffffff;height:1rem;width:1rem;font-size:small;vertical-align:middle;">
-                    <span>Jalan Pabean Kencana Raya No. 32, Desa Pabean Udik,
-                        Kec. Indramayu, Kab. Indramayu, Jawa Barat 45219, Indonesia.</span>
-                </a>
-            </div>
-            <div class="section" style="text-align:center;">
-                <table style="margin: 1rem auto; text-align: center; border-collapse: separate; border-spacing: 1rem 0;">
+                <table style="margin: 1rem auto; text-align: center; border-collapse: separate; border-spacing: 0.5rem 0;">
                     <tbody>
                         <tr>
                             <td>
-                                <a href="mailto:" class="icon-btn" style="text-decoration:none;color:#ffffff;display:inline-block;">
+                                <a href="mailto:tokukas@outlook.com" class="icon-btn" style="text-decoration:none;color:#ffffff;display:inline-block;">
                                     <img src="https://mcusercontent.com/f0c6140a1dcf32deec8308007/images/44fc8863-b1aa-cd11-b0d1-cf6cf4adafc9.png" alt="icon" class="i" role="img" height="16px" style="border:0;color:#ffffff;height:1rem;width:1rem;font-size:small;vertical-align:middle;">
                                     <span>tokukas@outlook.com</span>
                                 </a>
@@ -122,17 +127,34 @@
                                 <div class="vr" style="height:1.5rem;background-color:#ffffff;width:1px !important;"></div>
                             </td>
                             <td>
-                                <a href="https://t.me/" class="icon-btn" style="text-decoration:none;color:#ffffff;display:inline-block;">
-                                    <img src="https://mcusercontent.com/f0c6140a1dcf32deec8308007/images/8644c68e-3821-6734-6d90-08655aa26270.png" alt="icon" class="i" role="img" height="16px" style="border:0;color:#ffffff;height:1rem;width:1rem;font-size:small;vertical-align:middle;">
-                                    <span>tokukas</span>
+                                <a href="https://wa.me/+6285315360808" class="icon-btn" style="text-decoration:none;color:#ffffff;display:inline-block;text-decoration:none;color:#ffffff;display:inline-block;">
+                                    <img src="https://mcusercontent.com/f0c6140a1dcf32deec8308007/images/d57a1755-874b-d489-e04d-09ce2b9d9b15.png" alt="icon" class="i" role="img" height="16px" style="border:0;color:#ffffff;height:1rem;width:1rem;font-size:small;vertical-align:middle;border:0;color:#ffffff;height:1rem;width:1rem;font-size:small;vertical-align:middle;">
+                                    <span>+6285315360808</span>
                                 </a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="section" style="text-align:center;">
-                <p><b>&copy; 2021 TOKUKAS</b></p>
+            <hr style="color:inherit;background-color:currentColor;border:0;opacity:0.25;height:1px;">
+            <div class="section" style="text-align:center;font-size: 0.75rem;">
+                <strong>&copy; 2021, TOKUKAS</strong>
+                <table style="margin: 0.5rem auto; text-align: center; border-collapse: separate; border-spacing: 0.5rem 0;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="<?= base_url('/terms'); ?>" class="icon-btn" style="text-decoration:none;color:#ffffff;display:inline-block;">Syarat Penggunaan</a>
+                            </td>
+                            <td>
+                                <div class="vr" style="height:1.5rem;background-color:#ffffff;width:1px !important;height: 1rem;background-color: #ffffff; width:1px !important;">
+                                </div>
+                            </td>
+                            <td>
+                                <a href="<?= base_url('/privacy'); ?>" class="icon-btn" style="text-decoration:none;color:#ffffff;display:inline-block;">Kebijakan Privasi</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

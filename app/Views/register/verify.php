@@ -25,7 +25,7 @@
                 </section>
                 <section class="container mb-3">
                     <p class="text-center">Masukkan kode verifikasi yang sudah kami kirimkan ke email <strong><?= $verificator['email']; ?></strong></p>
-                    <form action="<?= base_url('/register/verify'); ?>" method="post">
+                    <form action="<?= base_url('/register/verify'); ?>" method="post" data-form-loading="true">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="verification_id" value="<?= $verificator['id']; ?>">
                         <div class="field">
@@ -40,16 +40,22 @@
                             </div>
                         </div>
                         <div class="field d-flex">
-                            <button type="submit" class="btn btn-primary flex-fill"><strong>Verifikasi</strong></button>
+                            <button type="submit" class="btn btn-spinner btn-primary flex-fill">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                <span class="btn-name" data-loading-name="Memverifikasi ..."><strong>Verifikasi</strong></span>
+                            </button>
                         </div>
                     </form>
                     <hr>
                     <div class="text-center">
                         <p class="m-0">Tidak menerima kode?</p>
                         <span class="form-text">Coba cek di folder spam atau sampah anda, atau</span>
-                        <form action="<?= base_url('/register'); ?>" method="post">
+                        <form action="<?= base_url('/register'); ?>" method="post" data-form-loading="true">
                             <input type="hidden" name="email" value="<?= $verificator['email']; ?>">
-                            <button type="submit" class="resend-otp btn btn-link btn-sm p-0">Kirim Ulang Kode</button>
+                            <button type="submit" class="resend-otp btn btn-spinner btn-link btn-sm p-0">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                <span class="btn-name" data-loading-name="Mengirim ulang kode...">Kirim Ulang Kode</span>
+                            </button>
                         </form>
                     </div>
                 </section>

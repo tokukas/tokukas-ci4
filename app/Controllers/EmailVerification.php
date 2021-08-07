@@ -57,7 +57,7 @@ class EmailVerification extends BaseController
         $this->email->setTo($emailAddress);
 
         // set the email to be sent
-        $emailTemplateFile = view('layouts/templates/verification-code-email', [
+        $emailTemplateFile = view('layouts/templates/email/verification-code', [
             'recipient' => $emailAddress,
             'verificationCode' => $code,
             'minutesUntilCodeExpires' => $this->emailVerificator->getMinutesUntilCodeExpires(),

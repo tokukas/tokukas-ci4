@@ -24,7 +24,7 @@
                     </a>
                 </section>
                 <section class="container">
-                    <form action="<?= base_url('/register'); ?>" method="post">
+                    <form action="<?= base_url('/register'); ?>" method="post" data-form-loading="true">
                         <?= csrf_field(); ?>
                         <div class="field">
                             <label for="email" class="form-label d-inline-flex gap-1 align-items-center">
@@ -47,7 +47,10 @@
                             <p class="form-text text-dark">Dengan mendaftar, anda menyetujui <br><a href="<?= base_url('/terms'); ?>">Syarat Penggunaan</a> dan <a href="<?= base_url('/privacy'); ?>">Kebijakan Privasi</a>.</p>
                         </div>
                         <div class="field d-flex">
-                            <button type="submit" class="btn btn-primary flex-fill"><strong>Daftar</strong></button>
+                            <button type="submit" class="btn btn-spinner btn-primary flex-fill">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                <span class="btn-name" data-loading-name="Harap Tunggu ..."><strong>Daftar</strong></span>
+                            </button>
                         </div>
                         <hr>
                         <div class="field text-center">

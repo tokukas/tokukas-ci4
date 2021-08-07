@@ -24,7 +24,7 @@
                     <h1 class="title">Daftar</h1>
                 </section>
                 <section class="container">
-                    <form action="<?= base_url('/register/new'); ?>" method="post">
+                    <form action="<?= base_url('/register/new'); ?>" method="post" data-form-loading="true">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="id" value="<?= $verificator['id']; ?>">
                         <div class="field">
@@ -90,7 +90,10 @@
                             </div>
                         </div>
                         <div class="field d-flex">
-                            <button type="submit" class="btn btn-primary flex-fill"><strong>Daftar</strong></button>
+                            <button type="submit" class="btn btn-spinner btn-primary flex-fill">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                <span class="btn-name" data-loading-name="Mendaftarkan Akun ..."><strong>Daftar</strong></span>
+                            </button>
                         </div>
                     </form>
                 </section>

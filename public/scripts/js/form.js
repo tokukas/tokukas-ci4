@@ -17,3 +17,22 @@ $(passwordFields).each((i, field) => {
         }
     });
 });
+
+
+// === Button Loading Spinner ===
+const forms = $('form[data-form-loading="true"]');
+
+$(forms).each((i, form) => {
+    $(form).on('submit', () => {
+        const btnSpinner = $(form).find('.btn-spinner[type="submit"]');
+        const loadingName = $(btnSpinner).children('.btn-name').data('loading-name') || 'Memproses ...';
+
+        // showing btn spinner
+        $(btnSpinner).attr('disabled', '');
+        $(btnSpinner).children('.btn-name').html(loadingName);
+        $(btnSpinner).children('.spinner-border').removeClass('d-none');
+
+        // disabling all submit btn on this page
+        $('button[type="submit"]').attr('disabled', '');
+    });
+});
