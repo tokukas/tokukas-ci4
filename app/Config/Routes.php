@@ -34,7 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 
 // login verification
-$routes->get('login/(:any)', 'Login::index');
+$routes->get('login/(:any)', 'Login::index/$1');
 $routes->post('login', 'Login::auth');
 
 // Register verification

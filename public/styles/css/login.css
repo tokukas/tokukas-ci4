@@ -21,6 +21,7 @@
 
 .left-box .login-box {
   min-width: 60%;
+  max-width: 24rem;
 }
 
 .left-box .login-box .title {

@@ -27,7 +27,7 @@
                 <section class="container">
                     <form action="<?= base_url('/login'); ?>" method="post">
                         <?= csrf_field(); ?>
-                        <input type="hidden" name="redirect" value="">
+                        <input type="hidden" name="redirect" value="<?= $redirect; ?>">
                         <div class="field">
                             <label for="email" class="form-label">Email</label>
                             <div class="input-group">
@@ -36,7 +36,10 @@
                                         <i class="material-icons">email</i>
                                     </label>
                                 </div>
-                                <input type="email" name="email" id="email" class="form-control" required>
+                                <input type="email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>" required>
+                                <?php if ($validation->hasError('email')) : ?>
+                                    <div class="invalid-feedback"><?= $validation->getError('email'); ?></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="field password-field">
@@ -47,10 +50,13 @@
                                         <i class="material-icons">vpn_key</i>
                                     </label>
                                 </div>
-                                <input type="password" name="password" id="password" class="form-control" required>
+                                <input type="password" name="password" id="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" required>
                                 <button type="button" class="input-group-text btn show-password-toggle">
                                     <i class="material-icons">visibility_off</i>
                                 </button>
+                                <?php if ($validation->hasError('password')) : ?>
+                                    <div class="invalid-feedback"><?= $validation->getError('password'); ?></div>
+                                <?php endif; ?>
                             </div>
                             <div class="mt-2">
                                 <a href="#">Lupa kata sandi?</a>

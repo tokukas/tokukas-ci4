@@ -40,6 +40,23 @@ class Validation
 	//--------------------------------------------------------------------
 	// Rules
 	//--------------------------------------------------------------------
+	public $login = [
+		'email' => [
+			'rules' => 'required|valid_email',
+			'errors' => [
+				'required' => 'Email wajib diisi.',
+				'valid_email' => 'Harap masukkan email dengan benar.',
+			],
+		],
+		'password' => [
+			'rules' => 'required',
+			'errors' => [
+				'required' => 'Kata sandi wajib diisi.',
+			],
+		],
+	];
+
+
 	public $registerEmail = [
 		'email' => [
 			'rules' => 'required|valid_email|is_unique[Account.email]|max_length[100]',

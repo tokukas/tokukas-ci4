@@ -31,8 +31,13 @@
             </ul>
             <hr>
             <div class="button-group d-flex gap-2">
-                <a href="<?= base_url('/login'); ?>" class="btn btn-outline-primary">Masuk</a>
-                <a href="<?= base_url('/register'); ?>" class="btn btn-primary">Daftar</a>
+                <?php if (empty($loginSession)) : ?>
+                    <a href="<?= base_url('/login'); ?>" class="btn btn-outline-primary">Masuk</a>
+                    <a href="<?= base_url('/register'); ?>" class="btn btn-primary">Daftar</a>
+                <?php else : ?>
+                    <button class="btn btn-light"><?= $loginSession['name']; ?></button>
+                    <a href="<?= base_url('/logout'); ?>" class="btn btn-outline-primary">Keluar</a>
+                <?php endif; ?>
             </div>
         </div>
     </div>

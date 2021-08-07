@@ -1,7 +1,6 @@
 <?php
 
 use App\Libraries\CodeGenerator;
-use CodeIgniter\Config\Services;
 
 /**
  * Generates a code consisting of several digits of a random number, plus a specified prefix or suffix.
@@ -63,9 +62,18 @@ function idn_format_number($num, $decimals = 0, $prefix = '')
  */
 function set_alert($message, $isWarning = false)
 {
-    $session = Services::session();
-    $session->setFlashdata('alert', [
+    session()->setFlashdata('alert', [
         'warning' => $isWarning,
         'message' => $message
     ]);
 }
+
+
+// function get_login_cookie()
+// {
+//     return [
+//         'id' => cookies()->get('login_id'),
+//         'email' => cookies()->get('login_email'),
+//         'name' => cookies()->get('login_name'),
+//     ];
+// }
