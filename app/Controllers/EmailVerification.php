@@ -29,6 +29,12 @@ class EmailVerification extends BaseController
         // get the email address
         $emailAddress = strtolower(htmlspecialchars($this->request->getPost('email')));
 
+        // checking request limit for this email
+        if ($this->emailVerificator->isRequestsReachesLimit($emailAddress)) {
+            set_alert('Anda sudah terlalu banyak mencoba mendaftar hari ini. Silahkan coba lagi setelah 24 jam.', true);
+            return redirect()->to(base_url('register'))->withInput();
+        }
+
         /**
          * --------------------------------------
          * Generate Verification Code

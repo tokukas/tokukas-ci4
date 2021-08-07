@@ -110,15 +110,16 @@ class Register extends BaseController
             'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
         ]);
 
-        $this->emailVerificator->delete($verificatorId);
 
         // if failed, redirect to register page
         if (empty($accountId)) {
+            $this->emailVerificator->delete($verificatorId);
             set_alert('Terjadi kesalahan saat mendaftarkan akun anda. Harap coba lagi.');
             return redirect()->to(base_url('/register'));
         }
 
         // if success
+        $this->emailVerificator->deleteWhere(['email' => $verificator['email']]);
         set_alert('Pendaftaran akun berhasil. Silahkan login untuk memulai transaksi.');
         return redirect()->to(base_url('/login'));
     }

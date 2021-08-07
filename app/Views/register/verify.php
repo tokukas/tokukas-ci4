@@ -52,7 +52,7 @@
                         <span class="form-text">Coba cek di folder spam atau sampah anda, atau</span>
                         <form action="<?= base_url('/register'); ?>" method="post" data-form-loading="true">
                             <input type="hidden" name="email" value="<?= $verificator['email']; ?>">
-                            <button type="submit" class="resend-otp btn btn-spinner btn-link btn-sm p-0">
+                            <button type="submit" class="resend-otp btn btn-spinner btn-link btn-sm p-0" disabled>
                                 <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                                 <span class="btn-name" data-loading-name="Mengirim ulang kode...">Kirim Ulang Kode</span>
                             </button>

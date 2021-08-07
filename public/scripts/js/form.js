@@ -36,3 +36,28 @@ $(forms).each((i, form) => {
         $('button[type="submit"]').attr('disabled', '');
     });
 });
+
+
+// === resend otp gap time ===
+const btnResendOTP = $('.resend-otp');
+const setResendOTPWaitTime = () => {
+    let timeleft = 15;
+
+    let downloadTimer = setInterval(() => {
+        if (timeleft > 0) {
+            // disable resend OTP button
+            $(btnResendOTP).attr('disabled', '');
+            $(btnResendOTP).children('.spinner-border').removeClass('d-none');
+            $(btnResendOTP).children('.btn-name').html(`Tunggu ${timeleft} detik untuk mengirim kode lain`);
+        } else {
+            // enable resend OTP button
+            $(btnResendOTP).removeAttr('disabled');
+            $(btnResendOTP).children('.spinner-border').addClass('d-none');
+            $(btnResendOTP).children('.btn-name').html('Kirim Ulang Kode');
+            clearInterval(downloadTimer);
+        }
+        timeleft--;
+    }, 1000);
+}
+
+setResendOTPWaitTime();

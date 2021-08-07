@@ -26,6 +26,12 @@ class EmailVerificatorModel extends MyModel
      */
     protected $minutesUntilCodeExpires = 30;
 
+    /**
+     * How many code requests can be sent to an email in a day (24 hours).
+     * @var integer
+     */
+    protected $codeRequestLimitPerDay = 3;
+
 
     public function getMinutesUntilCodeExpires()
     {
@@ -67,5 +73,32 @@ class EmailVerificatorModel extends MyModel
     {
         $verificator = $this->find($id);
         return (empty($verificator)) ? null : $verificator['verified'];
+    }
+
+
+    public function isRequestsReachesLimit($email)
+    {
+        $now = Time::now();
+        $verificatorsDateCreated = $this->where(['email' => $email])->findColumn('created_at') ?: [];
+        $HOURS_IN_ONE_DAY = 24;
+
+        $countLimit = 0;
+        foreach ($verificatorsDateCreated as $date) {
+            $date = Time::parse($date);
+            $timeDiff = $date->difference($now);
+
+            $isToday = $timeDiff->getHours() < $HOURS_IN_ONE_DAY;
+            ($isToday) && ++$countLimit;
+        }
+
+
+        return $countLimit >= $this->codeRequestLimitPerDay;
+    }
+
+
+    public function deleteWhere($whereClause)
+    {
+        $verificatorIds = $this->where($whereClause)->findColumn('id');
+        return $this->delete($verificatorIds);
     }
 }
