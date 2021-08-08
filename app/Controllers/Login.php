@@ -15,6 +15,7 @@ class Login extends BaseController
         $this->accountModel = new AccountModel();
     }
 
+
     public function index($redirect = '')
     {
         /**
@@ -22,17 +23,18 @@ class Login extends BaseController
          * TODO: Check login cookie
          * --------------------------------------
          */
-        // code here...
+        $loginCookie = $this->getLoginCookie();
+        if (!empty($loginCookie)) {
+            session()->set('login', $loginCookie);
+            return $this->afterLogin($redirect);
+        }
 
         /**
          * --------------------------------------
          * Check login session
          * --------------------------------------
          */
-        $loginSession = session('login');
-
-        if (!empty($loginSession)) {
-            $this->loginSession = $loginSession;
+        if (!empty(session('login'))) {
             return $this->afterLogin($redirect);
         }
 
@@ -77,22 +79,20 @@ class Login extends BaseController
          * Make login session & cookie
          * --------------------------------------
          */
-        // set session
         $account = $this->accountModel->findByEmail($email);
-        session()->set('login', ['email' => $account['email'], 'name' => $account['name']]);
-        unset($account);
+
+        // set session
+        session()->set('login', [
+            'email' => $account['email'],
+            'name' => $account['name']
+        ]);
 
         // set cookie
         if (!empty($rememberMe)) {
-            // TODO: set cookie
-            // $cookieOptions = [
-            //     'expires' => time() + DAY,
-            //     'path' => '/'
-            // ];
-
-            // setcookie('login_id', $account['id'], $cookieOptions);
-            // setcookie('login_email', $emailHash, $cookieOptions);
+            $this->setLoginCookie($account['id'], $account['email']);
         }
+
+        unset($account);
 
         /**
          * --------------------------------------
@@ -104,30 +104,75 @@ class Login extends BaseController
     }
 
 
-    protected function setLoginCookie($id, $emailHash)
+    public function logout()
     {
-        // TODO: set the login cookie
+        /**
+         * --------------------------------------
+         * Destroying cookie
+         * --------------------------------------
+         */
+        $cookieConfig = [
+            'expires' => time() - HOUR,
+            'path' => '/login',
+        ];
+        setcookie('auth_lock', '', $cookieConfig);
+        setcookie('auth_key', '', $cookieConfig);
+
+        /**
+         * --------------------------------------
+         * Destroying session
+         * --------------------------------------
+         */
+        session()->destroy();
+
+        /**
+         * --------------------------------------
+         * Back to home
+         * --------------------------------------
+         */
+        return redirect()->to(base_url('/'));
+    }
+
+
+    protected function setLoginCookie($id, $email)
+    {
+        // set the login cookie config
+        $cookieConfig = [
+            'expires' => time() + DAY,
+            'path' => '/login',
+        ];
+
+        setcookie('auth_lock', $id, $cookieConfig);
+        setcookie('auth_key', password_hash($email, PASSWORD_BCRYPT), $cookieConfig);
     }
 
 
     protected function getLoginCookie()
     {
-        $loginCookie = null;     // TODO: get the login cookie
         $verifiedLoginCookie = null;
 
-        if (!empty($loginCookie)) {
-            $account = $this->accountModel->find($loginCookie['id']);
+        // get the login cookie
+        $loginCookie = [
+            'id' => $_COOKIE['auth_lock'] ?? null,
+            'email' => $_COOKIE['auth_key'] ?? null,
+        ];
 
+        // verified the cookie
+        $account = (empty($loginCookie['id']) || empty($loginCookie['email']))
+            ? null
+            : $this->accountModel->find($loginCookie['id']);
+
+        if (!empty($account)) {
             if (password_verify($account['email'], $loginCookie['email'])) {
                 $verifiedLoginCookie = [
                     'email' => $account['email'],
                     'name' => $account['name'],
                 ];
             }
-
-            unset($account);
         }
 
+        // the result
+        unset($account);
         return $verifiedLoginCookie;
     }
 

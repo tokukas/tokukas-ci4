@@ -67,13 +67,3 @@ function set_alert($message, $isWarning = false)
         'message' => $message
     ]);
 }
-
-
-// function get_login_cookie()
-// {
-//     return [
-//         'id' => cookies()->get('login_id'),
-//         'email' => cookies()->get('login_email'),
-//         'name' => cookies()->get('login_name'),
-//     ];
-// }

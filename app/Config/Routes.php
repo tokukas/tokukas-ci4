@@ -33,9 +33,21 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+
 // login verification
-$routes->get('login/(:any)', 'Login::index/$1');
-$routes->post('login', 'Login::auth');
+$routes->group('login', function ($login) {
+	$login->get('(:any)', 'Login::index');
+	$login->get('to/(:any)', 'Login::index/$1');
+	$login->post('/', 'Login::auth');
+});
+
+
+// logout
+$routes->group('logout', function ($logout) {
+	$logout->get('/', 'Login::logout');
+	$logout->get('(:any)', 'Login::logout');
+});
+
 
 // Register verification
 $routes->group('register', function ($register) {
@@ -44,7 +56,6 @@ $routes->group('register', function ($register) {
 
 	// verify
 	$register->group('verify', function ($verify) {
-
 		// redirect to confirm verification code page
 		$verify->get('/', 'EmailVerification::verify');
 
