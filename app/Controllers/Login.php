@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\AccountModel;
-use CodeIgniter\I18n\Time;
 
 class Login extends BaseController
 {
@@ -20,7 +19,7 @@ class Login extends BaseController
     {
         /**
          * --------------------------------------
-         * TODO: Check login cookie
+         * Check login cookie
          * --------------------------------------
          */
         $loginCookie = $this->getLoginCookie();

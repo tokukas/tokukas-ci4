@@ -46,7 +46,37 @@ header {
   text-indent: 1px;
 }
 
+.navbar .hamburger-menu {
+  background-color: inherit;
+  border: none;
+  display: none;
+}
+
+.navbar .hamburger-menu .line {
+  width: 1.5rem;
+  height: 3px;
+  background-color: #1976d2;
+  margin: 5px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.navbar .hamburger-menu.close .line1 {
+  -webkit-transform: rotate(-45deg) translate(-5px, 6px);
+          transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.navbar .hamburger-menu.close .line2 {
+  opacity: 0;
+}
+
+.navbar .hamburger-menu.close .line3 {
+  -webkit-transform: rotate(45deg) translate(-5px, -6px);
+          transform: rotate(45deg) translate(-5px, -6px);
+}
+
 .navbar .navbar-collapse .nav-link {
+  display: inline-block;
   color: #1976d2 !important;
 }
 
@@ -54,13 +84,27 @@ header {
   font-weight: 600;
 }
 
+.navbar .navbar-collapse .nav-link:hover {
+  font-weight: bolder;
+}
+
 .navbar .navbar-collapse hr {
+  margin: 0.5rem 0;
   background-color: #0066cb;
 }
 
-.navbar .navbar-collapse.show .button-group .btn {
+.navbar .navbar-collapse .button-group .btn {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 50%;
           flex: 1 1 50%;
+}
+
+@media screen and (max-width: 992px) {
+  .navbar .hamburger-menu {
+    display: inline;
+  }
+  .navbar .button-group {
+    padding: 0.5rem 0;
+  }
 }
 /*# sourceMappingURL=navbar.css.map */

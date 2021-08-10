@@ -36,11 +36,39 @@ header {
                 text-indent: 1px;
             }
         }
+    }
 
+    .hamburger-menu {
+        background-color: inherit;
+        border: none;
+        display: none;
+
+        .line {
+            width: 1.5rem;
+            height: 3px;
+            background-color: map-get($secondaryColor, '1') ;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+    }
+
+    .hamburger-menu.close {
+        .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .line2 {
+            opacity: 0;
+        }
+
+        .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
     }
 
     .navbar-collapse {
         .nav-link {
+            display: inline-block;
             color: map-get($secondaryColor, '1') !important;
         }
 
@@ -48,17 +76,31 @@ header {
             font-weight: 600;
         }
 
+        .nav-link:hover {
+            font-weight: bolder;
+        }
+
         hr {
+            margin: 0.5rem 0;
             background-color: $primaryColor;
         }
-    }
 
-    .navbar-collapse.show {
         .button-group {
             .btn {
                 flex: 1 1 50%;
             }
         }
     }
+}
 
+@media screen and (max-width: 992px) {
+    .navbar {
+        .hamburger-menu {
+            display: inline;
+        }
+
+        .button-group {
+            padding: 0.5rem 0;
+        }
+    }
 }

@@ -33,4 +33,6 @@
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
 
+<script src="<?= base_url('/scripts/js/navbar.js'); ?>"></script>
+
 <?= $this->endSection(); ?>
