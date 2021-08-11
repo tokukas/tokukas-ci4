@@ -13,7 +13,7 @@
             <div class="line line3"></div>
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 10rem;">
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('/about'); ?>">Tentang Kami</a>
                 </li>
@@ -31,16 +31,67 @@
                     </ul>
                 </li>
             </ul>
-            <hr>
-            <div class="button-group d-flex gap-2">
-                <?php if (empty($loginSession)) : ?>
+            <hr class="my-sm-2">
+            <?php if (empty($loginSession)) : ?>
+                <div class="button-group d-flex gap-2 my-sm-2">
                     <a href="<?= base_url('/login'); ?>" class="btn btn-outline-primary">Masuk</a>
                     <a href="<?= base_url('/register'); ?>" class="btn btn-primary">Daftar</a>
-                <?php else : ?>
-                    <button class="btn btn-light"><?= $loginSession['name']; ?></button>
-                    <a href="<?= base_url('/logout'); ?>" class="btn btn-outline-primary">Keluar</a>
-                <?php endif; ?>
-            </div>
+                </div>
+            <?php else : ?>
+                <div class="dropdown">
+                    <button class="dropdown-toggle btn btn-outline-primary my-sm-2" id="profileDropdownMenuLink" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="material-icons">account_circle</i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-lg-end profile-menus" aria-labelledby="profileDropdownMenuLink">
+                        <li>
+                            <a class="dropdown-item btn btn-primary" href="<?= base_url('/profile'); ?>">
+                                <i class="material-icons">account_circle</i>
+                                <span><strong><?= $loginSession['name']; ?></strong></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item btn" href="<?= base_url('/settings'); ?>">
+                                <i class="material-icons">settings</i>
+                                <span>Pengaturan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <button type="button" class="dropdown-item btn btn-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                <i class="material-icons">logout</i>
+                                <span>Keluar</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </nav>
+
+<!-- Logout confirm dialog -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalConfirmation" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalConfirmation">Konfirmasi Keluar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span>Anda yakin ingin keluar?</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                    <i class="material-icons">close</i>
+                    <span>Batalkan</span>
+                </button>
+                <a href="<?= base_url('/logout'); ?>" class="btn btn-outline-danger">
+                    <i class="material-icons">logout</i>
+                    <span>Keluar</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

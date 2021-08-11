@@ -80,15 +80,25 @@ header {
             font-weight: bolder;
         }
 
-        hr {
-            margin: 0.5rem 0;
-            background-color: $primaryColor;
-        }
-
         .button-group {
             .btn {
                 flex: 1 1 50%;
             }
+        }
+    }
+
+    .profile-menus {
+        .btn {
+            justify-content: start;
+            margin: 0.125rem 0;
+        }
+
+        .btn-primary {
+            color: $primaryColor;
+        }
+
+        .btn-danger {
+            color: #bb2d3b;
         }
     }
 }
@@ -97,10 +107,6 @@ header {
     .navbar {
         .hamburger-menu {
             display: inline;
-        }
-
-        .button-group {
-            padding: 0.5rem 0;
         }
     }
 }
