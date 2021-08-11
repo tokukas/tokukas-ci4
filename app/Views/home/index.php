@@ -40,6 +40,16 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
+<section class="container-md py-5 px-4 text-center">
+    <div class="mb-4">
+        <h1>Punya Pertanyaan?</h1>
+        <h4>Mungkin <abbr data-bs-toggle="tooltip" data-bs-placement="top" title="Daftar Pertanyaan yang Sering Diajukan">FAQ</abbr> ini dapat menjawab pertanyaan anda.</h4>
+    </div>
+    <a href="<?= base_url('/faq'); ?>" class="btn btn-primary btn-lg">
+        <i class="material-icons">quiz</i>
+        <span>Lihat FAQ</span>
+    </a>
+</section>
 
 <?= $this->endSection(); ?>
 

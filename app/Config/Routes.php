@@ -33,6 +33,8 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// FAQ Page
+$routes->get('faq/(:any)', 'FAQ::index/$1');
 
 // login verification
 $routes->group('login', function ($login) {

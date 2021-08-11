@@ -8,6 +8,8 @@ header {
   top: 0;
   z-index: 6;
   background-color: #ffffff;
+  -webkit-box-shadow: 1px 1px 4px #d3d3d3;
+          box-shadow: 1px 1px 4px #d3d3d3;
 }
 
 .navbar .navbar-brand {

@@ -32,6 +32,22 @@ CREATE TABLE IF NOT EXISTS `Email_Verificator` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `FAQ`
+-- *already executed
+--
+
+CREATE TABLE IF NOT EXISTS `FAQ` (
+    `id` VARCHAR(20) PRIMARY KEY NOT NULL,
+    `topic` VARCHAR(100) NOT NULL,
+    `question` VARCHAR(255) NOT NULL,
+    `answer` TEXT NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Account`
 -- *already executed
 --
@@ -390,3 +406,24 @@ END //
 DELIMITER ;
 
 -- --------------------------------------------------------
+
+-- --------------------------------------------------------
+-- The triggers that will affect the `FAQ` table
+-- --------------------------------------------------------
+
+--
+-- trigger `avoid_date_created_changed_in_faq`
+-- *already executed
+--
+
+DELIMITER //
+CREATE TRIGGER IF NOT EXISTS `avoid_date_created_changed_in_faq`
+    BEFORE UPDATE ON `FAQ`
+FOR EACH ROW
+BEGIN
+    IF (OLD.`created_at` != NEW.`created_at`) THEN
+        SIGNAL SQLSTATE '42808'
+            SET MESSAGE_TEXT = 'date creation value cannot be changed';
+    END IF;
+END //
+DELIMITER ;

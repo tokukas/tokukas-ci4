@@ -1,0 +1,39 @@
+.faq-menus {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  gap: 0.5rem;
+  padding: 0.25rem;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.faq-menus .menu {
+  border-radius: 1rem;
+}
+
+.contacts a {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+}
+
+.information {
+  font-size: smaller;
+}
+/*# sourceMappingURL=faq.css.map */
