@@ -1,0 +1,63 @@
+@import '../global/var';
+
+.nav-tabs {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+
+    .nav-item {
+        .nav-link {
+            width: max-content;
+        }
+    }
+}
+
+.vr  {
+    display: inline-flex;
+    height: 100%;
+    min-height: 1.5rem;
+    width: 1px;
+    background-color: map-get($grey, "med");
+}
+
+.card {
+    box-shadow: 1px 1px 2px map-get($grey, 'light');
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .list-group {
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            word-wrap: break-word;
+
+            .field {
+                font-size: smaller;
+                display: inline-flex;
+                gap: 0.5rem;
+                align-items: center;
+
+                .fas, .fab {
+                    color: map-get($grey, 'battleship');
+                    font-size: 1rem;
+                    width: 1.25rem;
+                    display: inline-flex;
+                    justify-content: center;
+                }
+            }
+
+            .value {
+                text-align: end;
+            }
+        }
+    }
+}

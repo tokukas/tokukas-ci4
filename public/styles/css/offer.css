@@ -1,0 +1,85 @@
+.nav-tabs {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.nav-tabs .nav-item .nav-link {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.vr {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  height: 100%;
+  min-height: 1.5rem;
+  width: 1px;
+  background-color: #bebebe;
+}
+
+.card {
+  -webkit-box-shadow: 1px 1px 2px #d3d3d3;
+          box-shadow: 1px 1px 2px #d3d3d3;
+}
+
+.card .card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.card .list-group .list-group-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+  word-wrap: break-word;
+}
+
+.card .list-group .list-group-item .field {
+  font-size: smaller;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  gap: 0.5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.card .list-group .list-group-item .field .fas, .card .list-group .list-group-item .field .fab {
+  color: #848482;
+  font-size: 1rem;
+  width: 1.25rem;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card .list-group .list-group-item .value {
+  text-align: end;
+}
+/*# sourceMappingURL=offer.css.map */

@@ -46,7 +46,7 @@
     <div class="py-4">
         <div class="text-center mb-3">
             <h4>Pertanyaan Anda Belum Terjawab?</h4>
-            <span>Silahkan ajukan pertanyaan anda melalui :</span>
+            <span>Silahkan ajukan pertanyaan anda melalui salah satu kontak di bawah ini.</span>
         </div>
         <div class="contacts list-group list-group-horizontal-md mb-4">
             <a href="mailto:tokukas@outlook.com" class="list-group-item list-group-item-action" title="Email" data-bs-toggle="tooltip" data-bs-placement="top">

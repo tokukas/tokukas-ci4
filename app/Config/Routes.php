@@ -38,8 +38,8 @@ $routes->get('faq/(:any)', 'FAQ::index/$1');
 
 // login verification
 $routes->group('login', function ($login) {
-	$login->get('(:any)', 'Login::index');
 	$login->get('to/(:any)', 'Login::index/$1');
+	$login->get('/', 'Login::index');
 	$login->post('/', 'Login::auth');
 });
 
