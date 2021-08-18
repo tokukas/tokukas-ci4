@@ -76,6 +76,44 @@ $routes->group('register', function ($register) {
 });
 
 
+// Account Page
+$routes->group('account', function ($account) {
+	$account->get('change', function ($change) {
+		$change->get('(:alpha)/(:alphanum)', 'Account::change/$1/$2');
+	});
+});
+
+
+// Indonesia Territory API
+$routes->group('idn-administrative-area', function ($root) {
+	$root->get('/', 'IdnTerritory::index');
+
+	$root->group('(:alpha)', function ($scope) {
+		// get first 5000 data in a scope
+		$scope->get('/', 'IdnTerritory::list/$1');
+		$scope->get('page', 'IdnTerritory::list/$1');
+
+		// get every 5000 data in a scope
+		$scope->get('page/(:num)', 'IdnTerritory::list/$1/$2');
+
+		// get every n-data in a scope
+		$scope->get('page/(:num)/(:num)', 'IdnTerritory::list/$1/$2/$3');
+
+		// get a specified data in a scope
+		$scope->get('(:num)', 'IdnTerritory::get/$1/$2');
+
+		// get sub-area data from certain parent scope
+		$scope->get('(:num)/sub', 'IdnTerritory::subareas/$1/$2');
+
+		// get super-area data from certain parent scope
+		$scope->get('(:num)/sup', 'IdnTerritory::superareas/$1/$2');
+
+		// search data in a scope by its name
+		$scope->get('(:segment)', 'IdnTerritory::searchByName/$1/$2');
+	});
+});
+
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing
