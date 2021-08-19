@@ -1,0 +1,24 @@
+@import '../global/var';
+
+.field {
+    margin-bottom: 1.25rem;
+
+    input::placeholder {
+        color: map-get($grey, 'battleship');
+        opacity: 70%;
+        font-size: smaller;
+    }
+
+    .field-end {
+        display: flex;
+        justify-content: end;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .field-end {
+        button {
+            flex-basis: 100%;
+        }
+    }
+}

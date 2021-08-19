@@ -84,6 +84,12 @@ $routes->group('account', function ($account) {
 });
 
 
+// Address Page
+$routes->group('address', function ($address) {
+	$address->post('new', 'Address::insert');
+});
+
+
 // Indonesia Territory API
 $routes->group('idn-administrative-area', function ($root) {
 	$root->get('/', 'IdnTerritory::index');
