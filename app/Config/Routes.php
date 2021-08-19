@@ -114,8 +114,10 @@ $routes->group('idn-administrative-area', function ($root) {
 		// get super-area data from certain parent scope
 		$scope->get('(:num)/sup', 'IdnTerritory::superareas/$1/$2');
 
-		// search data in a scope by its name
-		$scope->get('(:segment)', 'IdnTerritory::searchByName/$1/$2');
+		// search every 5000 data in a scope by its name
+		$scope->get('s/(:segment)', 'IdnTerritory::searchByName/$1/$2');
+		$scope->get('s/(:segment)/(:num)', 'IdnTerritory::searchByName/$1/$2/$3');
+		$scope->get('(:any)', 'IdnTerritory::searchByName/$1/$2');
 	});
 });
 

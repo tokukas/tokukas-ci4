@@ -75,7 +75,7 @@ class IdnTerritory extends ResourceController
     }
 
 
-    public function searchByName($scope, $name)
+    public function searchByName($scope, $name, $page = 1)
     {
         if (!$this->territoryModel->setScope($scope)) {
             return $this->failResponse(API_BAD_REQUEST, "The '$scope' is invalid scope value.");
@@ -85,7 +85,8 @@ class IdnTerritory extends ResourceController
             return $this->failResponse(API_BAD_REQUEST, "The search name cannot empty. Need atleast 3 character.");
         }
 
-        $result = $this->territoryModel->search($name, 'name');
+        $limit = 5000;
+        $result = $this->territoryModel->search($name, 'name', $limit, ($page - 1) * $limit);
 
         return ($result)
             ? $this->successResponse($result, API_OK)
