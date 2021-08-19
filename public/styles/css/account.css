@@ -1,0 +1,38 @@
+.address-container {
+  padding: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1.5rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.address-container .card .card-header {
+  background-color: #ffffff;
+  border: none;
+  padding-top: 0.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.5rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: wrap-reverse;
+      flex-wrap: wrap-reverse;
+}
+
+.address-container .card .card-body {
+  padding: 0.75rem 1rem;
+}
+
+.address-container .card .card-footer {
+  background-color: #ffffff;
+  border: none;
+  margin-bottom: 0.5rem;
+}
+/*# sourceMappingURL=account.css.map */

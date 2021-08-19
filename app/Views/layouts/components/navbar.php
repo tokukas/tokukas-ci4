@@ -44,7 +44,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-lg-end profile-menus" aria-labelledby="profileDropdownMenuLink">
                         <li>
-                            <a class="dropdown-item btn btn-primary" href="<?= base_url('/profile'); ?>">
+                            <a class="dropdown-item btn btn-primary" href="<?= base_url('/account'); ?>">
                                 <i class="material-icons">account_circle</i>
                                 <span><strong><?= $loginSession['name']; ?></strong></span>
                             </a>
