@@ -19,12 +19,12 @@
     </noscript>
 
     <!-- Icons -->
-    <link rel="preload" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Material+Icons&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons&display=swap">
     </noscript>
 
-    <script src="https://kit.fontawesome.com/a4efd995d2.js" crossorigin="anonymous"></script>
+    <script src="<?= base_url('/scripts/js/font-awesome/icon-kit.min.js'); ?>"></script>
 
 
     <!-- Global app styles -->
@@ -53,6 +53,7 @@
 
     <!-- App script -->
     <script src="<?= base_url('/scripts/js/app.js'); ?>"></script>
+    <script src="<?= base_url('/scripts/js/helper.js'); ?>"></script>
     <script src="<?= base_url('/scripts/js/tooltips.js'); ?>"></script>
 
     <!-- Custom scripts -->

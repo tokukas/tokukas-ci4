@@ -19,7 +19,7 @@
             <div class="card-body">
                 <section class="container mb-3 d-flex gap-3 justify-content-start align-items-center">
                     <a href="<?= base_url('/register'); ?>" class="icon-btn">
-                        <i class="material-icons-outlined">arrow_back</i>
+                        <i class="material-icons">arrow_back</i>
                     </a>
                     <h1 class="title">Daftar</h1>
                 </section>

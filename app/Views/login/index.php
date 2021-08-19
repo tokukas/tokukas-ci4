@@ -21,7 +21,7 @@
                 <section class="container mb-3 d-flex justify-content-between align-items-center">
                     <h1 class="title">Masuk</h1>
                     <a href="<?= base_url('/'); ?>" class="icon-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Ke Beranda">
-                        <i class="material-icons-outlined">close</i>
+                        <i class="material-icons">close</i>
                     </a>
                 </section>
                 <section class="container">
