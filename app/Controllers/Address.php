@@ -37,6 +37,7 @@ class Address extends BaseController
         $data = [
             'title' => 'Tambah Alamat | TOKUKAS',
             'loginSession' => session('login'),
+            'validation' => $this->validation,
         ];
 
         return view('address/new', $data);
@@ -45,9 +46,17 @@ class Address extends BaseController
 
     public function insert()
     {
-        if (empty($this->request->getPost())) {
+        $address = $this->request->getPost();
+        if (empty($address)) {
             return redirect()->to(base_url('/address/new'));
         }
+
+        if (!$this->validate('address')) {
+            // return to the form page with the form data and validation results
+            return redirect()->to(base_url('/address/new'))->withInput();
+        }
+
+        dd($address);
 
         return 'Inserting your address...';
     }

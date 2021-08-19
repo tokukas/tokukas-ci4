@@ -1,5 +1,5 @@
 .field {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .field input::-webkit-input-placeholder {
@@ -24,6 +24,10 @@
   color: #848482;
   opacity: 70%;
   font-size: smaller;
+}
+
+.field .example {
+  margin: 0.25rem 0;
 }
 
 .field .field-end {

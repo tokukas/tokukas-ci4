@@ -1,12 +1,16 @@
 @import '../global/var';
 
 .field {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
 
     input::placeholder {
         color: map-get($grey, 'battleship');
         opacity: 70%;
         font-size: smaller;
+    }
+
+    .example {
+        margin: 0.25rem 0;
     }
 
     .field-end {

@@ -73,14 +73,14 @@ class Validation
 		'fullname' => [
 			'rules' => 'required|max_length[255]',
 			'errors' => [
-				'required' => 'Nama wajib diisi',
+				'required' => 'Nama wajib diisi.',
 				'max_length' => 'Nama tidak boleh lebih dari {param} karakter.',
 			],
 		],
 		'password' => [
 			'rules' => 'required',
 			'errors' => [
-				'required' => 'Kata sandi wajib diisi',
+				'required' => 'Kata sandi wajib diisi.',
 			],
 		],
 		'cpassword' => [
@@ -89,6 +89,69 @@ class Validation
 				'required' => 'Konfirmasi kata sandi wajib diisi',
 				'matches' => 'Konfirmasi kata sandi tidak cocok',
 			],
+		],
+	];
+
+	public $address = [
+		'label' => [
+			'rules' => 'required|string|max_length[25]|is_unique[Address.label,Address.account_id]',
+			'errors' => [
+				'required' => 'Label wajib diisi.',
+				'string' => 'Label hanya boleh diisi menggunakan huruf, angka, dan spasi.',
+				'max_length' => 'Label tidak boleh lebih dari {param} karakter.',
+				'is_unique' => 'Label \'{value}\' sudah digunakan. Harap gunakan label lain.',
+			]
+		],
+		'province' => [
+			'rules' => 'required|string|min_length[3]|max_length[255]',
+			'errors' => [
+				'required' => 'Provinsi wajib diisi.',
+				'min_length' => 'Provinsi harus lebih dari {param} karakter.',
+				'max_length' => 'Provinsi tidak boleh lebih dari {param} karakter.',
+			]
+		],
+		'regency' => [
+			'rules' => 'required_without[province]|required|string|min_length[3]|max_length[255]',
+			'errors' => [
+				'required_without' => 'Harap isi kolom Provinsi terlebih dahulu.',
+				'required' => 'Kabupaten/Kota wajib diisi.',
+				'min_length' => 'Kabupaten/Kota harus lebih dari {param} karakter.',
+				'max_length' => 'Kabupaten/Kota tidak boleh lebih dari {param} karakter.',
+			]
+		],
+		'district' => [
+			'rules' => 'required_without[province,regency]|required|string|min_length[3]|max_length[255]',
+			'errors' => [
+				'required_without' => 'Harap isi kolom Provinsi dan Kabupaten/Kota terlebih dahulu.',
+				'required' => 'Kecamatan wajib diisi.',
+				'min_length' => 'Kecamatan harus lebih dari {param} karakter.',
+				'max_length' => 'Kecamatan tidak boleh lebih dari {param} karakter.',
+			]
+		],
+		'village' => [
+			'rules' => 'required_without[province,regency,district]|required|string|min_length[3]|max_length[255]',
+			'errors' => [
+				'required_without' => 'Harap isi kolom Provinsi, Kabupaten/Kota, dan Kecamatan terlebih dahulu.',
+				'required' => 'Desa/Kelurahan wajib diisi.',
+				'min_length' => 'Desa/Kelurahan harus lebih dari {param} karakter.',
+				'max_length' => 'Desa/Kelurahan tidak boleh lebih dari {param} karakter.',
+			]
+		],
+		'postal_code' => [
+			'rules' => 'required|exact_length[5]|integer',
+			'errors' => [
+				'required' => 'Kode Pos wajib diisi.',
+				'exact_length' => 'Harap isi Kode Pos dengan {param} digit angka.',
+				'integer' => 'Kode Pos hanya boleh diisi dengan angka.',
+			]
+		],
+		'street' => [
+			'rules' => 'required|string|min_length[20]|max_length[255]',
+			'errors' => [
+				'required' => 'Jalan wajib diisi.',
+				'min_length' => 'Isian Jalan kurang lengkap. Minimal {param} karakter.',
+				'max_length' => 'Jalan tidak boleh lebih dari {param} karakter.',
+			]
 		],
 	];
 }
