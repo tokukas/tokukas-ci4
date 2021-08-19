@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\EmailVerificatorModel;
-use CodeIgniter\Config\Services;
 
 class EmailVerification extends BaseController
 {
