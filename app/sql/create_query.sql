@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `Expedition_Around` {
 CREATE TABLE IF NOT EXISTS `Transaction_Method` (
     `id` VARCHAR(8) PRIMARY KEY NOT NULL,
     `name` VARCHAR(100) NOT NULL,
-    `description` VARCHAR(255)
+    `description` TEXT
 );
 
 -- --------------------------------------------------------
@@ -112,12 +112,14 @@ CREATE TABLE IF NOT EXISTS `Transaction_Method` (
 CREATE TABLE IF NOT EXISTS `Address` (
     `id` VARCHAR(18) PRIMARY KEY NOT NULL,
     `account_id` VARCHAR(16) NOT NULL,
-    `province` VARCHAR(200) NOT NULL,
-    `district` VARCHAR(200) NOT NULL,
-    `subdistrict` VARCHAR(200) NOT NULL,
-    `village` VARCHAR(200) NOT NULL,
+    `label` VARCHAR(25) NOT NULL,
+    `province` VARCHAR(255) NOT NULL,
+    `regency` VARCHAR(255) NOT NULL,
+    `district` VARCHAR(255) NOT NULL,
+    `village` VARCHAR(255) NOT NULL,
     `postal_code` VARCHAR(5) NOT NULL,
     `street` TEXT NOT NULL,
+    `is_default` BOOLEAN NOT NULL DEFAULT FALSE,
     FOREIGN KEY (`account_id`) REFERENCES `Account`(`id`)
 );
 
@@ -141,71 +143,16 @@ CREATE TABLE IF NOT EXISTS `Payment_Method` (
 --
 
 CREATE TABLE IF NOT EXISTS `Offer` (
-    `id` VARCHAR(18) PRIMARY KEY NOT NULL,
+    `id` VARCHAR(16) PRIMARY KEY NOT NULL,
     `account_id` VARCHAR(16) NOT NULL,
-    `address_id` VARCHAR(18) NOT NULL,
-    `transaction_method` VARCHAR(8) NOT NULL,
-    `payment_used` VARCHAR(8) NOT NULL,
-    `shipping_used` VARCHAR(8) NOT NULL,
+    `address` TEXT NOT NULL,
+    `transaction_method` VARCHAR(100) NOT NULL,
+    `payment_used` VARCHAR(100) NOT NULL,
+    `shipping_used` VARCHAR(100) NOT NULL,
     `is_accepted` BOOLEAN,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     FOREIGN KEY (`account_id`) REFERENCES `Account`(`id`),
-    FOREIGN KEY (`address_id`) REFERENCES `Address`(`id`),
-    FOREIGN KEY (`transaction_method`) REFERENCES `Transaction_Method`(`id`),
-    FOREIGN KEY (`payment_used`) REFERENCES `Payment_Method`(`id`),
-    FOREIGN KEY (`shipping_used`) REFERENCES `Expedition_Around`(`id`)
-);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Rejected_Offer`
--- *not executed yet
---
-
-CREATE TABLE IF NOT EXISTS `Rejected_Offer` (
-    `id` VARCHAR(18) PRIMARY KEY NOT NULL,
-    `offer_id` VARCHAR(18) NOT NULL,
-    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    FOREIGN KEY (`offer_id`) REFERENCES `Offer`(`id`)
-);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Rejected_Offer_Reason`
--- *not executed yet
---
-
-CREATE TABLE IF NOT EXISTS `Rejected_Offer_Reason` (
-    `id` VARCHAR(18) PRIMARY KEY NOT NULL,
-    `rejected_offer_id` VARCHAR(18) NOT NULL,
-    `reason` TEXT NOT NULL,
-    `file_image` VARCHAR(255) DEFAULT NULL,
-    FOREIGN KEY (`rejected_offer_id`) REFERENCES `Rejected_Offer`(`id`)
-);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Purchase`
--- *not executed yet
---
-
-CREATE TABLE IF NOT EXISTS `Purchase` (
-    `id` VARCHAR(18) PRIMARY KEY NOT NULL,
-    `offer_id` VARCHAR(18) NOT NULL,
-    `shipping_receipt` VARCHAR(255) NOT NULL DEFAULT '',
-    `shipping_cost` INTEGER DEFAULT 0,
-    `shipped_at` TIMESTAMP DEFAULT NULL,
-    `received_at` TIMESTAMP DEFAULT NULL,
-    `total_payment` INTEGER NOT NULL DEFAULT 0,
-    `has_paid` BOOLEAN DEFAULT FALSE,
-    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    `completed_at` TIMESTAMP DEFAULT NULL
 );
 
 -- --------------------------------------------------------
@@ -217,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `Purchase` (
 
 CREATE TABLE IF NOT EXISTS `Book_Offer` (
     `id` VARCHAR(20) PRIMARY KEY NOT NULL,
-    `offer_id` VARCHAR(18) NOT NULL,
+    `offer_id` VARCHAR(16) NOT NULL,
     `type` VARCHAR(255) NOT NULL,
     `title` VARCHAR(255) NOT NULL,
     `writer` VARCHAR(255) NOT NULL,
@@ -242,8 +189,6 @@ CREATE TABLE IF NOT EXISTS `Book_Price` (
     `selling_price` INTEGER NOT NULL,
     `physical_price` INTEGER NOT NULL DEFAULT 0,
     `purchase_price` INTEGER DEFAULT 0,
-    `buyer_price` INTEGER DEFAULT 0,
-    `deals_price` INTEGER DEFAULT 0,
     FOREIGN KEY (`book_id`) REFERENCES `Book_Offer`(`id`)
 );
 
@@ -319,6 +264,115 @@ CREATE TABLE IF NOT EXISTS `Book_Condition_Assessment` (
     `value` INTEGER NOT NULL,
     FOREIGN KEY (`book_id`) REFERENCES `Book_Condition`(`id`),
     FOREIGN KEY (`criteria`) REFERENCES `Book_Condition_Criteria`(`id`)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Rejected_Offer`
+-- *not executed yet
+--
+
+CREATE TABLE IF NOT EXISTS `Rejected_Offer` (
+    `id` VARCHAR(18) PRIMARY KEY NOT NULL,
+    `offer_id` VARCHAR(16) NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    FOREIGN KEY (`offer_id`) REFERENCES `Offer`(`id`)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Rejected_Offer_Reason`
+-- *not executed yet
+--
+
+CREATE TABLE IF NOT EXISTS `Rejected_Offer_Reason` (
+    `id` VARCHAR(18) PRIMARY KEY NOT NULL,
+    `rejected_offer_id` VARCHAR(18) NOT NULL,
+    `reason` TEXT NOT NULL,
+    `file_image` VARCHAR(255) DEFAULT NULL,
+    FOREIGN KEY (`rejected_offer_id`) REFERENCES `Rejected_Offer`(`id`)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Purchase`
+-- *not executed yet
+--
+
+CREATE TABLE IF NOT EXISTS `Purchase` (
+    `id` VARCHAR(18) PRIMARY KEY NOT NULL,
+    `offer_id` VARCHAR(16) NOT NULL,
+    `total_payment` INTEGER NOT NULL DEFAULT 0,
+    `has_paid` BOOLEAN DEFAULT FALSE,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    `completed_at` TIMESTAMP DEFAULT NULL,
+    FOREIGN KEY (`offer_id`) REFERENCES `Offer`(`id`)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Book_Price_Deals`
+-- *not executed yet
+--
+
+CREATE TABLE IF NOT EXISTS `Book_Price_Deals` (
+    `book_id` VARCHAR(20) PRIMARY KEY NOT NULL,
+    `purchase_id` VARCHAR(18) NOT NULL,
+    `deals_selling_price` INTEGER NOT NULL,
+    FOREIGN KEY (`book_id`) REFERENCES `Book_Offer`(`id`),
+    FOREIGN KEY (`purchase_id`) REFERENCES `Purchase`(`id`)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Payment_Details`
+-- *not executed yet
+--
+
+CREATE TABLE IF NOT EXISTS `Payment_Details` (
+    `id` VARCHAR(18) PRIMARY KEY NOT NULL,
+    `purchase_id` VARCHAR(18) NOT NULL,
+    `payment_receipt` VARCHAR(255) DEFAULT '',
+    `paid_at` TIMESTAMP DEFAULT NULL,
+    FOREIGN KEY (`purchase_id`) REFERENCES `Purchase`(`id`)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Shipping_Details`
+-- *not executed yet
+--
+
+CREATE TABLE IF NOT EXISTS `Shipping_Details` (
+    `id` VARCHAR(18) PRIMARY KEY NOT NULL,
+    `purchase_id` VARCHAR(18) NOT NULL,
+    `shipping_receipt` VARCHAR(255) DEFAULT '',
+    `shipping_cost` INTEGER DEFAULT 0,
+    `shipped_at` TIMESTAMP DEFAULT NULL,
+    `received_at` TIMESTAMP DEFAULT NULL,
+    FOREIGN KEY (`purchase_id`) REFERENCES `Purchase`(`id`)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Receipt_Photo`
+-- *not executed yet
+--
+
+CREATE TABLE IF NOT EXISTS `Receipt_Photo` (
+    `id` VARCHAR(18) PRIMARY KEY NOT NULL,
+    `shipping_id` VARCHAR(18) NOT NULL,
+    `file_name` VARCHAR(255) NOT NULL,
+    FOREIGN KEY (`shipping_id`) REFERENCES `Shipping_Details`(`id`)
 );
 
 -- --------------------------------------------------------
