@@ -11,15 +11,13 @@ class Offer extends BaseController
          * Validate Login Session
          * --------------------------------------
          */
-        $loginSession = session('login');
-
-        if (empty($loginSession)) {
+        if (empty(session('login'))) {
             return redirect()->to(base_url('/login/to/offer'));
         }
 
         $data = [
             'title' => 'Daftar Penawaran | TOKUKAS',
-            'loginSession' => $loginSession,
+            'loginSession' => session('login'),
         ];
 
         return view('offer/list', $data);

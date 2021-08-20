@@ -16,15 +16,13 @@ class Account extends BaseController
 
     public function index()
     {
-        $loginSession = session('login');
-
-        if (empty($loginSession)) {
+        if (empty(session('login'))) {
             return redirect()->to(base_url('/login/to/account'));
         }
 
         $data = [
             'title' => 'Akun Saya | TOKUKAS',
-            'loginSession' => $loginSession,
+            'loginSession' => session('login'),
         ];
 
         return view('account/index', $data);
@@ -33,13 +31,11 @@ class Account extends BaseController
 
     public function change($field)
     {
-        $loginSession = session('login');
-
-        if (empty($loginSession)) {
+        if (empty(session('login'))) {
             return redirect()->to(base_url('/login/to/account'));
         }
 
-        $myAccount = $this->accountModel->findByEmail($loginSession['email']);
+        $myAccount = $this->accountModel->findByEmail(session('login')['email']);
 
         dd($field, $myAccount);
     }

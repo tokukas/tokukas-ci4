@@ -75,10 +75,10 @@ class Address extends BaseController
          * ----------------------------------------------------
          */
         // get account data
-        $account = $this->accountModel->findByEmail(session('login')['email']);
+        $accountId = $this->accountModel->getId(session('login')['email']);
 
         // check if label value is not used yet
-        $isLabelAlreadyUsed = $this->addressModel->isLabelAlreadyUsed($account['id'], $address['label']);
+        $isLabelAlreadyUsed = $this->addressModel->isLabelAlreadyUsed($accountId, $address['label']);
 
         if (!$this->validate('address') || $isLabelAlreadyUsed) {
             if ($isLabelAlreadyUsed) {
@@ -95,7 +95,7 @@ class Address extends BaseController
          * ----------------------------------------------------
          */
         $addressId = $this->addressModel->smartSave([
-            'account_id' => $account['id'],
+            'account_id' => $accountId,
             'label' => ucwords(htmlspecialchars($address['label'])),
             'province' => strtoupper(htmlspecialchars($address['province'])),
             'regency' => strtoupper(htmlspecialchars($address['regency'])),
@@ -105,7 +105,7 @@ class Address extends BaseController
             'street' => ucwords(htmlspecialchars($address['street'])),
         ]);
 
-        unset($account, $address);
+        unset($accountId, $address);
 
         /**
          * ----------------------------------------------------

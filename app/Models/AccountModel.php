@@ -19,21 +19,45 @@ class AccountModel extends MyModel
     ];
 
 
+    /**
+     * Get an account data (except the password) by its email.
+     * @param string $email The email.
+     * @return mixed|null An account data.
+     */
     public function findByEmail($email)
     {
-        return $this->where('email', $email)->first();
+        $account = $this->where('email', $email)->first();
+
+        if (!empty($account)) {
+            unset($account['password']);
+        }
+
+        return $account;
+    }
+
+
+    /**
+     * Get an account ID by its email.
+     * @param string $email The email.
+     * @return string The account ID.
+     */
+    public function getId($email)
+    {
+        $account = $this->where('email', $email)->first();
+
+        $id = (empty($account)) ? '' : $account['id'];
+        unset($account);
+
+        return $id;
     }
 
 
     public function verify($email, $password)
     {
-        $account = $this->findByEmail($email);
-        $verified = false;
+        $account = $this->where('email', $email)->first();
 
-        if (isset($account)) {
-            $verified = password_verify($password, $account['password']);
-            unset($account);
-        }
+        $verified = (empty($account)) ? false : password_verify($password, $account['password']);
+        unset($account);
 
         return $verified;
     }
