@@ -21,4 +21,15 @@ class AddressModel extends MyModel
     {
         return $this->where(['account_id' => $accountId])->findAll();
     }
+
+
+    public function isLabelAlreadyUsed($accountId, $label)
+    {
+        $myLabels = $this->where(['account_id' => $accountId])->findColumn('label');
+
+        if (empty($myLabels)) {
+            return false;
+        }
+        return in_array(ucwords($label), $myLabels);
+    }
 }

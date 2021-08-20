@@ -94,12 +94,11 @@ class Validation
 
 	public $address = [
 		'label' => [
-			'rules' => 'required|string|max_length[25]|is_unique[Address.label,Address.account_id]',
+			'rules' => 'required|string|max_length[25]',
 			'errors' => [
 				'required' => 'Label wajib diisi.',
 				'string' => 'Label hanya boleh diisi menggunakan huruf, angka, dan spasi.',
 				'max_length' => 'Label tidak boleh lebih dari {param} karakter.',
-				'is_unique' => 'Label \'{value}\' sudah digunakan. Harap gunakan label lain.',
 			]
 		],
 		'province' => [
