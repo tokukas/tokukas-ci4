@@ -22,12 +22,7 @@ class Address extends BaseController
             return redirect()->to(base_url('/login/to/address'));
         }
 
-        $data = [
-            'title' => 'Alamat Saya | TOKUKAS',
-            'loginSession' => session('login'),
-        ];
-
-        return view('address/index', $data);
+        return redirect()->to(base_url('/account'));
     }
 
 

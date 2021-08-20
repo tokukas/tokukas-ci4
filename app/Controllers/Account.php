@@ -3,14 +3,17 @@
 namespace App\Controllers;
 
 use App\Models\AccountModel;
+use App\Models\AddressModel;
 
 class Account extends BaseController
 {
     protected $accountModel;
+    protected $addressModel;
 
     public function __construct()
     {
         $this->accountModel = new AccountModel();
+        $this->addressModel = new AddressModel();
     }
 
 
@@ -20,11 +23,14 @@ class Account extends BaseController
             return redirect()->to(base_url('/login/to/account'));
         }
 
+        $accountId = $this->accountModel->getId(session('login')['email']);
         $data = [
             'title' => 'Akun Saya | TOKUKAS',
             'loginSession' => session('login'),
+            'myAddresses' => $this->addressModel->myAddress($accountId, true),
         ];
 
+        unset($accountId);
         return view('account/index', $data);
     }
 
