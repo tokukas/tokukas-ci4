@@ -22,6 +22,10 @@ class Address extends BaseController
             return redirect()->to(base_url('/login/to/address'));
         }
 
+        $alert = session()->getFlashdata('alert');
+        (!empty($alert)) && set_alert($alert['message'], $alert['warning']);
+        unset($alert);
+
         return redirect()->to(base_url('/account'));
     }
 
@@ -63,7 +67,6 @@ class Address extends BaseController
             return redirect()->to(base_url('/address/new'));
         }
 
-
         /**
          * ----------------------------------------------------
          * VALIDATE USER INPUT
@@ -100,6 +103,11 @@ class Address extends BaseController
             'street' => ucwords(htmlspecialchars($address['street'])),
         ]);
 
+        // set to default address if there are no other address.
+        if ($this->addressModel->countMyAddress($accountId) === 1) {
+            $this->addressModel->smartSave(['id' => $addressId, 'is_default' => 1]);
+        }
+
         unset($accountId, $address);
 
         /**
@@ -115,6 +123,20 @@ class Address extends BaseController
 
         // success respons
         set_alert('Alamat baru berhasil ditambahkan.');
+        return redirect()->to(base_url('/address'));
+    }
+
+
+    public function setDefault()
+    {
+        if (empty($this->request->getPost())) {
+            return redirect()->to(base_url('/address'));
+        }
+
+        if ($this->addressModel->setDefaultAddress($this->request->getPost('address_id'))) {
+            set_alert('Alamat utama berhasil diperbarui.');
+        }
+
         return redirect()->to(base_url('/address'));
     }
 }

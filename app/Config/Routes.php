@@ -87,6 +87,7 @@ $routes->group('account', function ($account) {
 // Address Page
 $routes->group('address', function ($address) {
 	$address->post('new', 'Address::insert');
+	$address->post('default', 'Address::setDefault');
 });
 
 

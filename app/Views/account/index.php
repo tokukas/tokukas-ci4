@@ -54,7 +54,11 @@
                         <?php if ($address['is_default']) : ?>
                             <span class="badge bg-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Alamat ini telah diatur menjadi alamat utama.">Utama</span>
                         <?php else : ?>
-                            <a href="#" class="card-link">Jadikan Utama</a>
+                            <form action="<?= base_url('/address/default'); ?>" method="post">
+                                <?= csrf_field(); ?>
+                                <input type="hidden" name="address_id" value="<?= $address['id']; ?>">
+                                <button type="submit" class="btn btn-link p-0">Jadikan Utama</button>
+                            </form>
                         <?php endif; ?>
                     </div>
                     <div class="card-body">
@@ -67,6 +71,7 @@
                                 <span>Ubah</span>
                             </a>
                             <form action="" method="post">
+                                <?= csrf_field(); ?>
                                 <button type="submit" class="btn btn-sm btn-outline-danger">
                                     <i class="material-icons">delete</i>
                                 </button>
