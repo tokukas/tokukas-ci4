@@ -89,6 +89,7 @@ $routes->group('address', function ($address) {
 	$address->post('new', 'Address::insert');
 	$address->post('default', 'Address::setDefault');
 	$address->delete('(:alphanum)', 'Address::delete/$1');
+	$address->patch('edit/(:alphanum)', 'Address::update/$1');
 });
 
 

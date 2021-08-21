@@ -66,7 +66,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-end gap-2">
-                            <a href="#" class="btn btn-sm btn-outline-secondary flex-fill">
+                            <a href="<?= base_url('/address/edit/' . $address['id']); ?>" class="btn btn-sm btn-outline-secondary flex-fill">
                                 <i class="material-icons">edit</i>
                                 <span>Ubah</span>
                             </a>

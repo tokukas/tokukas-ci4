@@ -84,7 +84,7 @@ class Address extends BaseController
             }
 
             // return to the form page with the form data and validation results
-            return redirect()->to(base_url('/address/new'))->withInput();
+            return redirect()->back()->withInput();
         }
 
         /**
@@ -118,7 +118,7 @@ class Address extends BaseController
         if (empty($addressId)) {
             // failed respons
             set_alert('Terjadi kesalahan saat menyimpan alamat anda. Coba lagi beberapa saat.', true);
-            return redirect()->to(base_url('/address/new'))->withInput();
+            return redirect()->back()->withInput();
         }
 
         // success respons
@@ -143,14 +143,38 @@ class Address extends BaseController
 
     public function delete($addressId)
     {
+        /**
+         * ----------------------------------------------------
+         * VERIFY LOGIN SESSION
+         * ----------------------------------------------------
+         */
         if (empty(session('login'))) {
             return redirect()->to(base_url('/login/to/address'));
         }
 
+        /**
+         * ----------------------------------------------------
+         * VERIFY REQUEST METHOD
+         * ----------------------------------------------------
+         */
+        if (empty($this->request->getPost())) {
+            return redirect()->to(base_url('/address'));
+        }
+
+        /**
+         * ----------------------------------------------------
+         * VALIDATE DATA
+         * ----------------------------------------------------
+         */
         if (empty($this->addressModel->find($addressId))) {
             set_alert('Alamat yang akan dihapus tidak ditemukan.', true);
         }
 
+        /**
+         * ----------------------------------------------------
+         * DELETE DATA
+         * ----------------------------------------------------
+         */
         // handler if the target address is default address
         $targetAddress = $this->addressModel->find($addressId);
         $accountId = $targetAddress['account_id'];
@@ -178,5 +202,101 @@ class Address extends BaseController
 
         unset($newDefaultAddress, $accountId, $targetAddress);
         return redirect()->to(base_url('/address'));
+    }
+
+
+    public function edit($addressId)
+    {
+        if (empty(session('login'))) {
+            return redirect()->to(base_url('/login/to/address'));
+        }
+
+        if (empty($this->addressModel->find($addressId))) {
+            set_alert('Alamat yang akan diubah tidak ditemukan.', true);
+            return redirect()->to(base_url('address'));
+        }
+
+        $data = [
+            'title' => 'Ubah Alamat | TOKUKAS',
+            'loginSession' => session('login'),
+            'validation' => $this->validation,
+            'oldAddress' => $this->addressModel->find($addressId),
+        ];
+
+        return view('address/edit', $data);
+    }
+
+
+    public function update($addressId)
+    {
+        /**
+         * ----------------------------------------------------
+         * VERIFY LOGIN SESSION
+         * ----------------------------------------------------
+         */
+        if (empty(session('login'))) {
+            return redirect()->to(base_url('/login/to/address/edit/' . $addressId));
+        }
+
+        /**
+         * ----------------------------------------------------
+         * VERIFY REQUEST METHOD
+         * ----------------------------------------------------
+         */
+        $address = $this->request->getPost();
+        if (empty($address)) {
+            return redirect()->to(base_url('/address/edit/' . $addressId));
+        }
+
+        /**
+         * ----------------------------------------------------
+         * VALIDATE USER INPUT
+         * ----------------------------------------------------
+         */
+        // get account data
+        $accountId = $this->accountModel->getId(session('login')['email']);
+
+        // get old address
+        $oldAddress = $this->addressModel->find($addressId);
+
+        // check if label value is not used yet
+        $isLabelAlreadyUsed = ($address['label'] === $oldAddress['label'])
+            ? false
+            : $this->addressModel->isLabelAlreadyUsed($accountId, $address['label']);
+
+        unset($accountId, $oldAddress);
+
+        if (!$this->validate('address') || $isLabelAlreadyUsed) {
+            if ($isLabelAlreadyUsed) {
+                $this->validator->setError('label', 'Label \'' . $address['label'] . '\' sudah anda gunakan. Harap gunakan label lain.');
+            }
+
+            // return to the form page with the form data and validation results
+            return redirect()->back()->withInput();
+        }
+
+        /**
+         * ----------------------------------------------------
+         * UPDATE DATA
+         * ----------------------------------------------------
+         */
+        $updateData = [
+            'id' => $addressId,
+            'label' => ucwords(htmlspecialchars($address['label'])),
+            'province' => strtoupper(htmlspecialchars($address['province'])),
+            'regency' => strtoupper(htmlspecialchars($address['regency'])),
+            'district' => ucwords(htmlspecialchars($address['district'])),
+            'village' => ucwords(htmlspecialchars($address['village'])),
+            'postal_code' => htmlspecialchars($address['postal_code']),
+            'street' => ucwords(htmlspecialchars($address['street'])),
+        ];
+
+        if (!$this->addressModel->smartSave($updateData)) {
+            set_alert('Alamat gagal diperbarui', true);
+            return redirect()->back()->withInput();
+        }
+
+        set_alert('Alamat berhasil diperbarui');
+        return redirect()->to('/address');
     }
 }
