@@ -260,7 +260,7 @@ class Address extends BaseController
         $oldAddress = $this->addressModel->find($addressId);
 
         // check if label value is not used yet
-        $isLabelAlreadyUsed = ($address['label'] === $oldAddress['label'])
+        $isLabelAlreadyUsed = (strtolower($address['label']) === strtolower($oldAddress['label']))
             ? false
             : $this->addressModel->isLabelAlreadyUsed($accountId, $address['label']);
 
