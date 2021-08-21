@@ -12,7 +12,7 @@ class Offer extends BaseController
          * --------------------------------------
          */
         if (empty(session('login'))) {
-            return toLoginPage('offer');
+            return to_login_page('offer');
         }
 
         $data = [

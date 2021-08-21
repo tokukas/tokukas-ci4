@@ -19,7 +19,7 @@ class Address extends BaseController
     public function index()
     {
         if (empty(session('login'))) {
-            return toLoginPage('address');
+            return to_login_page('address');
         }
 
         $alert = session()->getFlashdata('alert');
@@ -33,7 +33,7 @@ class Address extends BaseController
     public function new()
     {
         if (empty(session('login'))) {
-            return toLoginPage('address/new');
+            return to_login_page('address/new');
         }
 
         $data = [
@@ -54,7 +54,7 @@ class Address extends BaseController
          * ----------------------------------------------------
          */
         if (empty(session('login'))) {
-            return toLoginPage('address/new');
+            return to_login_page('address/new');
         }
 
         /**
@@ -149,7 +149,7 @@ class Address extends BaseController
          * ----------------------------------------------------
          */
         if (empty(session('login'))) {
-            return toLoginPage('address');
+            return to_login_page('address');
         }
 
         /**
@@ -176,8 +176,7 @@ class Address extends BaseController
          * ----------------------------------------------------
          */
         // handler if the target address is default address
-        $targetAddress = $this->addressModel->find($addressId);
-        $accountId = $targetAddress['account_id'];
+        $accountId = $this->accountModel->getId(session('login')['email']);
 
         $newDefaultAddress = ($this->addressModel->isDefaultAddress($addressId))
             ? $this->addressModel->where(['account_id' => $accountId, 'is_default' => 0])->first()
@@ -200,7 +199,7 @@ class Address extends BaseController
             set_alert('Satu alamat berhasil dihapus.');
         }
 
-        unset($newDefaultAddress, $accountId, $targetAddress);
+        unset($newDefaultAddress, $accountId);
         return redirect()->to(base_url('address'));
     }
 
@@ -208,7 +207,7 @@ class Address extends BaseController
     public function edit($addressId)
     {
         if (empty(session('login'))) {
-            return toLoginPage('address');
+            return to_login_page('address');
         }
 
         if (empty($this->addressModel->find($addressId))) {
@@ -216,11 +215,20 @@ class Address extends BaseController
             return redirect()->to(base_url('address'));
         }
 
+        // matching the address with the user ID
+        $address = $this->addressModel->find($addressId);
+
+        if ($address['account_id'] !== $this->accountModel->getId(session('login')['email'])) {
+            unset($address);
+            set_alert('Anda tidak memiliki akses untuk mengubah alamat ini.', false);
+            return redirect()->to(base_url('address'));
+        }
+
         $data = [
             'title' => 'Ubah Alamat | TOKUKAS',
             'loginSession' => session('login'),
             'validation' => $this->validation,
-            'oldAddress' => $this->addressModel->find($addressId),
+            'oldAddress' => $address,
         ];
 
         return view('address/edit', $data);
@@ -235,7 +243,7 @@ class Address extends BaseController
          * ----------------------------------------------------
          */
         if (empty(session('login'))) {
-            return toLoginPage('address');
+            return to_login_page('address');
         }
 
         /**
@@ -245,7 +253,7 @@ class Address extends BaseController
          */
         $address = $this->request->getPost();
         if (empty($address)) {
-            return redirect()->to(base_url('address'));
+            return redirect()->to(base_url('address/edit/' . $addressId));
         }
 
         /**

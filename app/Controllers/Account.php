@@ -20,7 +20,7 @@ class Account extends BaseController
     public function index()
     {
         if (empty(session('login'))) {
-            return toLoginPage('account');
+            return to_login_page('account');
         }
 
         $accountId = $this->accountModel->getId(session('login')['email']);
@@ -38,7 +38,7 @@ class Account extends BaseController
     public function change($field)
     {
         if (empty(session('login'))) {
-            return toLoginPage('account');
+            return to_login_page('account');
         }
 
         $myAccount = $this->accountModel->findByEmail(session('login')['email']);
