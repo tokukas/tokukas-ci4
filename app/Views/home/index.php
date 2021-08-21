@@ -5,7 +5,7 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('/styles/css/home.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('styles/css/home.css'); ?>">
 
 <?= $this->endSection(); ?>
 
@@ -45,7 +45,7 @@
         <h1>Punya Pertanyaan?</h1>
         <h4>Mungkin <abbr data-bs-toggle="tooltip" data-bs-placement="top" title="Daftar Pertanyaan yang Sering Diajukan">FAQ</abbr> ini dapat menjawab pertanyaan anda.</h4>
     </div>
-    <a href="<?= base_url('/faq'); ?>" class="btn btn-primary btn-lg">
+    <a href="<?= base_url('faq'); ?>" class="btn btn-primary btn-lg">
         <i class="material-icons">quiz</i>
         <span>Lihat FAQ</span>
     </a>

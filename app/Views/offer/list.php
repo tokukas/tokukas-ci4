@@ -5,7 +5,7 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('/styles/css/offer.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('styles/css/offer.css'); ?>">
 
 <?= $this->endSection(); ?>
 
@@ -17,7 +17,7 @@
     <div class="row mb-3">
         <div class="d-flex justify-content-between align-items-center">
             <h1>Penawaran Saya</h1>
-            <a class="btn btn-primary" href="<?= base_url('/offer/new'); ?>" title="Buat Penawaran" data-bs-toggle="tooltip" data-bs-placement="left">
+            <a class="btn btn-primary" href="<?= base_url('offer/new'); ?>" title="Buat Penawaran" data-bs-toggle="tooltip" data-bs-placement="left">
                 <i class="fas fa-plus"></i>
             </a>
         </div>
@@ -26,25 +26,25 @@
     <div class="row mb-3">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="<?= base_url('/offer'); ?>">
+                <a class="nav-link active" aria-current="page" href="<?= base_url('offer'); ?>">
                     <i class="fas fa-list"></i>
                     <span class="ms-1">Semua Penawaran</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('/offer/negotiate'); ?>">
+                <a class="nav-link" href="<?= base_url('offer/negotiate'); ?>">
                     <i class="fas fa-handshake"></i>
                     <span class="ms-1">Negosiasi</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('/offer/approved'); ?>">
+                <a class="nav-link" href="<?= base_url('offer/approved'); ?>">
                     <i class="fas fa-check"></i>
                     <span class="ms-1">Disetujui</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('/offer/rejected'); ?>">
+                <a class="nav-link" href="<?= base_url('offer/rejected'); ?>">
                     <i class="fas fa-times"></i>
                     <span class="ms-1">Ditolak</span>
                 </a>
@@ -104,7 +104,7 @@
                 </ul>
                 <div class="card-body">
                     <div class="d-flex gap-2">
-                        <a href="<?= base_url('/offer/' . $offerId); ?>" class="btn btn-primary flex-fill">
+                        <a href="<?= base_url('offer/' . $offerId); ?>" class="btn btn-primary flex-fill">
                             <i class="fas fa-eye"></i>
                             <span>Lihat Rincian</span>
                         </a>

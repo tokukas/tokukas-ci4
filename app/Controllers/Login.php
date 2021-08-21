@@ -15,8 +15,10 @@ class Login extends BaseController
     }
 
 
-    public function index($redirect = '')
+    public function index()
     {
+        $redirect = $this->request->getVar('to');
+
         /**
          * --------------------------------------
          * Check login cookie
@@ -60,7 +62,7 @@ class Login extends BaseController
         $redirect = htmlspecialchars($this->request->getPost('redirect'));
 
         if (!$this->validate('login')) {
-            return redirect()->to(base_url('/login'))->withInput();
+            return redirect()->back()->withInput();
         }
 
         /**
@@ -70,7 +72,7 @@ class Login extends BaseController
          */
         if (!$this->accountModel->verify($email, $password)) {
             set_alert('Email atau kata sandi anda salah.', true);
-            return redirect()->to(base_url('/login'))->withInput();
+            return redirect()->back()->withInput();
         }
 
         /**
@@ -129,7 +131,7 @@ class Login extends BaseController
          * Back to home
          * --------------------------------------
          */
-        return redirect()->to(base_url('/'));
+        return redirect()->to(base_url());
     }
 
 
@@ -179,7 +181,7 @@ class Login extends BaseController
     protected function afterLogin($destination = '')
     {
         return (empty($destination))
-            ? redirect()->to(base_url('/'))
+            ? redirect()->to(base_url())
             : redirect()->to(base_url($destination));
     }
 }

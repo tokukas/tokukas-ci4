@@ -4,7 +4,7 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('/styles/css/faq.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('styles/css/faq.css'); ?>">
 
 <?= $this->endSection(); ?>
 
@@ -20,9 +20,9 @@
     <div class="mb-3 faq-menus">
         <?php foreach ($faqTopics as $topic) : ?>
             <?php if ($topic === $faqShowTopic) : ?>
-                <a href="<?= base_url('/faq'); ?>" class="menu btn btn-outline-secondary active"><?= ucwords($topic); ?></a>
+                <a href="<?= base_url('faq'); ?>" class="menu btn btn-outline-secondary active"><?= ucwords($topic); ?></a>
             <?php else : ?>
-                <a href="<?= base_url('/faq/' . $topic); ?>" class="menu btn btn-outline-secondary"><?= ucwords($topic); ?></a>
+                <a href="<?= base_url('faq/' . $topic); ?>" class="menu btn btn-outline-secondary"><?= ucwords($topic); ?></a>
             <?php endif; ?>
         <?php endforeach; ?>
     </div>
@@ -64,7 +64,7 @@
         </div>
         <div class="information">
             <i class="fas fa-info-circle"></i>
-            <span>Mohon untuk menghubungi kami hanya di <a href="<?= base_url('/openinghours'); ?>"><b>jam buka</b></a>.</span>
+            <span>Mohon untuk menghubungi kami hanya di <a href="<?= base_url('openinghours'); ?>"><b>jam buka</b></a>.</span>
         </div>
     </div>
 </section>

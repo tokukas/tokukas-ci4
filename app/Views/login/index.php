@@ -5,7 +5,7 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('/styles/css/login.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('styles/css/login.css'); ?>">
 
 <?= $this->endSection(); ?>
 
@@ -20,12 +20,12 @@
             <div class="card-body">
                 <section class="container mb-3 d-flex justify-content-between align-items-center">
                     <h1 class="title">Masuk</h1>
-                    <a href="<?= base_url('/'); ?>" class="icon-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Ke Beranda">
+                    <a href="<?= base_url(''); ?>" class="icon-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Ke Beranda">
                         <i class="material-icons">close</i>
                     </a>
                 </section>
                 <section class="container">
-                    <form action="<?= base_url('/login'); ?>" method="post">
+                    <form action="<?= base_url('login'); ?>" method="post">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="redirect" value="<?= $redirect; ?>">
                         <div class="field">
@@ -73,7 +73,7 @@
                         </div>
                         <hr>
                         <div class="field text-center">
-                            <p>Belum punya akun? <a href="<?= base_url('/register'); ?>">Daftar</a></p>
+                            <p>Belum punya akun? <a href="<?= base_url('register'); ?>">Daftar</a></p>
                         </div>
                     </form>
                 </section>
@@ -90,8 +90,8 @@
 
 <div class="right-box">
     <div class="container text-center">
-        <a href="<?= base_url('/'); ?>">
-            <img class="cover" src="<?= base_url('/assets/brand-cover.jpg'); ?>" alt="brand cover">
+        <a href="<?= base_url(''); ?>">
+            <img class="cover" src="<?= base_url('assets/brand-cover.jpg'); ?>" alt="brand cover">
         </a>
         <h3><strong>Yang Bekas Pasti Lebih Murah!</strong></h3>
     </div>
@@ -103,6 +103,6 @@
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
 
-<script src="<?= base_url('/scripts/js/form.js'); ?>"></script>
+<script src="<?= base_url('scripts/js/form.js'); ?>"></script>
 
 <?= $this->endSection(); ?>

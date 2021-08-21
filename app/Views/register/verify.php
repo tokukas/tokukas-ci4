@@ -5,7 +5,7 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('/styles/css/register.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('styles/css/register.css'); ?>">
 
 <?= $this->endSection(); ?>
 
@@ -18,14 +18,14 @@
         <div class="card shadow">
             <div class="card-body">
                 <section class="container mb-3 d-flex gap-3 justify-content-start align-items-center">
-                    <a href="<?= base_url('/register'); ?>" class="icon-btn">
+                    <a href="<?= base_url('register'); ?>" class="icon-btn">
                         <i class="material-icons">arrow_back</i>
                     </a>
                     <h2 class="title">Masukkan Kode Verifikasi</h2>
                 </section>
                 <section class="container mb-3">
                     <p class="text-center">Masukkan kode verifikasi yang sudah kami kirimkan ke email <strong><?= $verificator['email']; ?></strong></p>
-                    <form action="<?= base_url('/register/verify'); ?>" method="post" data-form-loading="true">
+                    <form action="<?= base_url('register/verify'); ?>" method="post" data-form-loading="true">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="verification_id" value="<?= $verificator['id']; ?>">
                         <div class="field">
@@ -50,7 +50,7 @@
                     <div class="text-center">
                         <p class="m-0">Tidak menerima kode?</p>
                         <span class="form-text">Coba cek di folder spam atau sampah anda, atau</span>
-                        <form action="<?= base_url('/register'); ?>" method="post" data-form-loading="true">
+                        <form action="<?= base_url('register'); ?>" method="post" data-form-loading="true">
                             <input type="hidden" name="email" value="<?= $verificator['email']; ?>">
                             <button type="submit" class="resend-otp btn btn-spinner btn-link btn-sm p-0" disabled>
                                 <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
@@ -72,8 +72,8 @@
 
 <div class="right-box">
     <div class="container text-center">
-        <a href="<?= base_url('/'); ?>">
-            <img class="cover" src="<?= base_url('/assets/brand-cover.jpg'); ?>" alt="brand cover">
+        <a href="<?= base_url(''); ?>">
+            <img class="cover" src="<?= base_url('assets/brand-cover.jpg'); ?>" alt="brand cover">
         </a>
         <h3><strong>Yang Bekas Pasti Lebih Murah!</strong></h3>
         <hr>
@@ -87,6 +87,6 @@
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
 
-<script src="<?= base_url('/scripts/js/form.js'); ?>"></script>
+<script src="<?= base_url('scripts/js/form.js'); ?>"></script>
 
 <?= $this->endSection(); ?>

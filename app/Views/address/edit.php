@@ -5,7 +5,7 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('/styles/css/address-new.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('styles/css/address-new.css'); ?>">
 
 <?= $this->endSection(); ?>
 
@@ -16,7 +16,7 @@
 <section class="container-md p-4">
     <div class="mb-4">
         <div class="d-flex gap-2 align-items-center mb-2">
-            <a href="<?= base_url('/address'); ?>" class="icon-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Ke Akun Saya">
+            <a href="<?= base_url('address'); ?>" class="icon-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Ke Akun Saya">
                 <i class="material-icons">arrow_back</i>
             </a>
             <h1 class="mb-0">Ubah Alamat</h1>
@@ -24,7 +24,7 @@
         <span>Harap isi secara berurutan mulai dari label, provinsi, dan seterusnya.</span>
         <hr>
     </div>
-    <form action="<?= base_url('/address/edit/' . $oldAddress['id']); ?>" method="post">
+    <form action="<?= base_url('address/edit/' . $oldAddress['id']); ?>" method="post">
         <?= csrf_field(); ?>
         <input type="hidden" name="_method" value="PATCH">
         <div class="row field">
@@ -156,7 +156,7 @@
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
 
-<script src="<?= base_url('/scripts/js/idn-area-api/index.js'); ?>"></script>
-<script src="<?= base_url('/scripts/js/address-form.js'); ?>"></script>
+<script src="<?= base_url('scripts/js/idn-area-api/index.js'); ?>"></script>
+<script src="<?= base_url('scripts/js/address-form.js'); ?>"></script>
 
 <?= $this->endSection(); ?>

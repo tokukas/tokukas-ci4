@@ -5,7 +5,7 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('/styles/css/register.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('styles/css/register.css'); ?>">
 
 <?= $this->endSection(); ?>
 
@@ -19,12 +19,12 @@
             <div class="card-body">
                 <section class="container mb-3 d-flex justify-content-between align-items-center">
                     <h1 class="title">Daftar</h1>
-                    <a href="<?= base_url('/'); ?>" class="icon-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Ke Beranda">
+                    <a href="<?= base_url(''); ?>" class="icon-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Ke Beranda">
                         <i class="material-icons">close</i>
                     </a>
                 </section>
                 <section class="container">
-                    <form action="<?= base_url('/register'); ?>" method="post" data-form-loading="true">
+                    <form action="<?= base_url('register'); ?>" method="post" data-form-loading="true">
                         <?= csrf_field(); ?>
                         <div class="field">
                             <label for="email" class="form-label d-inline-flex gap-1 align-items-center">
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="field text-center">
-                            <p class="form-text text-dark">Dengan mendaftar, anda menyetujui <br><a href="<?= base_url('/terms'); ?>">Syarat Penggunaan</a> dan <a href="<?= base_url('/privacy'); ?>">Kebijakan Privasi</a>.</p>
+                            <p class="form-text text-dark">Dengan mendaftar, anda menyetujui <br><a href="<?= base_url('terms'); ?>">Syarat Penggunaan</a> dan <a href="<?= base_url('privacy'); ?>">Kebijakan Privasi</a>.</p>
                         </div>
                         <div class="field d-flex">
                             <button type="submit" class="btn btn-spinner btn-primary flex-fill">
@@ -54,7 +54,7 @@
                         </div>
                         <hr>
                         <div class="field text-center">
-                            <p>Sudah punya akun? <a href="<?= base_url('/login'); ?>">Masuk</a></p>
+                            <p>Sudah punya akun? <a href="<?= base_url('login'); ?>">Masuk</a></p>
                         </div>
                     </form>
                 </section>
@@ -71,8 +71,8 @@
 
 <div class="right-box">
     <div class="container text-center">
-        <a href="<?= base_url('/'); ?>">
-            <img class="cover" src="<?= base_url('/assets/brand-cover.jpg'); ?>" alt="brand cover">
+        <a href="<?= base_url(''); ?>">
+            <img class="cover" src="<?= base_url('assets/brand-cover.jpg'); ?>" alt="brand cover">
         </a>
         <h3><strong>Yang Bekas Pasti Lebih Murah!</strong></h3>
         <hr>
@@ -86,6 +86,6 @@
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
 
-<script src="<?= base_url('/scripts/js/form.js'); ?>"></script>
+<script src="<?= base_url('scripts/js/form.js'); ?>"></script>
 
 <?= $this->endSection(); ?>

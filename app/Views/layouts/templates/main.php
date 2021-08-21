@@ -4,8 +4,8 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('/styles/css/navbar.css'); ?>">
-<link rel="stylesheet" href="<?= base_url('/styles/css/footer.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('styles/css/navbar.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('styles/css/footer.css'); ?>">
 
 <?= $this->endSection(); ?>
 
@@ -33,6 +33,6 @@
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
 
-<script src="<?= base_url('/scripts/js/navbar.js'); ?>"></script>
+<script src="<?= base_url('scripts/js/navbar.js'); ?>"></script>
 
 <?= $this->endSection(); ?>

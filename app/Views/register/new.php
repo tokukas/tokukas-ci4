@@ -5,7 +5,7 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('/styles/css/register.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('styles/css/register.css'); ?>">
 
 <?= $this->endSection(); ?>
 
@@ -18,13 +18,13 @@
         <div class="card shadow">
             <div class="card-body">
                 <section class="container mb-3 d-flex gap-3 justify-content-start align-items-center">
-                    <a href="<?= base_url('/register'); ?>" class="icon-btn">
+                    <a href="<?= base_url('register'); ?>" class="icon-btn">
                         <i class="material-icons">arrow_back</i>
                     </a>
                     <h1 class="title">Daftar</h1>
                 </section>
                 <section class="container">
-                    <form action="<?= base_url('/register/new'); ?>" method="post" data-form-loading="true">
+                    <form action="<?= base_url('register/new'); ?>" method="post" data-form-loading="true">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="id" value="<?= $verificator['id']; ?>">
                         <div class="field">
@@ -36,7 +36,7 @@
                                     </label>
                                 </div>
                                 <input type="email" id="email" class="form-control" value="<?= $verificator['email']; ?>" disabled>
-                                <a href="<?= base_url('/register'); ?>" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Email">
+                                <a href="<?= base_url('register'); ?>" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Email">
                                     <i class="material-icons">edit</i>
                                 </a>
                             </div>
@@ -110,8 +110,8 @@
 
 <div class="right-box">
     <div class="container text-center">
-        <a href="<?= base_url('/'); ?>">
-            <img class="cover" src="<?= base_url('/assets/brand-cover.jpg'); ?>" alt="brand cover">
+        <a href="<?= base_url(''); ?>">
+            <img class="cover" src="<?= base_url('assets/brand-cover.jpg'); ?>" alt="brand cover">
         </a>
         <h3><strong>Yang Bekas Pasti Lebih Murah!</strong></h3>
         <hr>
@@ -125,6 +125,6 @@
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
 
-<script src="<?= base_url('/scripts/js/form.js'); ?>"></script>
+<script src="<?= base_url('scripts/js/form.js'); ?>"></script>
 
 <?= $this->endSection(); ?>

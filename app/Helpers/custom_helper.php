@@ -67,3 +67,13 @@ function set_alert($message, $isWarning = false)
         'message' => $message
     ]);
 }
+
+
+/**
+ * Redirecting user to login first before can access to destination page.
+ * @param string $destination The URI to destination page, like : 'account' or 'account/new'.
+ */
+function toLoginPage(string $destination)
+{
+    return redirect()->to(base_url('/login?to=' . $destination));
+}

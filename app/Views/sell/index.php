@@ -5,7 +5,7 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('/styles/css/sell.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('styles/css/sell.css'); ?>">
 
 <?= $this->endSection(); ?>
 
@@ -17,7 +17,7 @@
     <div class="mb-4">
         <h3>Sudah Paham Bagaimana Caranya?</h3>
     </div>
-    <a class="btn btn-primary" href="<?= base_url('/offer/new'); ?>">
+    <a class="btn btn-primary" href="<?= base_url('offer/new'); ?>">
         <strong>Buat Penawaran Anda</strong>
     </a>
 </section>

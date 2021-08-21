@@ -19,21 +19,21 @@ class Address extends BaseController
     public function index()
     {
         if (empty(session('login'))) {
-            return redirect()->to(base_url('/login/to/address'));
+            return toLoginPage('address');
         }
 
         $alert = session()->getFlashdata('alert');
         (!empty($alert)) && set_alert($alert['message'], $alert['warning']);
         unset($alert);
 
-        return redirect()->to(base_url('/account'));
+        return redirect()->to(base_url('account'));
     }
 
 
     public function new()
     {
         if (empty(session('login'))) {
-            return redirect()->to(base_url('/login/to/address/new'));
+            return toLoginPage('address/new');
         }
 
         $data = [
@@ -54,7 +54,7 @@ class Address extends BaseController
          * ----------------------------------------------------
          */
         if (empty(session('login'))) {
-            return redirect()->to(base_url('/login/to/address/new'));
+            return toLoginPage('address/new');
         }
 
         /**
@@ -64,7 +64,7 @@ class Address extends BaseController
          */
         $address = $this->request->getPost();
         if (empty($address)) {
-            return redirect()->to(base_url('/address/new'));
+            return redirect()->to(base_url('address/new'));
         }
 
         /**
@@ -123,21 +123,21 @@ class Address extends BaseController
 
         // success respons
         set_alert('Alamat baru berhasil ditambahkan.');
-        return redirect()->to(base_url('/address'));
+        return redirect()->to(base_url('address'));
     }
 
 
     public function setDefault()
     {
         if (empty($this->request->getPost())) {
-            return redirect()->to(base_url('/address'));
+            return redirect()->to(base_url('address'));
         }
 
         if ($this->addressModel->setDefaultAddress($this->request->getPost('address_id'))) {
             set_alert('Alamat utama berhasil diperbarui.');
         }
 
-        return redirect()->to(base_url('/address'));
+        return redirect()->to(base_url('address'));
     }
 
 
@@ -149,7 +149,7 @@ class Address extends BaseController
          * ----------------------------------------------------
          */
         if (empty(session('login'))) {
-            return redirect()->to(base_url('/login/to/address'));
+            return toLoginPage('address');
         }
 
         /**
@@ -158,7 +158,7 @@ class Address extends BaseController
          * ----------------------------------------------------
          */
         if (empty($this->request->getPost())) {
-            return redirect()->to(base_url('/address'));
+            return redirect()->to(base_url('address'));
         }
 
         /**
@@ -191,7 +191,7 @@ class Address extends BaseController
             if (!$this->addressModel->smartSave($updateData)) {
                 // failed respons
                 set_alert('Gagal memperbarui alamat utama ke alamat lain.', true);
-                return redirect()->to(base_url('/address'));
+                return redirect()->to(base_url('address'));
             }
         }
 
@@ -201,14 +201,14 @@ class Address extends BaseController
         }
 
         unset($newDefaultAddress, $accountId, $targetAddress);
-        return redirect()->to(base_url('/address'));
+        return redirect()->to(base_url('address'));
     }
 
 
     public function edit($addressId)
     {
         if (empty(session('login'))) {
-            return redirect()->to(base_url('/login/to/address'));
+            return toLoginPage('address');
         }
 
         if (empty($this->addressModel->find($addressId))) {
@@ -235,7 +235,7 @@ class Address extends BaseController
          * ----------------------------------------------------
          */
         if (empty(session('login'))) {
-            return redirect()->to(base_url('/login/to/address/edit/' . $addressId));
+            return toLoginPage('address');
         }
 
         /**
@@ -245,7 +245,7 @@ class Address extends BaseController
          */
         $address = $this->request->getPost();
         if (empty($address)) {
-            return redirect()->to(base_url('/address/edit/' . $addressId));
+            return redirect()->to(base_url('address'));
         }
 
         /**
@@ -297,6 +297,6 @@ class Address extends BaseController
         }
 
         set_alert('Alamat berhasil diperbarui');
-        return redirect()->to('/address');
+        return redirect()->to(base_url('address'));
     }
 }

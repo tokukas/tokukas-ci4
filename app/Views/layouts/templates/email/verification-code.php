@@ -143,14 +143,14 @@
                     <tbody>
                         <tr>
                             <td>
-                                <a href="<?= base_url('/terms'); ?>" class="icon-btn" style="text-decoration:none;color:#ffffff;display:inline-block;">Syarat Penggunaan</a>
+                                <a href="<?= base_url('terms'); ?>" class="icon-btn" style="text-decoration:none;color:#ffffff;display:inline-block;">Syarat Penggunaan</a>
                             </td>
                             <td>
                                 <div class="vr" style="height:1.5rem;background-color:#ffffff;width:1px !important;height: 1rem;background-color: #ffffff; width:1px !important;">
                                 </div>
                             </td>
                             <td>
-                                <a href="<?= base_url('/privacy'); ?>" class="icon-btn" style="text-decoration:none;color:#ffffff;display:inline-block;">Kebijakan Privasi</a>
+                                <a href="<?= base_url('privacy'); ?>" class="icon-btn" style="text-decoration:none;color:#ffffff;display:inline-block;">Kebijakan Privasi</a>
                             </td>
                         </tr>
                     </tbody>

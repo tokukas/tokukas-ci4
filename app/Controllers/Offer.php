@@ -12,7 +12,7 @@ class Offer extends BaseController
          * --------------------------------------
          */
         if (empty(session('login'))) {
-            return redirect()->to(base_url('/login/to/offer'));
+            return toLoginPage('offer');
         }
 
         $data = [

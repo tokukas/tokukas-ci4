@@ -22,7 +22,7 @@ class EmailVerification extends BaseController
          * --------------------------------------
          */
         if (!$this->validate('registerEmail')) {
-            return redirect()->to(base_url('/register'))->withInput();
+            return redirect()->to(base_url('register'))->withInput();
         }
 
         // get the email address
@@ -79,7 +79,7 @@ class EmailVerification extends BaseController
         if ($this->email->send()) {
             // redirect to verification page
             session()->setFlashdata('verificationId', $id);
-            return redirect()->to(base_url('/register/verify'));
+            return redirect()->to(base_url('register/verify'));
         }
 
         // if email failed to send
@@ -102,7 +102,7 @@ class EmailVerification extends BaseController
 
         // if id is empty, redirect to register page
         if (empty($id)) {
-            return redirect()->to(base_url('/register'));
+            return redirect()->to(base_url('register'));
         }
 
         // get verificator
@@ -111,7 +111,7 @@ class EmailVerification extends BaseController
         // checking if verificator is valid
         if ($verificator === null) {
             set_alert('Kode verifikasi tidak valid. Silahkan ulangi pendaftaran akun.', true);
-            return redirect()->to(base_url('/register'));
+            return redirect()->to(base_url('register'));
         }
 
         // checking if verificator is not expired
@@ -121,7 +121,7 @@ class EmailVerification extends BaseController
 
             // redirect to register page
             set_alert('Kode verifikasi sudah kadaluwarsa. Silahkan ulangi pendaftaran akun.', true);
-            return redirect()->to(base_url('/register'));
+            return redirect()->to(base_url('register'));
         }
 
         /**
@@ -159,7 +159,7 @@ class EmailVerification extends BaseController
 
             // redirect to verification page
             session()->setFlashdata('verificationId', $id);
-            return redirect()->to(base_url('/register/verify/'));
+            return redirect()->to(base_url('register/verify'));
         }
 
         // === if validation code is verified, redirect to account registration page.
@@ -173,6 +173,6 @@ class EmailVerification extends BaseController
             'id' => $id,
             'email' => $verificator['email']
         ]);
-        return redirect()->to(base_url('/register/new'));
+        return redirect()->to(base_url('register/new'));
     }
 }

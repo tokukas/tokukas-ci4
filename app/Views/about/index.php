@@ -5,8 +5,8 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('/styles/css/footer.css'); ?>">
-<link rel="stylesheet" href="<?= base_url('/styles/css/about.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('styles/css/footer.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('styles/css/about.css'); ?>">
 
 <?= $this->endSection(); ?>
 
@@ -15,15 +15,15 @@
 <?= $this->section('content'); ?>
 
 <div class="jumbotron">
-    <img class="brand-logo" src="<?= base_url('/assets/brand-white.svg'); ?>" alt="logo" height="100" width="180" role="img">
+    <img class="brand-logo" src="<?= base_url('assets/brand-white.svg'); ?>" alt="logo" height="100" width="180" role="img">
     <h1 class="brand-name">Toko Buku Bekas</h1>
     <span class="slogan">Yang Bekas Pasti Lebih Murah!</span>
 </div>
 <nav class="menus">
     <ul>
-        <li class="sticky"><a href="<?= base_url('/'); ?>">Beranda</a></li>
-        <li><a href="<?= base_url('/login'); ?>">Masuk</a></li>
-        <li><a href="<?= base_url('/register'); ?>">Daftar</a></li>
+        <li class="sticky"><a href="<?= base_url(''); ?>">Beranda</a></li>
+        <li><a href="<?= base_url('login'); ?>">Masuk</a></li>
+        <li><a href="<?= base_url('register'); ?>">Daftar</a></li>
     </ul>
 </nav>
 <section class="">

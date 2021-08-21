@@ -3,8 +3,8 @@
         <div class="row">
             <div class="left-col col-lg-4">
                 <section class="mb-3">
-                    <a class="brand" href="<?= base_url('/'); ?>">
-                        <img src="<?= base_url('/assets/brand-white.svg'); ?>" alt="brand" height="32">
+                    <a class="brand" href="<?= base_url(''); ?>">
+                        <img src="<?= base_url('assets/brand-white.svg'); ?>" alt="brand" height="32">
                         <div class="text-brand">
                             <span class="primary">TOKUKAS</span>
                             <span class="secondary">Toko Buku Bekas</span>
@@ -34,12 +34,12 @@
                     </a>
                     <a href="https://signal.group/#CjQKIBOOTbfokZmxTuuAEuS-y-v0frkY6A3yjxdMJLh9f2OYEhDQWSDd7K8InBIEp7m1kYuY" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Signal TOKUKAS">
                         <div class="icon-box">
-                            <img src="<?= base_url('/assets/signal-app-icon-white.svg'); ?>" alt="linktree icon" height="22">
+                            <img src="<?= base_url('assets/signal-app-icon-white.svg'); ?>" alt="linktree icon" height="22">
                         </div>
                     </a>
                     <a href="https://linktr.ee/tokukas" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Linktree TOKUKAS">
                         <div class="icon-box">
-                            <img src="<?= base_url('/assets/linktree-icon-white.svg'); ?>" alt="linktree icon" height="22">
+                            <img src="<?= base_url('assets/linktree-icon-white.svg'); ?>" alt="linktree icon" height="22">
                         </div>
                     </a>
                 </section>
@@ -50,11 +50,11 @@
                 </section>
                 <section>
                     <div class="footer-menus">
-                        <a href="<?= base_url('/about'); ?>" class="menu">
+                        <a href="<?= base_url('about'); ?>" class="menu">
                             <i class="material-icons">chevron_right</i>
                             <span>Tentang Kami</span>
                         </a>
-                        <a href="<?= base_url('/sell'); ?>" class="menu">
+                        <a href="<?= base_url('sell'); ?>" class="menu">
                             <i class="material-icons">chevron_right</i>
                             <span>Jual Buku</span>
                         </a>
@@ -67,10 +67,10 @@
                 </section>
                 <section class="d-flex gap-3 justify-content-center mb-3">
                     <a href="https://tokopedia.com/tokukas" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat di Tokopedia">
-                        <img src="<?= base_url('/assets/tokopedia.png'); ?>" alt="" height="60">
+                        <img src="<?= base_url('assets/tokopedia.png'); ?>" alt="" height="60">
                     </a>
                     <a href="https://shopee.co.id/tokukas" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat di Shopee">
-                        <img src="<?= base_url('/assets/shopee.png'); ?>" alt="" height="60">
+                        <img src="<?= base_url('assets/shopee.png'); ?>" alt="" height="60">
                     </a>
                 </section>
             </div>
@@ -82,9 +82,9 @@
                 <span>&copy; 2021 - TOKUKAS</span>
             </section>
             <section class="d-inline-flex gap-2 text-center">
-                <a href="<?= base_url('/terms'); ?>">Syarat Penggunaan</a>
+                <a href="<?= base_url('terms'); ?>">Syarat Penggunaan</a>
                 <div class="vr"></div>
-                <a href="<?= base_url('/privacy'); ?>">Kebijakan Privasi</a>
+                <a href="<?= base_url('privacy'); ?>">Kebijakan Privasi</a>
             </section>
         </div>
     </div>

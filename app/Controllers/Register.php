@@ -39,14 +39,14 @@ class Register extends BaseController
         $verificator = session()->getFlashdata('verificator');
 
         if (empty($verificator)) {
-            return redirect()->to(base_url('/register'));
+            return redirect()->to(base_url('register'));
         }
 
         if (!$this->emailVerificator->isVerified($verificator['id'])) {
             $this->emailVerificator->delete($verificator['id']);
 
             set_alert('Email anda belum terverifikasi. Harap ulangi pendaftaran akun.');
-            return redirect()->to(base_url('/register'));
+            return redirect()->to(base_url('register'));
         }
 
         /**
@@ -74,14 +74,14 @@ class Register extends BaseController
         $verificatorId = $this->request->getPost('id');
 
         if (empty($verificatorId)) {
-            return redirect()->to(base_url('/register'));
+            return redirect()->to(base_url('register'));
         }
 
         if (!$this->emailVerificator->isVerified($verificatorId)) {
             $this->emailVerificator->delete($verificatorId);
 
             set_alert('Email anda belum terverifikasi. Harap ulangi pendaftaran akun.');
-            return redirect()->to(base_url('/register'));
+            return redirect()->to(base_url('register'));
         }
 
         /**
@@ -96,7 +96,7 @@ class Register extends BaseController
                 'id' => $verificatorId,
                 'email' => $verificator['email'],
             ]);
-            return redirect()->to(base_url('/register/new'))->withInput();
+            return redirect()->to(base_url('register/new'))->withInput();
         }
 
         /**
@@ -115,12 +115,12 @@ class Register extends BaseController
         if (empty($accountId)) {
             $this->emailVerificator->delete($verificatorId);
             set_alert('Terjadi kesalahan saat mendaftarkan akun anda. Harap coba lagi.');
-            return redirect()->to(base_url('/register'));
+            return redirect()->to(base_url('register'));
         }
 
         // if success
         $this->emailVerificator->deleteWhere(['email' => $verificator['email']]);
         set_alert('Pendaftaran akun berhasil. Silahkan login untuk memulai transaksi.');
-        return redirect()->to(base_url('/login'));
+        return redirect()->to(base_url('login'));
     }
 }
