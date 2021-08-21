@@ -88,6 +88,7 @@ $routes->group('account', function ($account) {
 $routes->group('address', function ($address) {
 	$address->post('new', 'Address::insert');
 	$address->post('default', 'Address::setDefault');
+	$address->delete('(:alphanum)', 'Address::delete/$1');
 });
 
 

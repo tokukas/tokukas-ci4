@@ -70,12 +70,9 @@
                                 <i class="material-icons">edit</i>
                                 <span>Ubah</span>
                             </a>
-                            <form action="" method="post">
-                                <?= csrf_field(); ?>
-                                <button type="submit" class="btn btn-sm btn-outline-danger">
-                                    <i class="material-icons">delete</i>
-                                </button>
-                            </form>
+                            <button type="button" class="delete-toggle btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirm" data-link="<?= base_url('/address/' . $address['id']); ?>">
+                                <i class="material-icons">delete</i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -89,11 +86,39 @@
         </div>
     </div>
 </section>
-
+<div class="modal fade" id="deleteConfirm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Penghapusan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah anda yakin ingin menghapus alamat ini?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                    <i class="material-icons">close</i>
+                    <span>Batalkan</span>
+                </button>
+                <form action="" method="post">
+                    <?= csrf_field(); ?>
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-outline-danger">
+                        <i class="material-icons">delete</i>
+                        <span>Hapus Alamat</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <?= $this->endSection(); ?>
 
 
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
+
+<script src="<?= base_url('/scripts/js/account.js'); ?>"></script>
 
 <?= $this->endSection(); ?>

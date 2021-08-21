@@ -45,7 +45,7 @@ class AddressModel extends MyModel
      * Get all address that related with the account ID.
      * If $stringify is true, the address will be stringified from province, regency, district, village, street, and postal code value.
      */
-    public function myAddress(string $accountId, $stringify = false)
+    public function myAddresses(string $accountId, $stringify = false)
     {
         $myAddresses = $this->where(['account_id' => $accountId])->orderBy('label')->findAll();
 
@@ -116,5 +116,17 @@ class AddressModel extends MyModel
     {
         $defaultAddress = $this->where(['account_id' => $accountId, 'is_default' => 1])->first();
         return ($stringify) ? $this->stringify($defaultAddress) : $defaultAddress;
+    }
+
+
+    /**
+     * @return boolean
+     */
+    public function isDefaultAddress(string $addressId)
+    {
+        $address = $this->find($addressId);
+        $isDefault = (empty($address)) ? false : $address['is_default'];
+        unset($address);
+        return $isDefault;
     }
 }

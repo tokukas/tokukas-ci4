@@ -27,7 +27,7 @@ class Account extends BaseController
         $data = [
             'title' => 'Akun Saya | TOKUKAS',
             'loginSession' => session('login'),
-            'myAddresses' => $this->addressModel->myAddress($accountId, true),
+            'myAddresses' => $this->addressModel->myAddresses($accountId, true),
         ];
 
         unset($accountId);

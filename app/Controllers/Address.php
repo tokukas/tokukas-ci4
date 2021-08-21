@@ -139,4 +139,44 @@ class Address extends BaseController
 
         return redirect()->to(base_url('/address'));
     }
+
+
+    public function delete($addressId)
+    {
+        if (empty(session('login'))) {
+            return redirect()->to(base_url('/login/to/address'));
+        }
+
+        if (empty($this->addressModel->find($addressId))) {
+            set_alert('Alamat yang akan dihapus tidak ditemukan.', true);
+        }
+
+        // handler if the target address is default address
+        $targetAddress = $this->addressModel->find($addressId);
+        $accountId = $targetAddress['account_id'];
+
+        $newDefaultAddress = ($this->addressModel->isDefaultAddress($addressId))
+            ? $this->addressModel->where(['account_id' => $accountId, 'is_default' => 0])->first()
+            : null;
+
+        // set new default address
+        if (!empty($newDefaultAddress)) {
+            $updateData['id'] = $newDefaultAddress['id'];
+            $updateData['is_default'] = 1;
+
+            if (!$this->addressModel->smartSave($updateData)) {
+                // failed respons
+                set_alert('Gagal memperbarui alamat utama ke alamat lain.', true);
+                return redirect()->to(base_url('/address'));
+            }
+        }
+
+        // deleting address
+        if ($this->addressModel->delete($addressId)) {
+            set_alert('Satu alamat berhasil dihapus.');
+        }
+
+        unset($newDefaultAddress, $accountId, $targetAddress);
+        return redirect()->to(base_url('/address'));
+    }
 }
