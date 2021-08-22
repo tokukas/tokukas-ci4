@@ -3,8 +3,8 @@
         <div class="row">
             <div class="left-col col-lg-4">
                 <section class="mb-3">
-                    <a class="brand" href="<?= base_url(''); ?>">
-                        <img src="<?= base_url('assets/brand-white.svg'); ?>" alt="brand" height="32">
+                    <a class="brand" href="<?= base_url(); ?>">
+                        <img src="<?= base_url('assets/brand-white.svg'); ?>" alt="brand" height="32" width="100%">
                         <div class="text-brand">
                             <span class="primary">TOKUKAS</span>
                             <span class="secondary">Toko Buku Bekas</span>
@@ -12,34 +12,34 @@
                     </a>
                 </section>
                 <section class="mb-4">
-                    <a href="https://www.google.com/maps/search/tokukas" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat Lokasi">
+                    <a href="https://www.google.com/maps/search/tokukas" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat Lokasi" aria-label="Lihat Lokasi TOKUKAS">
                         <span>Jalan Pabean Kencana Raya No. 32, Desa Pabean Udik, Kec. Indramayu, Kab. Indramayu, Jawa Barat 45219, Indonesia.</span>
                     </a>
                 </section>
                 <section class="icon-bar mb-3">
-                    <a href="mailto:tokukas@outlook.com" data-bs-toggle="tooltip" data-bs-placement="bottom" title="tokukas@outlook.com">
+                    <a href="mailto:tokukas@outlook.com" data-bs-toggle="tooltip" data-bs-placement="bottom" title="tokukas@outlook.com" aria-label="Email ke tokukas@outlook.com">
                         <div class="icon-box">
                             <i class="material-icons">email</i>
                         </div>
                     </a>
-                    <a href="https://wa.me/+6285315360808" data-bs-toggle="tooltip" data-bs-placement="bottom" title="+6285315360808">
+                    <a href="https://wa.me/+6285315360808" data-bs-toggle="tooltip" data-bs-placement="bottom" title="+6285315360808" aria-label="Whatsapp ke +6285315360808">
                         <div class="icon-box">
                             <i class="fab fa-whatsapp fa-lg"></i>
                         </div>
                     </a>
-                    <a href="https://t.me/tokukas" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Telegram TOKUKAS">
+                    <a href="https://t.me/tokukas" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Telegram TOKUKAS" aria-label="Gabung ke Channel Telegram">
                         <div class="icon-box">
                             <i class="fab fa-telegram fa-lg"></i>
                         </div>
                     </a>
-                    <a href="https://signal.group/#CjQKIBOOTbfokZmxTuuAEuS-y-v0frkY6A3yjxdMJLh9f2OYEhDQWSDd7K8InBIEp7m1kYuY" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Signal TOKUKAS">
+                    <a href="https://signal.group/#CjQKIBOOTbfokZmxTuuAEuS-y-v0frkY6A3yjxdMJLh9f2OYEhDQWSDd7K8InBIEp7m1kYuY" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Signal TOKUKAS" aria-label="Gabung ke Channel Signal">
                         <div class="icon-box">
-                            <img src="<?= base_url('assets/signal-app-icon-white.svg'); ?>" alt="linktree icon" height="22">
+                            <img src="<?= base_url('assets/signal-app-icon-white.svg'); ?>" alt="linktree icon" height="22" width="22">
                         </div>
                     </a>
-                    <a href="https://linktr.ee/tokukas" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Linktree TOKUKAS">
+                    <a href="https://linktr.ee/tokukas" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Linktree TOKUKAS" aria-label="Linktree TOKUKAS">
                         <div class="icon-box">
-                            <img src="<?= base_url('assets/linktree-icon-white.svg'); ?>" alt="linktree icon" height="22">
+                            <img src="<?= base_url('assets/linktree-icon-white.svg'); ?>" alt="linktree icon" height="22" width="22">
                         </div>
                     </a>
                 </section>
@@ -66,11 +66,19 @@
                     <p><b>Kunjungi Toko Kami di :</b></p>
                 </section>
                 <section class="d-flex gap-3 justify-content-center mb-3">
-                    <a href="https://tokopedia.com/tokukas" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat di Tokopedia">
-                        <img src="<?= base_url('assets/tokopedia.png'); ?>" alt="" height="60">
+                    <a href="https://tokopedia.com/tokukas" rel="noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat di Tokopedia">
+                        <picture>
+                            <source media="(min-width: 1080px)" srcset="<?= base_url('assets/tokopedia-360w.png'); ?>">
+                            <source media="(min-width: 720px)" srcset="<?= base_url('assets/tokopedia-120w.png'); ?>">
+                            <img src="<?= base_url('assets/tokopedia-60w.png'); ?>" alt="Logo Tokopedia" height="60" width="100%">
+                        </picture>
                     </a>
-                    <a href="https://shopee.co.id/tokukas" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat di Shopee">
-                        <img src="<?= base_url('assets/shopee.png'); ?>" alt="" height="60">
+                    <a href="https://shopee.co.id/tokukas" rel="noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat di Shopee">
+                        <picture>
+                            <source media="(min-width: 1080px)" srcset="<?= base_url('assets/shopee-360w.png'); ?>">
+                            <source media="(min-width: 640px)" srcset="<?= base_url('assets/shopee-120w.png'); ?>">
+                            <img src="<?= base_url('assets/shopee-60w.png'); ?>" alt="Logo Shopee" height="60" width="100%">
+                        </picture>
                     </a>
                 </section>
             </div>

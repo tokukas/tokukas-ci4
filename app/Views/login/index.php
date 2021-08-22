@@ -20,7 +20,7 @@
             <div class="card-body">
                 <section class="container mb-3 d-flex justify-content-between align-items-center">
                     <h1 class="title">Masuk</h1>
-                    <a href="<?= base_url(''); ?>" class="icon-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Ke Beranda">
+                    <a href="<?= base_url(); ?>" class="icon-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Ke Beranda">
                         <i class="material-icons">close</i>
                     </a>
                 </section>
@@ -90,8 +90,11 @@
 
 <div class="right-box">
     <div class="container text-center">
-        <a href="<?= base_url(''); ?>">
-            <img class="cover" src="<?= base_url('assets/brand-cover.jpg'); ?>" alt="brand cover">
+        <a href="<?= base_url(); ?>">
+            <picture>
+                <source media="(min-width: 720px)" srcset="<?= base_url('assets/brand-cover-480w.jpg'); ?>">
+                <img class="cover" src="<?= base_url('assets/brand-cover-360w.jpg'); ?>" alt="Brand Cover TOKUKAS" height="160" width="100%">
+            </picture>
         </a>
         <h3><strong>Yang Bekas Pasti Lebih Murah!</strong></h3>
     </div>

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light container-fluid">
     <div class="container-md">
-        <a class="navbar-brand" href="<?= base_url(''); ?>">
-            <img src="<?= base_url('assets/brand.svg'); ?>" alt="brand" height="32">
+        <a class="navbar-brand" href="<?= base_url(); ?>">
+            <img src="<?= base_url('assets/brand.svg'); ?>" alt="brand" height="32" width="100%">
             <div class="text-brand">
                 <span class="primary">TOKUKAS</span>
                 <span class="secondary">Toko Buku Bekas</span>

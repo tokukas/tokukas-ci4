@@ -89,6 +89,9 @@
   .left-box .login-box {
     width: 100%;
   }
+  .right-box .cover {
+    height: auto;
+  }
   .right-box h3 {
     font-size: 1.25rem;
   }
