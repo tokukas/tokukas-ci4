@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `Variable` (
     `id` INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
     `value` VARCHAR(255) NOT NULL
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `Email_Verificator` (
     `verified` BOOLEAN NOT NULL DEFAULT FALSE,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `FAQ` (
     `answer` TEXT NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `Account` (
     `password` TEXT NOT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -68,11 +68,11 @@ CREATE TABLE IF NOT EXISTS `Account` (
 -- *not executed yet
 --
 
-CREATE TABLE IF NOT EXISTS `Expedition` {
+CREATE TABLE IF NOT EXISTS `Expedition` (
     `id` VARCHAR(8) PRIMARY KEY NOT NULL,
     `name` VARCHAR(100) NOT NULL,
     `website` VARCHAR(255)
-};
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -81,13 +81,13 @@ CREATE TABLE IF NOT EXISTS `Expedition` {
 -- *not executed yet
 --
 
-CREATE TABLE IF NOT EXISTS `Expedition_Around` {
+CREATE TABLE IF NOT EXISTS `Expedition_Around` (
     `id` VARCHAR(8) PRIMARY KEY NOT NULL,
     `account_id` VARCHAR(16) NOT NULL,
     `expedition_id` VARCHAR(8) NOT NULL,
     FOREIGN KEY (`account_id`) REFERENCES `Account`(`id`),
     FOREIGN KEY (`expedition_id`) REFERENCES `Expedition`(`id`)
-};
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `Transaction_Method` (
     `id` VARCHAR(8) PRIMARY KEY NOT NULL,
     `name` VARCHAR(100) NOT NULL,
     `description` TEXT
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `Address` (
     `street` TEXT NOT NULL,
     `is_default` BOOLEAN NOT NULL DEFAULT FALSE,
     FOREIGN KEY (`account_id`) REFERENCES `Account`(`id`)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -132,8 +132,8 @@ CREATE TABLE IF NOT EXISTS `Address` (
 
 CREATE TABLE IF NOT EXISTS `Payment_Method` (
     `id` VARCHAR(8) PRIMARY KEY NOT NULL,
-    `name` VARCHAR(100) PRIMARY KEY NOT NULL
-);
+    `name` VARCHAR(100) NOT NULL
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -152,8 +152,8 @@ CREATE TABLE IF NOT EXISTS `Offer` (
     `is_accepted` BOOLEAN,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    FOREIGN KEY (`account_id`) REFERENCES `Account`(`id`),
-);
+    FOREIGN KEY (`account_id`) REFERENCES `Account`(`id`)
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `Book_Offer` (
     `num_of_pages` INTEGER NOT NULL,
     `isbn` VARCHAR(20) NOT NULL,
     FOREIGN KEY (`offer_id`) REFERENCES `Offer`(`id`)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `Book_Price` (
     `physical_price` INTEGER NOT NULL DEFAULT 0,
     `purchase_price` INTEGER DEFAULT 0,
     FOREIGN KEY (`book_id`) REFERENCES `Book_Offer`(`id`)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `Book_Photo_Criteria` (
     `name` VARCHAR(100) NOT NULL,
     `required` BOOLEAN NOT NULL,
     `description` VARCHAR(255) DEFAULT NULL
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `Book_Photo` (
     `file_name` VARCHAR(255) NOT NULL,
     FOREIGN KEY (`book_id`) REFERENCES `Book_Offer`(`id`),
     FOREIGN KEY (`criteria`) REFERENCES `Book_Photo_Criteria`(`id`)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -234,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `Book_Condition` (
     `quality_percentage` INTEGER NOT NULL,
     `description` TEXT NOT NULL,
     FOREIGN KEY (`book_id`) REFERENCES `Book_Offer`(`id`)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `Book_Condition_Criteria` (
     `name` VARCHAR(100) NOT NULL,
     `point` INTEGER NOT NULL,
     `description` VARCHAR(255)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -260,11 +260,11 @@ CREATE TABLE IF NOT EXISTS `Book_Condition_Criteria` (
 CREATE TABLE IF NOT EXISTS `Book_Condition_Assessment` (
     `id` VARCHAR(20) PRIMARY KEY NOT NULL,
     `book_id` VARCHAR(20) NOT NULL,
-    `criteria` VARCHAR(8) NOT NULL
+    `criteria` VARCHAR(8) NOT NULL,
     `value` INTEGER NOT NULL,
-    FOREIGN KEY (`book_id`) REFERENCES `Book_Condition`(`id`),
+    FOREIGN KEY (`book_id`) REFERENCES `Book_Condition`(`book_id`),
     FOREIGN KEY (`criteria`) REFERENCES `Book_Condition_Criteria`(`id`)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -279,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `Rejected_Offer` (
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     FOREIGN KEY (`offer_id`) REFERENCES `Offer`(`id`)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -294,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `Rejected_Offer_Reason` (
     `reason` TEXT NOT NULL,
     `file_image` VARCHAR(255) DEFAULT NULL,
     FOREIGN KEY (`rejected_offer_id`) REFERENCES `Rejected_Offer`(`id`)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -310,9 +310,9 @@ CREATE TABLE IF NOT EXISTS `Purchase` (
     `has_paid` BOOLEAN DEFAULT FALSE,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    `completed_at` TIMESTAMP DEFAULT NULL,
+    `completed_at` TIMESTAMP,
     FOREIGN KEY (`offer_id`) REFERENCES `Offer`(`id`)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -327,7 +327,7 @@ CREATE TABLE IF NOT EXISTS `Book_Price_Deals` (
     `deals_selling_price` INTEGER NOT NULL,
     FOREIGN KEY (`book_id`) REFERENCES `Book_Offer`(`id`),
     FOREIGN KEY (`purchase_id`) REFERENCES `Purchase`(`id`)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -340,9 +340,9 @@ CREATE TABLE IF NOT EXISTS `Payment_Details` (
     `id` VARCHAR(18) PRIMARY KEY NOT NULL,
     `purchase_id` VARCHAR(18) NOT NULL,
     `payment_receipt` VARCHAR(255) DEFAULT '',
-    `paid_at` TIMESTAMP DEFAULT NULL,
+    `paid_at` TIMESTAMP,
     FOREIGN KEY (`purchase_id`) REFERENCES `Purchase`(`id`)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -356,10 +356,10 @@ CREATE TABLE IF NOT EXISTS `Shipping_Details` (
     `purchase_id` VARCHAR(18) NOT NULL,
     `shipping_receipt` VARCHAR(255) DEFAULT '',
     `shipping_cost` INTEGER DEFAULT 0,
-    `shipped_at` TIMESTAMP DEFAULT NULL,
-    `received_at` TIMESTAMP DEFAULT NULL,
+    `shipped_at` TIMESTAMP,
+    `received_at` TIMESTAMP,
     FOREIGN KEY (`purchase_id`) REFERENCES `Purchase`(`id`)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -373,7 +373,7 @@ CREATE TABLE IF NOT EXISTS `Receipt_Photo` (
     `shipping_id` VARCHAR(18) NOT NULL,
     `file_name` VARCHAR(255) NOT NULL,
     FOREIGN KEY (`shipping_id`) REFERENCES `Shipping_Details`(`id`)
-);
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 

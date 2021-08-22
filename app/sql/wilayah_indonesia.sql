@@ -11,15 +11,15 @@ SET time_zone = "+00:00";
 SET foreign_key_checks = 0;
 SET sql_mode = "NO_AUTO_VALUE_ON_ZERO";
 
-DROP TABLE IF EXISTS `reg_provinces`;
+DROP TABLE IF EXISTS `Reg_Provinces`;
 
-CREATE TABLE `reg_provinces` (
+CREATE TABLE `Reg_Provinces` (
     `id` char(2) NOT NULL,
     `name` varchar(255) NOT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `reg_provinces` (`id`, `name`) VALUES
+INSERT INTO `Reg_Provinces` (`id`, `name`) VALUES
     ("11", "ACEH"),
     ("12", "SUMATERA UTARA"),
     ("13", "SUMATERA BARAT"),
@@ -65,18 +65,18 @@ SET time_zone = "+00:00";
 SET foreign_key_checks = 0;
 SET sql_mode = "NO_AUTO_VALUE_ON_ZERO";
 
-DROP TABLE IF EXISTS `reg_regencies`;
+DROP TABLE IF EXISTS `Reg_Regencies`;
 
-CREATE TABLE `reg_regencies` (
+CREATE TABLE `Reg_Regencies` (
     `id` char(5) NOT NULL,
     `province_id` char(2) NOT NULL,
     `name` varchar(255) NOT NULL,
     PRIMARY KEY (`id`),
     KEY `regencies_province_id_index` (`province_id`) USING BTREE,
-    CONSTRAINT `regency_province_foreign` FOREIGN KEY (`province_id`) REFERENCES `reg_provinces` (`id`)
-) ENGINE=InnoDB;
+    CONSTRAINT `regency_province_foreign` FOREIGN KEY (`province_id`) REFERENCES `Reg_Provinces` (`id`)
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `reg_regencies` (`id`, `province_id`, `name`) VALUES
+INSERT INTO `Reg_Regencies` (`id`, `province_id`, `name`) VALUES
     ("1101", "11", "KABUPATEN ACEH SELATAN"),
     ("1102", "11", "KABUPATEN ACEH TENGGARA"),
     ("1103", "11", "KABUPATEN ACEH TIMUR"),
@@ -602,18 +602,18 @@ SET time_zone = "+00:00";
 SET foreign_key_checks = 0;
 SET sql_mode = "NO_AUTO_VALUE_ON_ZERO";
 
-DROP TABLE IF EXISTS `reg_districts`;
+DROP TABLE IF EXISTS `Reg_Districts`;
 
-CREATE TABLE `reg_districts` (
+CREATE TABLE `Reg_Districts` (
     `id` char(8) NOT NULL,
     `regency_id` char(5) NOT NULL,
     `name` varchar(255) NOT NULL,
     PRIMARY KEY (`id`),
     KEY `districts_regency_id_index` (`regency_id`) USING BTREE,
-    CONSTRAINT `district_regency_foreign` FOREIGN KEY (`regency_id`) REFERENCES `reg_regencies` (`id`)
-) ENGINE=InnoDB;
+    CONSTRAINT `district_regency_foreign` FOREIGN KEY (`regency_id`) REFERENCES `Reg_Regencies` (`id`)
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `reg_districts` (`id`, `regency_id`, `name`) VALUES
+INSERT INTO `Reg_Districts` (`id`, `regency_id`, `name`) VALUES
     ("110101", "1101", "Bakongan"),
     ("110102", "1101", "Kluet Utara"),
     ("110103", "1101", "Kluet Selatan"),
@@ -7855,18 +7855,18 @@ SET time_zone = "+00:00";
 SET foreign_key_checks = 0;
 SET sql_mode = "NO_AUTO_VALUE_ON_ZERO";
 
-DROP TABLE IF EXISTS `reg_villages`;
+DROP TABLE IF EXISTS `Reg_Villages`;
 
-CREATE TABLE `reg_villages` (
+CREATE TABLE `Reg_Villages` (
     `id` char(13) NOT NULL,
     `district_id` char(8) NOT NULL,
     `name` varchar(255) NOT NULL,
     PRIMARY KEY (`id`),
     KEY `villages_district_id_index` (`district_id`),
-    CONSTRAINT `village_district_foreign` FOREIGN KEY (`district_id`) REFERENCES `reg_districts` (`id`)
-) ENGINE=InnoDB;
+    CONSTRAINT `village_district_foreign` FOREIGN KEY (`district_id`) REFERENCES `Reg_Districts` (`id`)
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `reg_villages` (`id`, `district_id`, `name`) VALUES
+INSERT INTO `Reg_Villages` (`id`, `district_id`, `name`) VALUES
     ("1101012001", "110101", "Keude Bakongan"),
     ("1101012002", "110101", "Ujong Mangki"),
     ("1101012003", "110101", "Ujong Padang"),
@@ -33258,7 +33258,7 @@ INSERT INTO `reg_villages` (`id`, `district_id`, `name`) VALUES
     ("3101011002", "310101", "Pulau Kelapa")
 ;
 
-INSERT INTO `reg_villages` (`id`, `district_id`, `name`) VALUES
+INSERT INTO `Reg_Villages` (`id`, `district_id`, `name`) VALUES
     ("3101011003", "310101", "Pulau Harapan"),
     ("3101021001", "310102", "Pulau Untung Jawa"),
     ("3101021002", "310102", "Pulau Tidung"),
@@ -60278,7 +60278,7 @@ INSERT INTO `reg_villages` (`id`, `district_id`, `name`) VALUES
     ("5208022004", "520802", "Rempek")
 ;
 
-INSERT INTO `reg_villages` (`id`, `district_id`, `name`) VALUES
+INSERT INTO `Reg_Villages` (`id`, `district_id`, `name`) VALUES
     ("5208022005", "520802", "Sambik Bangkol"),
     ("5208032001", "520803", "Kayangan"),
     ("5208032002", "520803", "Santong"),
@@ -87247,7 +87247,7 @@ INSERT INTO `reg_villages` (`id`, `district_id`, `name`) VALUES
     ("9114392006", "911439", "Timoneri")
 ;
 
-INSERT INTO `reg_villages` (`id`, `district_id`, `name`) VALUES
+INSERT INTO `Reg_Villages` (`id`, `district_id`, `name`) VALUES
     ("9114392007", "911439", "Kuagembur"),
     ("9114392008", "911439", "Wuronggi"),
     ("9114392009", "911439", "Buangludah"),
