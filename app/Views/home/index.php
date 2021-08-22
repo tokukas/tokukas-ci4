@@ -5,7 +5,10 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('styles/css/home.css'); ?>">
+<link rel="preload" href="<?= base_url('styles/css/home.css'); ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+    <link rel="stylesheet" href="<?= base_url('styles/css/home.css'); ?>">
+</noscript>
 
 <?= $this->endSection(); ?>
 
@@ -43,7 +46,7 @@
 <section class="container-md py-5 px-4 text-center">
     <div class="mb-4">
         <h1>Punya Pertanyaan?</h1>
-        <h4>Mungkin <abbr data-bs-toggle="tooltip" data-bs-placement="top" title="Daftar Pertanyaan yang Sering Diajukan">FAQ</abbr> ini dapat menjawab pertanyaan anda.</h4>
+        <p class="h4">Mungkin <abbr data-bs-toggle="tooltip" data-bs-placement="top" title="Daftar Pertanyaan yang Sering Diajukan">FAQ</abbr> ini dapat menjawab pertanyaan anda.</p>
     </div>
     <a href="<?= base_url('faq'); ?>" class="btn btn-primary btn-lg">
         <i class="material-icons">quiz</i>
