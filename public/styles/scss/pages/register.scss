@@ -3,7 +3,6 @@
 
 
 $blueSecondary: map-get($secondaryColor, '1');
-$greyMedium: map-get($grey, 'med');
 
 .left-box, .right-box {
     padding: 1rem;
@@ -28,7 +27,7 @@ $greyMedium: map-get($grey, 'med');
             margin-bottom: 1.25rem;
 
             .material-icons {
-                color: $greyMedium;
+                color: map-get($grey, 'battleship');
             }
 
         }
@@ -76,7 +75,7 @@ $greyMedium: map-get($grey, 'med');
 
 @media screen and (max-width: 640px) {
     .left-box, .right-box {
-        padding: 1.5rem 1rem;
+        padding: 2rem 1rem;
     }
 
     .left-box {
@@ -87,6 +86,7 @@ $greyMedium: map-get($grey, 'med');
 
     .right-box {
         .cover {
+            max-width: 50vw !important;
             height: auto;
         }
 

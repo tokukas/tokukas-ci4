@@ -5,7 +5,10 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('styles/css/register.css'); ?>">
+<link rel="preload" href="<?= base_url('styles/css/register.css'); ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+    <link rel="stylesheet" href="<?= base_url('styles/css/register.css'); ?>">
+</noscript>
 
 <?= $this->endSection(); ?>
 
@@ -33,9 +36,9 @@
                             </label>
                             <div class="input-group">
                                 <div class="input-group-text">
-                                    <label for="email" class="d-flex">
+                                    <div class="d-flex">
                                         <i class="material-icons">email</i>
-                                    </label>
+                                    </div>
                                 </div>
                                 <input type="email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>" value="<?= old('email') ?: ''; ?>" required>
                                 <?php if ($validation->hasError('email')) : ?>
@@ -44,7 +47,7 @@
                             </div>
                         </div>
                         <div class="field text-center">
-                            <p class="form-text text-dark">Dengan mendaftar, anda menyetujui <br><a href="<?= base_url('terms'); ?>">Syarat Penggunaan</a> dan <a href="<?= base_url('privacy'); ?>">Kebijakan Privasi</a>.</p>
+                            <p class="form-text text-dark">Dengan mendaftar, anda menyetujui <a href="<?= base_url('terms'); ?>">Syarat Penggunaan</a> dan <a href="<?= base_url('privacy'); ?>">Kebijakan Privasi</a>.</p>
                         </div>
                         <div class="field d-flex">
                             <button type="submit" class="btn btn-spinner btn-primary flex-fill">
@@ -77,7 +80,7 @@
                 <img class="cover" src="<?= base_url('assets/brand-cover-360w.jpg'); ?>" alt="Brand Cover TOKUKAS" height="160" width="100%">
             </picture>
         </a>
-        <h3><strong>Yang Bekas Pasti Lebih Murah!</strong></h3>
+        <p class="h3"><strong>Yang Bekas Pasti Lebih Murah!</strong></p>
         <hr>
         <p>Anda baru dapat melakukan penjualan buku setelah anda memiliki akun.</p>
     </div>
@@ -89,6 +92,6 @@
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
 
-<script src="<?= base_url('scripts/js/form.js'); ?>"></script>
+<script src="<?= base_url('scripts/js/form.js'); ?>" defer></script>
 
 <?= $this->endSection(); ?>
