@@ -1,5 +1,13 @@
 @import '../global/var';
 
+.icon-btn {
+    color: #000000;
+}
+
+.icon-btn:hover {
+    color: #000000;
+}
+
 .field {
     margin-bottom: 1.5rem;
 
@@ -15,7 +23,7 @@
 
     .field-end {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
     }
 }
 

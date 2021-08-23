@@ -1,3 +1,11 @@
+.icon-btn {
+  color: #000000;
+}
+
+.icon-btn:hover {
+  color: #000000;
+}
+
 .field {
   margin-bottom: 1.5rem;
 }
@@ -36,7 +44,7 @@
   display: flex;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
-          justify-content: end;
+          justify-content: flex-end;
 }
 
 @media screen and (max-width: 720px) {

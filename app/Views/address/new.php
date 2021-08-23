@@ -5,7 +5,10 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('styles/css/address-new.css'); ?>">
+<link rel="preload" href="<?= base_url('styles/css/address-new.css'); ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+    <link rel="stylesheet" href="<?= base_url('styles/css/address-new.css'); ?>">
+</noscript>
 
 <?= $this->endSection(); ?>
 
@@ -155,7 +158,7 @@
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
 
-<script src="<?= base_url('scripts/js/idn-area-api/index.js'); ?>"></script>
-<script src="<?= base_url('scripts/js/address-form.js'); ?>"></script>
+<script src="<?= base_url('scripts/js/idn-area-api/index.js'); ?>" defer></script>
+<script src="<?= base_url('scripts/js/address-form.js'); ?>" defer></script>
 
 <?= $this->endSection(); ?>
