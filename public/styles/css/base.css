@@ -37,12 +37,12 @@
   text-decoration: none;
   padding: 0.25rem;
   background-color: unset;
-  color: unset;
+  color: #0066cb;
   border: unset;
   cursor: pointer;
 }
 
 .icon-btn:hover {
-  color: unset;
+  color: #0066cb;
 }
 /*# sourceMappingURL=base.css.map */

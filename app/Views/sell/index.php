@@ -5,7 +5,10 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('styles/css/sell.css'); ?>">
+<link rel="preload" href="<?= base_url('styles/css/sell.css'); ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+    <link rel="stylesheet" href="<?= base_url('styles/css/sell.css'); ?>">
+</noscript>
 
 <?= $this->endSection(); ?>
 
