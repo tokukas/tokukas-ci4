@@ -109,6 +109,11 @@
 
 @media screen and (max-width: 420px) {
     .footer {
+        .shop-icon {
+            height: 2.5rem;
+            width: auto;
+        }
+
         .bottom {
             .container-md {
                 justify-content: center;

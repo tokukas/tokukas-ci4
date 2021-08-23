@@ -111,8 +111,12 @@
   .jumbotron {
     padding: 2rem;
   }
+  .jumbotron .brand-logo {
+    width: 6rem;
+    height: auto;
+  }
   .jumbotron .brand-name {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   .jumbotron .slogan {
     font-size: 1rem;

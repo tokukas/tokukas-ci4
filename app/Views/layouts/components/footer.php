@@ -70,14 +70,14 @@
                         <picture>
                             <source media="(min-width: 1080px)" srcset="<?= base_url('assets/tokopedia-360w.png'); ?>">
                             <source media="(min-width: 720px)" srcset="<?= base_url('assets/tokopedia-120w.png'); ?>">
-                            <img src="<?= base_url('assets/tokopedia-60w.png'); ?>" alt="Logo Tokopedia" height="60" width="100%">
+                            <img class="shop-icon" src="<?= base_url('assets/tokopedia-60w.png'); ?>" alt="Logo Tokopedia" height="60" width="100%">
                         </picture>
                     </a>
                     <a href="https://shopee.co.id/tokukas" rel="noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat di Shopee">
                         <picture>
                             <source media="(min-width: 1080px)" srcset="<?= base_url('assets/shopee-360w.png'); ?>">
                             <source media="(min-width: 640px)" srcset="<?= base_url('assets/shopee-120w.png'); ?>">
-                            <img src="<?= base_url('assets/shopee-60w.png'); ?>" alt="Logo Shopee" height="60" width="100%">
+                            <img class="shop-icon" src="<?= base_url('assets/shopee-60w.png'); ?>" alt="Logo Shopee" height="60" width="100%">
                         </picture>
                     </a>
                 </section>

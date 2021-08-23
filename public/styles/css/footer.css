@@ -143,6 +143,10 @@
 }
 
 @media screen and (max-width: 420px) {
+  .footer .shop-icon {
+    height: 2.5rem;
+    width: auto;
+  }
   .footer .bottom .container-md {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
