@@ -30,21 +30,27 @@
         <?php endforeach; ?>
     </div>
     <div class="accordion mb-4" id="faqAccordion">
-        <?php for ($i = 0; $i < sizeof($faqList); $i++) : ?>
-            <?php $faq = $faqList[$i] ?>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading<?= $i; ?>">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $i; ?>" aria-expanded="false" aria-controls="collapse<?= $i; ?>">
-                        <b><?= ucfirst($faq['question']); ?></b>
-                    </button>
-                </h2>
-                <div id="collapse<?= $i; ?>" class="accordion-collapse collapse" aria-labelledby="heading<?= $i; ?>" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body py-4">
-                        <span><?= ucfirst($faq['answer']); ?></span>
+        <?php if (empty($faqList)) : ?>
+            <div class="p-3 bg-light border text-center">
+                <span>Belum ada FAQ satupun.</span>
+            </div>
+        <?php else : ?>
+            <?php for ($i = 0; $i < sizeof($faqList); $i++) : ?>
+                <?php $faq = $faqList[$i] ?>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading<?= $i; ?>">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $i; ?>" aria-expanded="false" aria-controls="collapse<?= $i; ?>">
+                            <b><?= ucfirst($faq['question']); ?></b>
+                        </button>
+                    </h2>
+                    <div id="collapse<?= $i; ?>" class="accordion-collapse collapse" aria-labelledby="heading<?= $i; ?>" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body py-4">
+                            <span><?= ucfirst($faq['answer']); ?></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php endfor; ?>
+            <?php endfor; ?>
+        <?php endif; ?>
     </div>
     <div class="py-4">
         <div class="text-center mb-3">

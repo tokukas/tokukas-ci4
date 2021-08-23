@@ -34,7 +34,10 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 
 // FAQ Page
-$routes->get('faq/(:any)', 'FAQ::index/$1');
+$routes->group('faq', function ($faq) {
+	$faq->get('/', 'FAQ::index');
+	$faq->get('(:any)', 'FAQ::index/$1');
+});
 
 // login verification
 $routes->group('login', function ($login) {

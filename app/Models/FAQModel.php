@@ -31,8 +31,9 @@ class FAQModel extends MyModel
     public function topics()
     {
         $uniqueTopics = [];
+        $topics = $this->orderBy('topic', 'ASC')->findColumn('topic') ?: [];
 
-        foreach ($topics = $this->orderBy('topic', 'ASC')->findColumn('topic') as $topic) {
+        foreach ($topics as $topic) {
             if (!in_array($topic, $uniqueTopics)) {
                 array_push($uniqueTopics, $topic);
             }
