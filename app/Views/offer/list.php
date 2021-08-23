@@ -5,7 +5,10 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('styles/css/offer.css'); ?>">
+<link rel="preload" href="<?= base_url('styles/css/offer.css'); ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+    <link rel="stylesheet" href="<?= base_url('styles/css/offer.css'); ?>">
+</noscript>
 
 <?= $this->endSection(); ?>
 
@@ -17,7 +20,7 @@
     <div class="row mb-3">
         <div class="d-flex justify-content-between align-items-center">
             <h1>Penawaran Saya</h1>
-            <a class="btn btn-primary" href="<?= base_url('offer/new'); ?>" title="Buat Penawaran" data-bs-toggle="tooltip" data-bs-placement="left">
+            <a class="btn btn-primary" href="<?= base_url('offer/new'); ?>" title="Buat Penawaran" aria-label="Buat Penawaran" data-bs-toggle="tooltip" data-bs-placement="left">
                 <i class="fas fa-plus"></i>
             </a>
         </div>

@@ -13,14 +13,6 @@
     }
 }
 
-.vr  {
-    display: inline-flex;
-    height: 100%;
-    min-height: 1.5rem;
-    width: 1px;
-    background-color: map-get($grey, "med");
-}
-
 .card {
     box-shadow: 1px 1px 2px map-get($grey, 'light');
 

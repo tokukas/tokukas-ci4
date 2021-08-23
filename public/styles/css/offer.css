@@ -12,16 +12,6 @@
   width: max-content;
 }
 
-.vr {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  height: 100%;
-  min-height: 1.5rem;
-  width: 1px;
-  background-color: #bebebe;
-}
-
 .card {
   -webkit-box-shadow: 1px 1px 2px #d3d3d3;
           box-shadow: 1px 1px 2px #d3d3d3;
