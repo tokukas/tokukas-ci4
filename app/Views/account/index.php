@@ -5,7 +5,10 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('styles/css/account.css'); ?>">
+<link rel="preload" href="<?= base_url('styles/css/account.css'); ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+    <link rel="stylesheet" href="<?= base_url('styles/css/account.css'); ?>">
+</noscript>
 
 <?= $this->endSection(); ?>
 
@@ -49,7 +52,7 @@
             <?php foreach ($myAddresses as $address) : ?>
                 <div class="card" style="width: 20rem;">
                     <div class="card-header">
-                        <h5 class="card-title my-0"><?= $address['label']; ?></h5>
+                        <span class="card-title"><?= $address['label']; ?></span>
 
                         <?php if ($address['is_default']) : ?>
                             <span class="badge bg-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Alamat ini telah diatur menjadi alamat utama.">Utama</span>
@@ -62,7 +65,7 @@
                         <?php endif; ?>
                     </div>
                     <div class="card-body">
-                        <p class="card-text"><?= $address['stringified']; ?></p>
+                        <p class="card-text" loading="lazy"><?= $address['stringified']; ?></p>
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-end gap-2">
@@ -119,6 +122,6 @@
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
 
-<script src="<?= base_url('scripts/js/account.js'); ?>"></script>
+<script src="<?= base_url('scripts/js/account.js'); ?>" defer></script>
 
 <?= $this->endSection(); ?>
