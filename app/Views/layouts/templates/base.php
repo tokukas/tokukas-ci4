@@ -68,6 +68,12 @@
     <!-- Custom scripts -->
     <?= $this->renderSection('custom-scripts'); ?>
 
+    <!-- Print console -->
+    <?php if ($console = session()->getFlashdata('console')) : ?>
+        <script>
+            <?= $console['script']; ?>
+        </script>
+    <?php endif; ?>
 </body>
 
 </html>

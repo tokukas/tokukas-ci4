@@ -28,7 +28,11 @@ function print_console($message, $error = false)
 {
     $message = base64_encode($message);
     $script = ($error) ? "console.error(atob('$message'))" : "console.log(atob('$message'))";
-    echo "<script>$script</script>";
+
+    session()->setFlashdata('console', [
+        'warning' => $error,
+        'script' => $script
+    ]);
 }
 
 

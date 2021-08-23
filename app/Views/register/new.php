@@ -5,7 +5,10 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('styles/css/register.css'); ?>">
+<link rel="preload" href="<?= base_url('styles/css/register.css'); ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+    <link rel="stylesheet" href="<?= base_url('styles/css/register.css'); ?>">
+</noscript>
 
 <?= $this->endSection(); ?>
 
@@ -110,10 +113,13 @@
 
 <div class="right-box">
     <div class="container text-center">
-        <a href="<?= base_url(''); ?>">
-            <img class="cover" src="<?= base_url('assets/brand-cover.jpg'); ?>" alt="brand cover">
+        <a href="<?= base_url(); ?>">
+            <picture>
+                <source media="(min-width: 720px)" srcset="<?= base_url('assets/brand-cover-480w.jpg'); ?>">
+                <img class="cover" src="<?= base_url('assets/brand-cover-360w.jpg'); ?>" alt="Brand Cover TOKUKAS" height="160" width="100%">
+            </picture>
         </a>
-        <h3><strong>Yang Bekas Pasti Lebih Murah!</strong></h3>
+        <p class="h3"><strong>Yang Bekas Pasti Lebih Murah!</strong></p>
         <hr>
         <p>Anda baru dapat melakukan penjualan buku setelah anda memiliki akun.</p>
     </div>
@@ -125,6 +131,6 @@
 <!-- CUSTOM SCRIPTS SECTION -->
 <?= $this->section('custom-scripts'); ?>
 
-<script src="<?= base_url('scripts/js/form.js'); ?>"></script>
+<script src="<?= base_url('scripts/js/form.js'); ?>" defer></script>
 
 <?= $this->endSection(); ?>

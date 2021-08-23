@@ -47,7 +47,7 @@ class Email extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $SMTPHost = 'smtp.office365.com';
+	public $SMTPHost;
 
 	/**
 	 * SMTP Username
@@ -68,7 +68,7 @@ class Email extends BaseConfig
 	 *
 	 * @var integer
 	 */
-	public $SMTPPort = 587;
+	public $SMTPPort;
 
 	/**
 	 * SMTP Timeout (in seconds)

@@ -43,25 +43,7 @@ class BaseController extends Controller
 	//--------------------------------------------------------------------
 	// Custom Properties
 	//--------------------------------------------------------------------
-	/**
-	 * The sender name.
-	 * @var string
-	 */
-	protected $senderName;
-
-	/**
-	 * The sender email address.
-	 *
-	 * Need outlook email, or change email configuration file if not using outlook email.
-	 * @var string
-	 */
-	protected $senderEmailAddress;
-
-	/**
-	 * The sender email password.
-	 * @var string
-	 */
-	protected $senderPassword;
+	// add here...
 
 	/**
 	 * Constructor.
@@ -96,26 +78,9 @@ class BaseController extends Controller
 
 		/**
 		 * -------------------------------------
-		 * Load variable library to access variable from database
-		 * -------------------------------------
-		 */
-		$this->variable = MyModel::variable();
-
-		/**
-		 * -------------------------------------
 		 * Email library
 		 * -------------------------------------
 		 */
 		$this->email = Services::email();
-
-		// set email properties
-		$this->senderName = $this->variable->getVar('comp_name');
-		$this->senderEmailAddress = $this->variable->getVar('comp_email_address');
-		$this->senderPassword = $this->variable->getVar('comp_password_email');
-
-		// set email config
-		$config['SMTPUser'] = $this->senderEmailAddress;
-		$config['SMTPPass'] = $this->senderPassword;
-		$this->email->initialize($config);
 	}
 }

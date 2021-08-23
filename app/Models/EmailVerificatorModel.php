@@ -101,4 +101,10 @@ class EmailVerificatorModel extends MyModel
         $verificatorIds = $this->where($whereClause)->findColumn('id');
         return $this->delete($verificatorIds);
     }
+
+
+    public function getCompanyEmail(string $id)
+    {
+        return $this->builder('Company_Email')->getWhere(['id' => $id])->getFirstRow('array');
+    }
 }

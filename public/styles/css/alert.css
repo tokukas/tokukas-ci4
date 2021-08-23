@@ -1,12 +1,15 @@
 .alert {
   position: absolute !important;
-  top: 1rem !important;
+  top: 1.5rem !important;
   left: 50% !important;
   -webkit-transform: translateX(-50%) !important;
           transform: translateX(-50%) !important;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
   z-index: 7 !important;
+}
+
+@media screen and (max-width: 480px) {
+  .alert {
+    min-width: 70vw !important;
+  }
 }
 /*# sourceMappingURL=alert.css.map */

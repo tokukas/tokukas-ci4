@@ -32,6 +32,23 @@ CREATE TABLE IF NOT EXISTS `Email_Verificator` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Email`
+-- *already executed
+--
+
+CREATE TABLE IF NOT EXISTS `Company_Email` (
+    `id` INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `email` VARCHAR(100) NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `password` TEXT NOT NULL,
+    `host` VARCHAR(255) NOT NULL,
+    `protocol` VARCHAR(255) NOT NULL,
+    `port` INTEGER NOT NULL
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `FAQ`
 -- *already executed
 --

@@ -55,8 +55,20 @@ class EmailVerification extends BaseController
          * Send Verification Email
          * --------------------------------------
          */
+        // set email properties
+        $emailId = $this->emailVerificator->variable()->getVar('comp_email_id');
+        $senderEmail = $this->emailVerificator->getCompanyEmail($emailId);
+
+        // set email config
+        $config['protocol'] = 'smtp';
+        $config['SMTPUser'] = $senderEmail['email'];
+        $config['SMTPPass'] = $senderEmail['password'];
+        $config['SMTPHost'] = $senderEmail['host'];
+        $config['SMTPPort'] = $senderEmail['port'];
+        $this->email->initialize($config);
+
         // set sender email
-        $this->email->setFrom($this->senderEmailAddress, $this->senderName);
+        $this->email->setFrom($senderEmail['email'], $senderEmail['name']);
 
         // set recipient email
         $this->email->setTo($emailAddress);
@@ -76,8 +88,9 @@ class EmailVerification extends BaseController
          * --------------------------------------
          */
         // send the email
-        if ($this->email->send()) {
+        if ($this->email->send(false)) {
             // redirect to verification page
+            $this->email->clear();
             session()->setFlashdata('verificationId', $id);
             return redirect()->to(base_url('register/verify'));
         }
@@ -85,6 +98,7 @@ class EmailVerification extends BaseController
         // if email failed to send
         $this->emailVerificator->delete($id);    // deleting verificator
 
+        print_console($this->email->printDebugger(['headers', 'subject']), true);
         set_alert('Kode verifikasi gagal dikirim. Harap tunggu beberapa saat lalu coba lagi.', true);
         return redirect()->to(base_url('register'))->withInput();
     }
