@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS `Company_Email` (
     `password` TEXT NOT NULL,
     `host` VARCHAR(255) NOT NULL,
     `protocol` VARCHAR(255) NOT NULL,
-    `port` INTEGER NOT NULL
+    `port` INTEGER NOT NULL,
+    `crypto` VARCHAR(50) DEFAULT ''
 ) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

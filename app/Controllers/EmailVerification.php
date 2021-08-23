@@ -64,7 +64,8 @@ class EmailVerification extends BaseController
         $config['SMTPUser'] = $senderEmail['email'];
         $config['SMTPPass'] = $senderEmail['password'];
         $config['SMTPHost'] = $senderEmail['host'];
-        $config['SMTPPort'] = $senderEmail['port'];
+        $config['SMTPPort'] = (int)$senderEmail['port'];
+        $config['SMTPCrypto'] = ((int)$senderEmail['port'] === 465) ? null : $senderEmail['crypto'];
         $this->email->initialize($config);
 
         // set sender email
@@ -98,7 +99,9 @@ class EmailVerification extends BaseController
         // if email failed to send
         $this->emailVerificator->delete($id);    // deleting verificator
 
-        print_console($this->email->printDebugger(['headers', 'subject']), true);
+        print_console($this->email->printDebugger(['headers']), true);
+        $this->email->clear();
+
         set_alert('Kode verifikasi gagal dikirim. Harap tunggu beberapa saat lalu coba lagi.', true);
         return redirect()->to(base_url('register'))->withInput();
     }
