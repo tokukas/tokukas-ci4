@@ -13,6 +13,6 @@ $greyMedium: map-get($grey, 'med');
 
 @media screen and (max-width: 640px) {
     .box {
-        min-height: auto;
+        min-height: 50vh;
     }
 }

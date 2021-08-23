@@ -58,9 +58,9 @@
             <span>Silahkan ajukan pertanyaan anda melalui salah satu kontak di bawah ini.</span>
         </div>
         <div class="contacts list-group list-group-horizontal-md mb-4">
-            <a href="mailto:tokukas@outlook.com" class="list-group-item list-group-item-action" title="Email" data-bs-toggle="tooltip" data-bs-placement="top">
+            <a href="mailto:cs@tokukas.com" class="list-group-item list-group-item-action" title="Email" data-bs-toggle="tooltip" data-bs-placement="top">
                 <i class="fas fa-envelope fa-lg"></i>
-                <span>tokukas@outlook.com</span>
+                <span>cs@tokukas.com</span>
             </a>
             <a href="https://wa.me/+6285315360808" class="list-group-item list-group-item-action" title="Whatsapp" data-bs-toggle="tooltip" data-bs-placement="top">
                 <i class="fab fa-whatsapp fa-lg"></i>

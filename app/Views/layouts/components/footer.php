@@ -17,7 +17,7 @@
                     </a>
                 </section>
                 <section class="icon-bar mb-3">
-                    <a href="mailto:tokukas@outlook.com" data-bs-toggle="tooltip" data-bs-placement="bottom" title="tokukas@outlook.com" aria-label="Email ke tokukas@outlook.com">
+                    <a href="mailto:cs@tokukas.com" data-bs-toggle="tooltip" data-bs-placement="bottom" title="cs@tokukas.com" aria-label="Email ke cs@tokukas.com">
                         <div class="icon-box">
                             <i class="material-icons">email</i>
                         </div>
