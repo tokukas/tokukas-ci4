@@ -34,7 +34,7 @@
 }
 
 .left-box .login-box .field .material-icons {
-  color: #bebebe;
+  color: #848482;
 }
 
 .left-box .login-box .password-field .form-control {
@@ -84,12 +84,13 @@
 
 @media screen and (max-width: 640px) {
   .left-box, .right-box {
-    padding: 1.5rem 1rem;
+    padding: 2rem 1rem;
   }
   .left-box .login-box {
     width: 100%;
   }
   .right-box .cover {
+    max-width: 50vw !important;
     height: auto;
   }
   .right-box h3 {
