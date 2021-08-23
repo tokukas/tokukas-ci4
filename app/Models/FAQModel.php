@@ -23,11 +23,8 @@ class FAQModel extends MyModel
     {
         $queryBuilder = $this;
 
-        if (!empty($topic)) {
-            $queryBuilder = $queryBuilder->where('topic', $topic);
-        }
-
-        return $queryBuilder->orderBy('question', 'ASC')->findAll($limit);
+        (!empty($topic)) && $queryBuilder = $queryBuilder->where('topic', $topic);
+        return $queryBuilder->orderBy('question', 'ASC')->findAll($limit) ?? [];
     }
 
 

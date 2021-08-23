@@ -4,7 +4,10 @@
 <!-- CUSTOM STYLES SECTION -->
 <?= $this->section('custom-styles'); ?>
 
-<link rel="stylesheet" href="<?= base_url('styles/css/faq.css'); ?>">
+<link rel="preload" href="<?= base_url('styles/css/faq.css'); ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+    <link rel="stylesheet" href="<?= base_url('styles/css/faq.css'); ?>">
+</noscript>
 
 <?= $this->endSection(); ?>
 
@@ -45,7 +48,7 @@
     </div>
     <div class="py-4">
         <div class="text-center mb-3">
-            <h4>Pertanyaan Anda Belum Terjawab?</h4>
+            <p class="h4">Pertanyaan Anda Belum Terjawab?</p>
             <span>Silahkan ajukan pertanyaan anda melalui salah satu kontak di bawah ini.</span>
         </div>
         <div class="contacts list-group list-group-horizontal-md mb-4">

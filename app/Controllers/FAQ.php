@@ -15,12 +15,10 @@ class FAQ extends BaseController
 
     public function index($topic = '')
     {
-        $topics = $this->FAQModel->topics();
-
         $data = [
             'title' => 'FAQ | TOKUKAS',
             'loginSession' => session('login'),
-            'faqTopics' => $topics,
+            'faqTopics' => $this->FAQModel->topics(),
             'faqShowTopic' => $topic,
             'faqList' => $this->FAQModel->list($topic),
         ];
