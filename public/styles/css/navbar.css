@@ -115,5 +115,18 @@ header {
   .navbar .hamburger-menu {
     display: inline;
   }
+  .navbar .button-group {
+    margin: 0.5rem 0;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .navbar .navbar-brand .text-brand {
+    display: none;
+  }
+  .navbar .button-group {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
 }
 /*# sourceMappingURL=navbar.css.map */

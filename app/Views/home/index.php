@@ -16,37 +16,21 @@
 <!-- MAIN SECTION -->
 <?= $this->section('main'); ?>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <!-- <img src="..." class="d-block w-100" alt="..."> -->
-            <div class="image p-5 bg-warning"></div>
+<section class="container-fluid search-container">
+    <form action="" method="post" class="search-field">
+        <label class="form-label h1 mb-3" for="floatingInput">Cari Buku Anda</label>
+        <div class="search-box input-group">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Buku...">
+            <button type="submit" class="btn btn-outline-light">
+                <i class="material-icons">search</i>
+            </button>
         </div>
-        <div class="carousel-item">
-            <div class="image p-5 bg-info"></div>
-        </div>
-        <div class="carousel-item">
-            <div class="image p-5 bg-dark"></div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
+    </form>
+</section>
 <section class="container-md py-5 px-4 text-center">
     <div class="mb-4">
-        <h1>Punya Pertanyaan?</h1>
-        <p class="h4">Mungkin <abbr data-bs-toggle="tooltip" data-bs-placement="top" title="Daftar Pertanyaan yang Sering Diajukan">FAQ</abbr> ini dapat menjawab pertanyaan anda.</p>
+        <p class="h1">Punya Pertanyaan?</p>
+        <p class="h4">Temukan Jawabannya di Halaman <abbr data-bs-toggle="tooltip" data-bs-placement="top" title="Pertanyaan yang Sering Diajukan">FAQ</abbr> berikut.</p>
     </div>
     <a href="<?= base_url('faq'); ?>" class="btn btn-primary btn-lg">
         <i class="material-icons">quiz</i>

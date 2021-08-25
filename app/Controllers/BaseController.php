@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\MyModel;
+use App\Models\DBVariableModel;
 use CodeIgniter\Config\Services;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
@@ -43,7 +43,11 @@ class BaseController extends Controller
 	//--------------------------------------------------------------------
 	// Custom Properties
 	//--------------------------------------------------------------------
-	// add here...
+	/**
+	 * Helper to get a variable that stored in database.
+	 * @var DBVariableModel
+	 */
+	protected $variable;
 
 	/**
 	 * Constructor.
@@ -82,5 +86,12 @@ class BaseController extends Controller
 		 * -------------------------------------
 		 */
 		$this->email = Services::email();
+
+		/**
+		 * -------------------------------------
+		 * Variable library
+		 * -------------------------------------
+		 */
+		$this->variable = new DBVariableModel();
 	}
 }

@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `Transaction_Method` (
 
 --
 -- Table structure for table `Address`
--- *not executed yet
+-- *already executed
 --
 
 CREATE TABLE IF NOT EXISTS `Address` (

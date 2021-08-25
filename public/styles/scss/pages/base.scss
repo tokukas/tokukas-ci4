@@ -1,10 +1,15 @@
 @import '../global/var';
 @import '../global/typography';
 
+body {
+    min-width: 200px;
+}
+
 .btn {
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     gap: 0.5rem;
 }
 

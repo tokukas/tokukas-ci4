@@ -109,5 +109,23 @@ header {
         .hamburger-menu {
             display: inline;
         }
+
+        .button-group {
+            margin: 0.5rem 0;
+        }
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .navbar {
+        .navbar-brand {
+            .text-brand {
+                display: none;
+            }
+        }
+
+        .button-group {
+            flex-wrap: wrap;
+        }
     }
 }

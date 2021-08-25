@@ -134,6 +134,7 @@ nb-configuration.xml
 # Database
 #-------------------------
 public/database/*
+insert_variable.sql
 
 #-------------------------
 # NPM

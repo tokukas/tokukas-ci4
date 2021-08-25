@@ -164,13 +164,4 @@ class MyModel extends Model
     {
         return $this->builder()->where($field, $value)->countAllResults() > 0;
     }
-
-
-    /**
-     * Create instance of DBVariableModel to access variable that stored in database.
-     */
-    public static function variable()
-    {
-        return new DBVariableModel();
-    }
 }

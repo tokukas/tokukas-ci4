@@ -13,7 +13,10 @@ class DBVariableModel extends Model
     protected $useTimestamps = false;
 
 
-    public function getVar($name)
+    /**
+     * @return string|null
+     */
+    public function getVar(string $name)
     {
         $var = $this->where('name', $name)->first();
         return (empty($var)) ? null : $var['value'];

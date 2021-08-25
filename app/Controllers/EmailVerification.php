@@ -56,7 +56,7 @@ class EmailVerification extends BaseController
          * --------------------------------------
          */
         // set email properties
-        $emailId = $this->emailVerificator->variable()->getVar('comp_email_id');
+        $emailId = $this->variable->getVar('comp_email_id');
         $senderEmail = $this->emailVerificator->getCompanyEmail($emailId);
 
         // set email config

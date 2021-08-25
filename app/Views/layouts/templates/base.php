@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TOKUKAS (Toko Buku Bekas). All Rights Reserved &copy; 2021">
+    <meta name="description" content="<?= esc($pageDesc ?: $variable->getVar('store_description')); ?>">
 
     <!-- Bootstrap CSS -->
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">

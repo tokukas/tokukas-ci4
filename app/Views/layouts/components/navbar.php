@@ -1,10 +1,18 @@
+<?php
+
+// get the value of the variable to be displayed
+$brandName = $variable->getVar('brand_name') ?: 'TOKUKAS';
+$brandName2 = $variable->getVar('brand_name2') ?: 'Toko Buku Bekas';
+
+?>
+
 <nav class="navbar navbar-expand-lg navbar-light container-fluid">
     <div class="container-md">
         <a class="navbar-brand" href="<?= base_url(); ?>">
             <img src="<?= base_url('assets/brand.svg'); ?>" alt="brand" height="32" width="100%">
             <div class="text-brand">
-                <span class="primary">TOKUKAS</span>
-                <span class="secondary">Toko Buku Bekas</span>
+                <span class="primary"><?= esc($brandName); ?></span>
+                <span class="secondary"><?= esc($brandName2); ?></span>
             </div>
         </a>
         <button class="hamburger-menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +41,7 @@
             </ul>
             <hr class="my-sm-2">
             <?php if (empty($loginSession)) : ?>
-                <div class="button-group d-flex gap-2 my-sm-2">
+                <div class="button-group d-flex gap-2">
                     <a href="<?= base_url('login'); ?>" class="btn btn-outline-primary">Masuk</a>
                     <a href="<?= base_url('register'); ?>" class="btn btn-primary">Daftar</a>
                 </div>
