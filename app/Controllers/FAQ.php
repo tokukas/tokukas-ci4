@@ -18,6 +18,8 @@ class FAQ extends BaseController
         $data = [
             'title' => 'FAQ | TOKUKAS',
             'loginSession' => session('login'),
+            'variable' => $this->variable,
+            'pageDesc' => 'Daftar pertanyaan yang sering diajukan (FAQ) kepada TOKUKAS',
             'faqTopics' => $this->FAQModel->topics(),
             'faqShowTopic' => $topic,
             'faqList' => $this->FAQModel->list($topic),
