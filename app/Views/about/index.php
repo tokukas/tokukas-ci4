@@ -26,6 +26,8 @@
 $brandName = $variable->getVar('brand_name');
 $brandName2 = $variable->getVar('brand_name2');
 $brandSlogan = $variable->getVar('brand_jargon');
+$ourTokopedia = $variable->getVar('link_store_tokopedia');
+$ourShopee = $variable->getVar('link_store_shopee');
 
 ?>
 
@@ -47,7 +49,7 @@ $brandSlogan = $variable->getVar('brand_jargon');
         <hr>
         <p><b><span class="tokukas" title="Toko Buku Bekas"><?= esc($brandName); ?></span></b> adalah sebuah toko yang menawarkan buku-buku bekas dengan harga yang terjangkau.</p>
         <p>Buku-buku bekas yang dijual oleh <b><span class="tokukas" title="Toko Buku Bekas"><?= esc($brandName); ?></span></b> didapat dari hasil kerjasama dengan toko buku yang menjual buku bekas secara langsung di toko (luring/<i>offline</i>), dan juga didapat dengan membeli dari masyarakat yang memiliki buku-buku bekas yang ditawarkan kepada toko secara daring melalui formulir yang disediakan oleh toko.</p>
-        <p>Selain dapat diakses dari website, <b><span class="tokukas" title="Toko Buku Bekas"><?= esc($brandName); ?></span></b> juga hadir di beberapa platform <i>e-commerce</i> populer di Indonesia, seperti <a href="https://shopee.co.id/tokukas" rel="noreferrer" target="_blank">Shopee</a> dan <a href="http://tokopedia.com/tokukas" target="_blank" rel="noreferrer">Tokopedia</a>.</p>
+        <p>Selain dapat diakses dari website, <b><span class="tokukas" title="Toko Buku Bekas"><?= esc($brandName); ?></span></b> juga hadir di beberapa platform <i>e-commerce</i> populer di Indonesia, seperti <a href="<?= esc($ourShopee, 'attr'); ?>" rel="noreferrer" target="_blank">Shopee</a> dan <a href="<?= esc($ourTokopedia, 'attr'); ?>" target="_blank" rel="noreferrer">Tokopedia</a>.</p>
     </article>
 </section>
 

@@ -42,6 +42,7 @@ class Login extends BaseController
         $data = [
             'title' => 'Masuk | TOKUKAS',
             'validation' => $this->validation,
+            'pageDesc' => 'Masuk ke TOKUKAS menggunakan email anda yang sudah terdaftar.',
             'redirect' => $redirect,
         ];
 

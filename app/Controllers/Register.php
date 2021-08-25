@@ -22,7 +22,8 @@ class Register extends BaseController
     {
         $data = [
             'title' => 'Daftar | TOKUKAS',
-            'validation' => $this->validation
+            'validation' => $this->validation,
+            'pageDesc' => 'Daftar sekarang untuk dapat bertransaksi di TOKUKAS'
         ];
 
         return view('register/index', $data);
@@ -58,6 +59,7 @@ class Register extends BaseController
             'title' => 'Buat Akun | TOKUKAS',
             'validation' => $this->validation,
             'verificator' => $verificator,
+            'pageDesc' => 'Daftar sekarang untuk dapat bertransaksi di TOKUKAS'
         ];
 
         return view('register/new', $data);
