@@ -27,6 +27,8 @@ class Account extends BaseController
         $data = [
             'title' => 'Akun Saya | TOKUKAS',
             'loginSession' => session('login'),
+            'variable' => $this->variable,
+            'pageDesc' => 'Informasi Akun ' . session('login')['name'] . ' | TOKUKAS',
             'myAddresses' => $this->addressModel->myAddresses($accountId, true),
         ];
 

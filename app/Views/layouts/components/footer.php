@@ -95,14 +95,14 @@ $ourAddress = $variable->getVar('store_address') ?: 'null';
                     <p><b>Kunjungi Toko Kami di :</b></p>
                 </section>
                 <section class="d-flex gap-3 justify-content-center mb-3">
-                    <a href="<?= esc($ourTokopedia, 'url'); ?>" rel="noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat di Tokopedia">
+                    <a href="<?= esc($ourTokopedia, 'attr'); ?>" rel="noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat di Tokopedia">
                         <picture>
                             <source media="(min-width: 1080px)" srcset="<?= base_url('assets/tokopedia-360w.png'); ?>">
                             <source media="(min-width: 720px)" srcset="<?= base_url('assets/tokopedia-120w.png'); ?>">
                             <img class="shop-icon" src="<?= base_url('assets/tokopedia-60w.png'); ?>" alt="Logo Tokopedia" height="60" width="100%">
                         </picture>
                     </a>
-                    <a href="<?= esc($ourShopee, 'url'); ?>" rel="noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat di Shopee">
+                    <a href="<?= esc($ourShopee, 'attr'); ?>" rel="noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat di Shopee">
                         <picture>
                             <source media="(min-width: 1080px)" srcset="<?= base_url('assets/shopee-360w.png'); ?>">
                             <source media="(min-width: 640px)" srcset="<?= base_url('assets/shopee-120w.png'); ?>">

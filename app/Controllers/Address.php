@@ -39,6 +39,8 @@ class Address extends BaseController
         $data = [
             'title' => 'Tambah Alamat | TOKUKAS',
             'loginSession' => session('login'),
+            'variable' => $this->variable,
+            'pageDesc' => 'Tambah alamat baru untuk ' . session('login')['name'],
             'validation' => $this->validation,
         ];
 
@@ -227,6 +229,8 @@ class Address extends BaseController
         $data = [
             'title' => 'Ubah Alamat | TOKUKAS',
             'loginSession' => session('login'),
+            'variable' => $this->variable,
+            'pageDesc' => 'Ubah alamat milik ' . session('login')['name'],
             'validation' => $this->validation,
             'oldAddress' => $address,
         ];

@@ -18,6 +18,8 @@ class Offer extends BaseController
         $data = [
             'title' => 'Daftar Penawaran | TOKUKAS',
             'loginSession' => session('login'),
+            'variable' => $this->variable,
+            'pageDesc' => 'Buat penawaran buku anda'
         ];
 
         return view('offer/list', $data);
