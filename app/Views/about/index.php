@@ -21,10 +21,18 @@
 <!-- CONTENT SECTION -->
 <?= $this->section('content'); ?>
 
+<?php
+
+$brandName = $variable->getVar('brand_name');
+$brandName2 = $variable->getVar('brand_name2');
+$brandSlogan = $variable->getVar('brand_jargon');
+
+?>
+
 <div class="jumbotron">
     <img class="brand-logo" src="<?= base_url('assets/brand-white.svg'); ?>" alt="logo" height="100" width="180" role="img">
-    <h1 class="brand-name">Toko Buku Bekas</h1>
-    <span class="slogan">Yang Bekas Pasti Lebih Murah!</span>
+    <h1 class="brand-name"><?= esc($brandName2); ?></h1>
+    <span class="slogan"><?= esc($brandSlogan); ?></span>
 </div>
 <nav class="menus">
     <ul>
@@ -35,11 +43,11 @@
 </nav>
 <section class="">
     <article class="content">
-        <h1>Tentang TOKUKAS</h1>
+        <h1>Tentang <?= esc($brandName); ?></h1>
         <hr>
-        <p><b><span class="tokukas" title="Toko Buku Bekas">TOKUKAS</span></b> adalah sebuah toko yang menawarkan buku-buku bekas dengan harga yang terjangkau.</p>
-        <p>Buku-buku bekas yang dijual oleh <b><span class="tokukas" title="Toko Buku Bekas">TOKUKAS</span></b> didapat dari hasil kerjasama dengan toko buku yang menjual buku bekas secara langsung di toko (luring/<i>offline</i>), dan juga didapat dengan membeli dari masyarakat yang memiliki buku-buku bekas yang ditawarkan kepada toko secara daring melalui formulir yang disediakan oleh toko.</p>
-        <p>Selain dapat diakses dari website, <b><span class="tokukas" title="Toko Buku Bekas">TOKUKAS</span></b> juga hadir di beberapa platform <i>e-commerce</i> populer di Indonesia, seperti <a href="https://shopee.co.id/tokukas" rel="noreferrer" target="_blank">Shopee</a> dan <a href="http://tokopedia.com/tokukas" target="_blank" rel="noreferrer">Tokopedia</a>.</p>
+        <p><b><span class="tokukas" title="Toko Buku Bekas"><?= esc($brandName); ?></span></b> adalah sebuah toko yang menawarkan buku-buku bekas dengan harga yang terjangkau.</p>
+        <p>Buku-buku bekas yang dijual oleh <b><span class="tokukas" title="Toko Buku Bekas"><?= esc($brandName); ?></span></b> didapat dari hasil kerjasama dengan toko buku yang menjual buku bekas secara langsung di toko (luring/<i>offline</i>), dan juga didapat dengan membeli dari masyarakat yang memiliki buku-buku bekas yang ditawarkan kepada toko secara daring melalui formulir yang disediakan oleh toko.</p>
+        <p>Selain dapat diakses dari website, <b><span class="tokukas" title="Toko Buku Bekas"><?= esc($brandName); ?></span></b> juga hadir di beberapa platform <i>e-commerce</i> populer di Indonesia, seperti <a href="https://shopee.co.id/tokukas" rel="noreferrer" target="_blank">Shopee</a> dan <a href="http://tokopedia.com/tokukas" target="_blank" rel="noreferrer">Tokopedia</a>.</p>
     </article>
 </section>
 
