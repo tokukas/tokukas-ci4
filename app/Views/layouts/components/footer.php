@@ -1,8 +1,8 @@
 <?php
 
 // get the value of the variable to be displayed
-$brandName = $variable->getVar('brand_name') ?: '';
-$brandName2 = $variable->getVar('brand_name2') ?: 'Toko Buku Bekas';
+$brandName = $variable->getVar('brand_name');
+$brandName2 = $variable->getVar('brand_name2');
 $brandJargon = $variable->getVar('brand_jargon');
 $ourEmail = $variable->getVar('contact_email_cs');
 $ourWhatsapp = $variable->getVar('contact_whatsapp');

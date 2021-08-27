@@ -152,6 +152,8 @@ class EmailVerification extends BaseController
         if (empty($verificationCode)) {
             $data = [
                 'title' => 'Verifikasi Email | TOKUKAS',
+                'pageDesc' => 'Masukkan kode verifikasi untuk dapat membuat akun anda',
+                'variable' => $this->variable,
                 'verificator' => [
                     'id' =>  $id,
                     'email' => $verificator['email'],
