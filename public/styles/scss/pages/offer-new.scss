@@ -1,0 +1,66 @@
+@import '../global/var';
+
+$greyBattleship: map-get($grey, 'battleship');
+
+.content {
+    padding: 1.5rem;
+}
+
+.cards-scroll {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+
+    .card {
+        padding: 0;
+        width: 18rem;
+        min-width: 14rem;
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap-reverse;
+        }
+    }
+}
+
+.btn-navigate {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap-reverse;
+}
+
+.payment-cards {
+    .card {
+        width: auto;
+        min-width: auto;
+
+        .form-check {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+
+            .form-check-input {
+                margin-top: -0.25rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .content {
+        padding: 0.75rem;
+    }
+
+    .btn-navigate > * {
+        flex: 1 1 auto;
+    }
+}

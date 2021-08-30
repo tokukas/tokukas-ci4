@@ -47,7 +47,7 @@ class AddressModel extends MyModel
      */
     public function myAddresses(string $accountId, $stringify = false)
     {
-        $myAddresses = $this->where(['account_id' => $accountId])->orderBy('label')->findAll();
+        $myAddresses = $this->where(['account_id' => $accountId])->orderBy('label')->findAll() ?: [];
 
         if ($stringify) {
             $fullAddress = [];
@@ -128,5 +128,15 @@ class AddressModel extends MyModel
         $isDefault = (empty($address)) ? false : $address['is_default'];
         unset($address);
         return $isDefault;
+    }
+
+
+    public function find($id = null, $stringify = false)
+    {
+        $address = $this->builder()->where('id', $id)->get()->getFirstRow('array');
+
+        return ($stringify)
+            ? $this->stringify($address)
+            : $address;
     }
 }

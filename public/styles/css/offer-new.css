@@ -1,0 +1,82 @@
+.content {
+  padding: 1.5rem;
+}
+
+.cards-scroll {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.cards-scroll .card {
+  padding: 0;
+  width: 18rem;
+  min-width: 14rem;
+}
+
+.cards-scroll .card .card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap-reverse;
+      flex-wrap: wrap-reverse;
+}
+
+.btn-navigate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+  -ms-flex-wrap: wrap-reverse;
+      flex-wrap: wrap-reverse;
+}
+
+.payment-cards .card {
+  width: auto;
+  min-width: auto;
+}
+
+.payment-cards .card .form-check {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.payment-cards .card .form-check .form-check-input {
+  margin-top: -0.25rem;
+}
+
+@media screen and (max-width: 320px) {
+  .content {
+    padding: 0.75rem;
+  }
+  .btn-navigate > * {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+  }
+}
+/*# sourceMappingURL=offer-new.css.map */

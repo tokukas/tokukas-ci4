@@ -95,6 +95,14 @@ $routes->group('address', function ($address) {
 });
 
 
+// Offer Page
+$routes->group('offer', function ($offer) {
+	$offer->group('new', function ($new) {
+		$new->post('(:num)', 'Offer::new/$1');
+	});
+});
+
+
 // Indonesia Territory API
 $routes->group('idn-administrative-area', function ($root) {
 	$root->get('/', 'IdnTerritory::index');
