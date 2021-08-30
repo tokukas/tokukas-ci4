@@ -70,6 +70,8 @@ class Offer extends BaseController
             return $this->newOfferSecondStep();
         } elseif ($step === 3) {
             return $this->newOfferThirdStep();
+        } elseif ($step === 4) {
+            return $this->newOfferFourthStep();
         }
     }
 
@@ -96,7 +98,6 @@ class Offer extends BaseController
             $data['selectedAddressId'] = session('new_offer')['address_id'] ?: null;
         }
 
-        d(session('new_offer'));
         return view('offer/new-step-address', $data);
     }
 
@@ -140,7 +141,6 @@ class Offer extends BaseController
             'canChoose' => strpos(strtoupper($address['stringified']), 'KABUPATEN INDRAMAYU'),
         ];
 
-        d(session('new_offer'));
         return view('offer/new-step-transaction', $data);
     }
 
@@ -191,11 +191,15 @@ class Offer extends BaseController
 
             $data['pageDesc'] = 'Pilih metode pengiriman untuk penawaran buku anda';
 
-            d(session('new_offer'));
             return view('offer/new-step-expedition', $data);
         }
 
-        d(session('new_offer'));
         return view('offer/new-step-payment', $data);
+    }
+
+
+    private function newOfferFourthStep()
+    {
+        dd($this->request->getPost());
     }
 }
