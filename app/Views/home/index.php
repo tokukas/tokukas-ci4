@@ -22,7 +22,7 @@
         <div class="search-box input-group">
             <input type="text" class="form-control" id="floatingInput" placeholder="Buku...">
             <button type="submit" class="btn btn-outline-light">
-                <i class="material-icons">search</i>
+                <i class="material-icons" translate="no">search</i>
             </button>
         </div>
     </form>
@@ -33,7 +33,7 @@
         <p class="h4">Temukan Jawabannya di Halaman <abbr data-bs-toggle="tooltip" data-bs-placement="top" title="Pertanyaan yang Sering Diajukan">FAQ</abbr> berikut.</p>
     </div>
     <a href="<?= base_url('faq'); ?>" class="btn btn-primary btn-lg">
-        <i class="material-icons">quiz</i>
+        <i class="material-icons" translate="no">quiz</i>
         <span>Lihat FAQ</span>
     </a>
 </section>

@@ -25,40 +25,40 @@ $ourAddress = $variable->getVar('store_address') ?: 'null';
                     <a class="brand" href="<?= base_url(); ?>">
                         <img src="<?= base_url('assets/brand-white.svg'); ?>" alt="brand" height="32" width="100%">
                         <div class="text-brand">
-                            <span class="primary"><?= esc($brandName) ?></span>
+                            <span class="primary" translate="no"><?= esc($brandName) ?></span>
                             <span class="secondary"><?= esc($brandName2); ?></span>
                         </div>
                     </a>
                 </section>
                 <section class="mb-4">
                     <a href="https://www.google.com/maps/search/tokukas" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat Lokasi" aria-label="Lihat Lokasi <?= esc($brandName, 'attr') ?>">
-                        <span><?= esc($ourAddress); ?></span>
+                        <p translate="no"><?= esc($ourAddress); ?></p>
                     </a>
                 </section>
                 <section class="icon-bar mb-3">
                     <a href="https://www.instagram.com/<?= esc($ourInstagram, 'attr'); ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= esc($ourInstagram, 'attr'); ?>" aria-label="Instagram <?= esc($brandName, 'attr') ?>">
                         <div class="icon-box">
-                            <i class="fab fa-instagram fa-lg"></i>
+                            <i translate="no" class="fab fa-instagram fa-lg"></i>
                         </div>
                     </a>
                     <a href="https://twitter.com/<?= esc($ourTwitter, 'attr'); ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= esc($ourTwitter, 'attr'); ?>" aria-label="Twitter <?= esc($brandName, 'attr') ?>">
                         <div class="icon-box">
-                            <i class="fab fa-twitter fa-lg"></i>
+                            <i translate="no" class="fab fa-twitter fa-lg"></i>
                         </div>
                     </a>
                     <a href="mailto:<?= esc($ourEmail, 'attr') ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= esc($ourEmail, 'attr') ?>" aria-label="Email ke <?= esc($ourEmail, 'attr') ?>">
                         <div class="icon-box">
-                            <i class="fas fa-envelope fa-lg"></i>
+                            <i translate="no" class="fas fa-envelope fa-lg"></i>
                         </div>
                     </a>
                     <a href="https://wa.me/<?= esc($ourWhatsapp, 'attr') ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= esc($ourWhatsapp, 'attr') ?>" aria-label="Whatsapp ke <?= esc($ourWhatsapp, 'attr') ?>">
                         <div class="icon-box">
-                            <i class="fab fa-whatsapp fa-lg"></i>
+                            <i translate="no" class="fab fa-whatsapp fa-lg"></i>
                         </div>
                     </a>
                     <a href="https://t.me/<?= esc($ourTelegram, 'attr'); ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?= esc($ourTelegram, 'attr'); ?>" aria-label="Gabung ke Channel Telegram">
                         <div class="icon-box">
-                            <i class="fab fa-telegram fa-lg"></i>
+                            <i translate="no" class="fab fa-telegram fa-lg"></i>
                         </div>
                     </a>
                     <a href="<?= esc($ourSignal, 'attr'); ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Signal <?= esc($brandName, 'attr') ?>" aria-label="Gabung ke Channel Signal">
@@ -80,11 +80,11 @@ $ourAddress = $variable->getVar('store_address') ?: 'null';
                 <section>
                     <div class="footer-menus">
                         <a href="<?= base_url('about'); ?>" class="menu">
-                            <i class="material-icons">chevron_right</i>
+                            <i class="material-icons" translate="no">chevron_right</i>
                             <span>Tentang Kami</span>
                         </a>
                         <a href="<?= base_url('sell'); ?>" class="menu">
-                            <i class="material-icons">chevron_right</i>
+                            <i class="material-icons" translate="no">chevron_right</i>
                             <span>Jual Buku</span>
                         </a>
                     </div>
@@ -95,14 +95,14 @@ $ourAddress = $variable->getVar('store_address') ?: 'null';
                     <p><b>Kunjungi Toko Kami di :</b></p>
                 </section>
                 <section class="d-flex gap-3 justify-content-center mb-3">
-                    <a href="<?= esc($ourTokopedia, 'attr'); ?>" rel="noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat di Tokopedia">
+                    <a href="<?= esc($ourTokopedia, 'attr'); ?>" rel="noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat di Tokopedia" translate="no">
                         <picture>
                             <source media="(min-width: 1080px)" srcset="<?= base_url('assets/tokopedia-360w.png'); ?>">
                             <source media="(min-width: 720px)" srcset="<?= base_url('assets/tokopedia-120w.png'); ?>">
                             <img class="shop-icon" src="<?= base_url('assets/tokopedia-60w.png'); ?>" alt="Logo Tokopedia" height="60" width="100%">
                         </picture>
                     </a>
-                    <a href="<?= esc($ourShopee, 'attr'); ?>" rel="noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat di Shopee">
+                    <a href="<?= esc($ourShopee, 'attr'); ?>" rel="noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat di Shopee" translate="no">
                         <picture>
                             <source media="(min-width: 1080px)" srcset="<?= base_url('assets/shopee-360w.png'); ?>">
                             <source media="(min-width: 640px)" srcset="<?= base_url('assets/shopee-120w.png'); ?>">
@@ -116,7 +116,7 @@ $ourAddress = $variable->getVar('store_address') ?: 'null';
     <div class="container-fluid bottom">
         <div class="container-md">
             <section>
-                <span>&copy; 2021 - <?= esc($brandName) ?></span>
+                <span translate="no">&copy; 2021 - <?= esc($brandName) ?></span>
             </section>
             <section class="d-inline-flex gap-2 text-center">
                 <a href="<?= base_url('terms'); ?>">Syarat Penggunaan</a>

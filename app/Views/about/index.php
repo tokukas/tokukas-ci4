@@ -45,11 +45,11 @@ $ourShopee = $variable->getVar('link_store_shopee');
 </nav>
 <section class="">
     <article class="content">
-        <h1>Tentang <?= esc($brandName); ?></h1>
+        <h1>Tentang <span translate="no"><?= esc($brandName); ?></span></h1>
         <hr>
-        <p><b><span class="tokukas" title="Toko Buku Bekas"><?= esc($brandName); ?></span></b> adalah sebuah toko yang menawarkan buku-buku bekas dengan harga yang terjangkau.</p>
-        <p>Buku-buku bekas yang dijual oleh <b><span class="tokukas" title="Toko Buku Bekas"><?= esc($brandName); ?></span></b> didapat dari hasil kerjasama dengan toko buku yang menjual buku bekas secara langsung di toko (luring/<i>offline</i>), dan juga didapat dengan membeli dari masyarakat yang memiliki buku-buku bekas yang ditawarkan kepada toko secara daring melalui formulir yang disediakan oleh toko.</p>
-        <p>Selain dapat diakses dari website, <b><span class="tokukas" title="Toko Buku Bekas"><?= esc($brandName); ?></span></b> juga hadir di beberapa platform <i>e-commerce</i> populer di Indonesia, seperti <a href="<?= esc($ourShopee, 'attr'); ?>" rel="noreferrer" target="_blank">Shopee</a> dan <a href="<?= esc($ourTokopedia, 'attr'); ?>" target="_blank" rel="noreferrer">Tokopedia</a>.</p>
+        <p><b><span class="tokukas" title="Toko Buku Bekas" translate="no"><?= esc($brandName); ?></span></b> adalah sebuah toko yang menawarkan buku-buku bekas dengan harga yang terjangkau.</p>
+        <p>Buku-buku bekas yang dijual oleh <b><span class="tokukas" title="Toko Buku Bekas" translate="no"><?= esc($brandName); ?></span></b> didapat dari hasil kerjasama dengan toko buku yang menjual buku bekas secara langsung di toko (luring/<i>offline</i>), dan juga didapat dengan membeli dari masyarakat yang memiliki buku-buku bekas yang ditawarkan kepada toko secara daring melalui formulir yang disediakan oleh toko.</p>
+        <p>Selain dapat diakses dari website, <b><span class="tokukas" title="Toko Buku Bekas" translate="no"><?= esc($brandName); ?></span></b> juga hadir di beberapa platform <i>e-commerce</i> populer di Indonesia, seperti <a href="<?= esc($ourShopee, 'attr'); ?>" rel="noreferrer" target="_blank" translate="no">Shopee</a> dan <a href="<?= esc($ourTokopedia, 'attr'); ?>" target="_blank" rel="noreferrer" translate="no">Tokopedia</a>.</p>
     </article>
 </section>
 

@@ -11,7 +11,7 @@ $brandName2 = $variable->getVar('brand_name2') ?: 'Toko Buku Bekas';
         <a class="navbar-brand" href="<?= base_url(); ?>">
             <img src="<?= base_url('assets/brand.svg'); ?>" alt="brand" height="32" width="100%">
             <div class="text-brand">
-                <span class="primary"><?= esc($brandName); ?></span>
+                <span class="primary" translate="no"><?= esc($brandName); ?></span>
                 <span class="secondary"><?= esc($brandName2); ?></span>
             </div>
         </a>
@@ -48,18 +48,18 @@ $brandName2 = $variable->getVar('brand_name2') ?: 'Toko Buku Bekas';
             <?php else : ?>
                 <div class="dropdown">
                     <button class="dropdown-toggle btn btn-outline-primary my-sm-2" id="profileDropdownMenuLink" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="material-icons">account_circle</i>
+                        <i class="material-icons" translate="no">account_circle</i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-lg-end profile-menus" aria-labelledby="profileDropdownMenuLink">
                         <li>
                             <a class="dropdown-item btn btn-primary" href="<?= base_url('account'); ?>">
-                                <i class="material-icons">account_circle</i>
-                                <span><strong><?= $loginSession['name']; ?></strong></span>
+                                <i class="material-icons" translate="no">account_circle</i>
+                                <span translate="no"><strong><?= $loginSession['name']; ?></strong></span>
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item btn" href="<?= base_url('settings'); ?>">
-                                <i class="material-icons">settings</i>
+                                <i class="material-icons" translate="no">settings</i>
                                 <span>Pengaturan</span>
                             </a>
                         </li>
@@ -68,7 +68,7 @@ $brandName2 = $variable->getVar('brand_name2') ?: 'Toko Buku Bekas';
                         </li>
                         <li>
                             <button type="button" class="dropdown-item btn btn-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">
-                                <i class="material-icons">logout</i>
+                                <i class="material-icons" translate="no">logout</i>
                                 <span>Keluar</span>
                             </button>
                         </li>
@@ -92,11 +92,11 @@ $brandName2 = $variable->getVar('brand_name2') ?: 'Toko Buku Bekas';
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                    <i class="material-icons">close</i>
+                    <i class="material-icons" translate="no">close</i>
                     <span>Batalkan</span>
                 </button>
                 <a href="<?= base_url('logout'); ?>" class="btn btn-outline-danger">
-                    <i class="material-icons">logout</i>
+                    <i class="material-icons" translate="no">logout</i>
                     <span>Keluar</span>
                 </a>
             </div>
