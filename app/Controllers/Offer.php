@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\AccountModel;
 use App\Models\AddressModel;
-use App\Models\EmailVerificatorModel;
 use App\Models\OfferModel;
 
 class Offer extends BaseController
@@ -13,8 +12,8 @@ class Offer extends BaseController
     protected $addressModel;
     protected $offerModel;
 
-    private $newOfferDefaultSteps = ['Tentukan Lokasi Anda', 'Pilih Metode Transaksi', 'Pilih Preferensi Pembayaran', 'Upload Data Buku'];
-
+    private $newOfferDefaultSteps = ['Tentukan Lokasi Anda', 'Pilih Metode Transaksi', 'Pilih Metode Pengiriman', 'Pilih Metode Pembayaran', 'Upload Data Buku'];
+    private $validShippingMethods = ['sicepat ekspres', 'anteraja', 'idexpress', 'j&t express', 'jne express', 'tiki'];
 
     public function __construct()
     {
@@ -65,18 +64,20 @@ class Offer extends BaseController
         $step = (int) $step ?: 1;
 
         if ($step === 1) {
-            return $this->newOfferFirstStep();
+            return $this->newOfferLocationStep();
         } elseif ($step === 2) {
-            return $this->newOfferSecondStep();
+            return $this->newOfferTransactionStep();
         } elseif ($step === 3) {
-            return $this->newOfferThirdStep();
+            return $this->newOfferShippingStep();
         } elseif ($step === 4) {
-            return $this->newOfferFourthStep();
+            return $this->newOfferPaymentStep();
+        } elseif ($step === 5) {
+            return $this->newOfferBookStep();
         }
     }
 
 
-    private function newOfferFirstStep()
+    private function newOfferLocationStep()
     {
         $accountId = $this->accountModel->getId(session('login')['email']);
 
@@ -102,7 +103,7 @@ class Offer extends BaseController
     }
 
 
-    private function newOfferSecondStep()
+    private function newOfferTransactionStep()
     {
         // --------------------------------------
         // Validate The Address
@@ -145,7 +146,7 @@ class Offer extends BaseController
     }
 
 
-    private function newOfferThirdStep()
+    private function newOfferShippingStep()
     {
         // --------------------------------------
         // Validate The Transaction Method
@@ -170,36 +171,57 @@ class Offer extends BaseController
             'title' => 'Buat Penawaran | TOKUKAS',
             'loginSession' => session('login'),
             'variable' => $this->variable,
-            'pageDesc' => 'Pilih metode pembayaran untuk penawaran buku anda',
+            'pageDesc' => 'Pilih metode pengiriman untuk penawaran buku anda',
             'step' => [
                 'list' => $this->newOfferDefaultSteps,
                 'current' => 2,
-            ]
+            ],
+            'transactionMethod' => $transactionMethod,
         ];
 
-        // check selected transaction method
-        if ($transactionMethod === 'online') {
-            $currentStep = $data['step']['current'];
+        return view('offer/new-step-expedition', $data);
+    }
 
-            $data['step']['list']
-                = array_slice($this->newOfferDefaultSteps, 0, $currentStep)
-                + [$currentStep => 'Pilih Metode Pengiriman'];
 
-            for ($i = $currentStep; $i < sizeof($this->newOfferDefaultSteps); $i++) {
-                $data['step']['list'] += [$i + 1 => $this->newOfferDefaultSteps[$i]];
-            }
+    private function newOfferPaymentStep()
+    {
+        // --------------------------------------
+        // Validate The Shipping Method
+        // --------------------------------------
+        $transactionMethod = empty(session('new_offer')) ? null : session('new_offer')['transaction_method'] ?? null;
+        $shippingMethod = htmlspecialchars($this->request->getPost('shipping_method'));
 
-            $data['pageDesc'] = 'Pilih metode pengiriman untuk penawaran buku anda';
-
-            return view('offer/new-step-expedition', $data);
+        if (empty($shippingMethod)) {
+            $shippingMethod = empty(session('new_offer')) ? null : session('new_offer')['shipping_method'] ?? null;
         }
+
+        if (!in_array(strtolower($shippingMethod), $this->validShippingMethods) && $transactionMethod === 'online') {
+            set_alert('Metode pengiriman tidak valid', true);
+            return redirect()->back();
+        }
+
+        // --------------------------------------
+        // Update The Form Session
+        // --------------------------------------
+        session()->push('new_offer', ['shipping_method' => $shippingMethod]);
+
+        $data = [
+            'title' => 'Buat Penawaran | TOKUKAS',
+            'loginSession' => session('login'),
+            'variable' => $this->variable,
+            'pageDesc' => 'Pilih metode pembayaran untuk penawaran buku anda',
+            'step' => [
+                'list' => $this->newOfferDefaultSteps,
+                'current' => 3,
+            ],
+        ];
 
         return view('offer/new-step-payment', $data);
     }
 
 
-    private function newOfferFourthStep()
+    private function newOfferBookStep()
     {
-        dd($this->request->getPost());
+        dd(session('new_offer'), $this->request->getPost());
     }
 }

@@ -55,6 +55,16 @@ $greyBattleship: map-get($grey, 'battleship');
     }
 }
 
+.cash-payment {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    font-size: 1.25rem;
+    color: $primaryColor;
+    height: 60px;
+}
+
 @media screen and (max-width: 320px) {
     .content {
         padding: 0.75rem;
