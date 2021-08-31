@@ -13,7 +13,7 @@
 
 <div class="card">
     <div class="card-body content">
-        <form action="<?= base_url('offer/new/3'); ?>" method="post">
+        <form action="<?= base_url('offer/new/2'); ?>" method="post">
             <?= csrf_field(); ?>
 
             <!-- STEP 2 -->
@@ -59,7 +59,7 @@
 
             <div class="row">
                 <div class="btn-navigate">
-                    <a href="<?= base_url('offer/new'); ?>" class="btn btn-outline-secondary">
+                    <a href="<?= base_url('offer/new/1'); ?>" class="btn btn-outline-secondary">
                         <i class="material-icons">arrow_back</i>
                         <span>Kembali</span>
                     </a>

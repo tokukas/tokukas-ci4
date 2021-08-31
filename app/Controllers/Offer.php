@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\AccountModel;
 use App\Models\AddressModel;
+use App\Models\ExpeditionModel;
 use App\Models\OfferModel;
 
 class Offer extends BaseController
@@ -11,15 +12,17 @@ class Offer extends BaseController
     protected $accountModel;
     protected $addressModel;
     protected $offerModel;
+    protected $expeditionModel;
 
     private $newOfferDefaultSteps = ['Tentukan Lokasi Anda', 'Pilih Metode Transaksi', 'Pilih Metode Pengiriman', 'Pilih Metode Pembayaran', 'Upload Data Buku'];
-    private $validShippingMethods = ['sicepat ekspres', 'anteraja', 'idexpress', 'j&t express', 'jne express', 'tiki'];
+
 
     public function __construct()
     {
         $this->addressModel = new AddressModel();
         $this->accountModel = new AccountModel();
         $this->offerModel = new OfferModel();
+        $this->expeditionModel = new ExpeditionModel();
     }
 
 
@@ -62,23 +65,55 @@ class Offer extends BaseController
          * --------------------------------------
          */
         $step = (int) $step ?: 1;
+        $offerSession = session('new_offer');
 
-        if ($step === 1) {
+        if (empty($offerSession)) {
             return $this->newOfferLocationStep();
-        } elseif ($step === 2) {
+        }
+
+        if ($step === 2 && !empty($offerSession['address_id'])) {
             return $this->newOfferTransactionStep();
-        } elseif ($step === 3) {
+        } elseif ($step === 3 && !empty($offerSession['transaction_method'])) {
             return $this->newOfferShippingStep();
-        } elseif ($step === 4) {
+        } elseif ($step === 4 && !empty($offerSession['expedition_id'])) {
             return $this->newOfferPaymentStep();
-        } elseif ($step === 5) {
+        } elseif ($step === 5 && !empty($offerSession['payment_id'])) {
             return $this->newOfferBookStep();
         }
+
+        return $this->newOfferLocationStep();
+    }
+
+
+    public function cancelNewOffer()
+    {
+        session()->remove('new_offer');
+        return redirect()->to(base_url('offer'));
     }
 
 
     private function newOfferLocationStep()
     {
+        // --------------------------------------
+        // Validate The Request
+        // --------------------------------------
+        if (!empty($this->request->getPost('address_id'))) {
+            // updating offer session
+            $addressId = htmlspecialchars($this->request->getPost('address_id'));
+
+            if (empty($this->addressModel->find($addressId, true))) {
+                set_alert('Alamat tidak dapat ditemukan', true);
+                return redirect()->to(base_url('offer/new'));
+            }
+
+            // $this->updateNewOfferSession('address_id', $addressId);
+            session()->set('new_offer', ['address_id' => $addressId]);
+            return $this->newOfferTransactionStep();
+        }
+
+        // --------------------------------------
+        // Go to view
+        // --------------------------------------
         $accountId = $this->accountModel->getId(session('login')['email']);
 
         $data = [
@@ -93,11 +128,10 @@ class Offer extends BaseController
             'myAddresses' => $this->addressModel->myAddresses($accountId, true),
         ];
 
-        if (empty(session('new_offer'))) {
-            $data['selectedAddressId'] = $this->addressModel->getDefaultAddress($accountId, true)['id'];
-        } else {
-            $data['selectedAddressId'] = session('new_offer')['address_id'] ?: null;
-        }
+        $data['selectedAddressId'] = empty(session('new_offer')) || empty(session('new_offer')['address_id'])
+            ? $this->addressModel->getDefaultAddress($accountId, true)['id']
+            : session('new_offer')['address_id'];
+
 
         return view('offer/new-step-address', $data);
     }
@@ -106,28 +140,25 @@ class Offer extends BaseController
     private function newOfferTransactionStep()
     {
         // --------------------------------------
-        // Validate The Address
+        // Validate The Request
         // --------------------------------------
-        $addressId = htmlspecialchars($this->request->getPost('address_id'));
+        if (!empty($this->request->getPost('transaction_method'))) {
+            // updating offer session
+            $transactionMethod = htmlspecialchars($this->request->getPost('transaction_method'));
 
-        if (empty($addressId)) {
-            $addressId = empty(session('new_offer')) ? null : session('new_offer')['address_id'] ?? null;
+            if (!in_array(strtolower($transactionMethod), ['online', 'offline'])) {
+                set_alert('Metode transaksi tidak valid', true);
+                return redirect()->to(base_url('offer/new'));
+            }
+
+            session()->push('new_offer', ['transaction_method' => $transactionMethod]);
+            return $this->newOfferShippingStep();
         }
 
-        $address = $this->addressModel->find($addressId, true);
-
-        if (empty($address)) {
-            set_alert('Alamat tidak dapat ditemukan', true);
-            return redirect()->to(base_url('offer/new'));
-        }
-
         // --------------------------------------
-        // Update The Form Session
+        // Go to view
         // --------------------------------------
-        $transactionMethod = empty(session('new_offer')) ? null : session('new_offer')['transaction_method'] ?? null;
-
-        empty($transactionMethod) && session()->set('new_offer', []);
-        session()->push('new_offer', ['address_id' => $address['id']]);
+        $address = $this->addressModel->find(session('new_offer')['address_id'], true);
 
         $data = [
             'title' => 'Buat Penawaran | TOKUKAS',
@@ -138,7 +169,7 @@ class Offer extends BaseController
                 'list' => $this->newOfferDefaultSteps,
                 'current' => 1,
             ],
-            'selectedTransactionMethod' => $transactionMethod ?: 'online',
+            'selectedTransactionMethod' => session('new_offer')['transaction_method'] ?? 'online',
             'canChoose' => strpos(strtoupper($address['stringified']), 'KABUPATEN INDRAMAYU'),
         ];
 
@@ -149,24 +180,25 @@ class Offer extends BaseController
     private function newOfferShippingStep()
     {
         // --------------------------------------
-        // Validate The Transaction Method
+        // Validate The Request
         // --------------------------------------
-        $transactionMethod = htmlspecialchars($this->request->getPost('transaction_method'));
+        if (!empty($this->request->getPost('expedition_id'))) {
+            // updating offer session
+            $transactionMethod = session('new_offer')['transaction_method'] ?? null;
+            $expeditionId = htmlspecialchars($this->request->getPost('expedition_id'));
 
-        if (empty($transactionMethod)) {
-            $transactionMethod = empty(session('new_offer')) ? null : session('new_offer')['transaction_method'] ?? null;
+            if (empty($this->expeditionModel->find($expeditionId)) && $transactionMethod === 'online') {
+                set_alert('Metode pengiriman tidak valid', true);
+                return redirect()->to(base_url('offer/new/2'));
+            }
+
+            session()->push('new_offer', ['expedition_id' => $expeditionId]);
+            return $this->newOfferPaymentStep();
         }
 
-        if (!in_array(strtolower($transactionMethod), ['online', 'offline'])) {
-            set_alert('Metode transaksi tidak valid', true);
-            return redirect()->back();
-        }
-
         // --------------------------------------
-        // Update The Form Session
+        // Go to view
         // --------------------------------------
-        session()->push('new_offer', ['transaction_method' => $transactionMethod]);
-
         $data = [
             'title' => 'Buat Penawaran | TOKUKAS',
             'loginSession' => session('login'),
@@ -176,7 +208,9 @@ class Offer extends BaseController
                 'list' => $this->newOfferDefaultSteps,
                 'current' => 2,
             ],
-            'transactionMethod' => $transactionMethod,
+            'transactionMethod' => session('new_offer')['transaction_method'],
+            'expeditions' => $this->expeditionModel->findAll(),
+            'selectedExpedition' => session('new_offer')['expedition_id'] ?? null,
         ];
 
         return view('offer/new-step-expedition', $data);
@@ -186,24 +220,11 @@ class Offer extends BaseController
     private function newOfferPaymentStep()
     {
         // --------------------------------------
-        // Validate The Shipping Method
+        // Validate The Request
         // --------------------------------------
-        $transactionMethod = empty(session('new_offer')) ? null : session('new_offer')['transaction_method'] ?? null;
-        $shippingMethod = htmlspecialchars($this->request->getPost('shipping_method'));
-
-        if (empty($shippingMethod)) {
-            $shippingMethod = empty(session('new_offer')) ? null : session('new_offer')['shipping_method'] ?? null;
+        if (!empty($this->request->getPost())) {
+            dd(session('new_offer'), $this->request->getPost());
         }
-
-        if (!in_array(strtolower($shippingMethod), $this->validShippingMethods) && $transactionMethod === 'online') {
-            set_alert('Metode pengiriman tidak valid', true);
-            return redirect()->back();
-        }
-
-        // --------------------------------------
-        // Update The Form Session
-        // --------------------------------------
-        session()->push('new_offer', ['shipping_method' => $shippingMethod]);
 
         $data = [
             'title' => 'Buat Penawaran | TOKUKAS',
@@ -216,12 +237,13 @@ class Offer extends BaseController
             ],
         ];
 
+        d(session('new_offer'));
         return view('offer/new-step-payment', $data);
     }
 
 
     private function newOfferBookStep()
     {
-        dd(session('new_offer'), $this->request->getPost());
+        return 'Upload data buku';
     }
 }

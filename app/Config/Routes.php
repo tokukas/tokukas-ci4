@@ -98,7 +98,7 @@ $routes->group('address', function ($address) {
 // Offer Page
 $routes->group('offer', function ($offer) {
 	$offer->group('new', function ($new) {
-		$new->post('(:num)', 'Offer::new/$1');
+		$new->get('cancel', 'Offer::cancelNewOffer');
 	});
 });
 

@@ -1,4 +1,4 @@
-<ol class="list-group list-group-numbered">
+<ol class="list-group list-group-numbered mb-3">
     <?php for ($i = 0; $i < sizeof($step['list']); $i++) : ?>
         <?php $stepNow = $step['list'][$i]; ?>
 

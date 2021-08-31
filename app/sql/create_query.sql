@@ -89,22 +89,22 @@ CREATE TABLE IF NOT EXISTS `Account` (
 CREATE TABLE IF NOT EXISTS `Expedition` (
     `id` VARCHAR(8) PRIMARY KEY NOT NULL,
     `name` VARCHAR(100) NOT NULL,
-    `website` VARCHAR(255)
+    `website` VARCHAR(255),
+    `tracking_url` VARCHAR(255)
 ) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Expedition_Around`
+-- Table structure for table `Expedition_Logo`
 -- *not executed yet
 --
 
-CREATE TABLE IF NOT EXISTS `Expedition_Around` (
-    `id` VARCHAR(8) PRIMARY KEY NOT NULL,
-    `account_id` VARCHAR(16) NOT NULL,
+CREATE TABLE IF NOT EXISTS `Expedition_Logo` (
+    `id` VARCHAR(10) PRIMARY KEY NOT NULL,
     `expedition_id` VARCHAR(8) NOT NULL,
-    FOREIGN KEY (`account_id`) REFERENCES `Account`(`id`),
-    FOREIGN KEY (`expedition_id`) REFERENCES `Expedition`(`id`)
+    `file_name` VARCHAR(255),
+    FOREIGN KEY(`expedition_id`) REFERENCES `Expedition`(`id`)
 ) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

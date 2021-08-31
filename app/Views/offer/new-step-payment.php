@@ -13,7 +13,7 @@
 
 <div class="card">
     <div class="card-body content">
-        <form action="<?= base_url('offer/new/5'); ?>" method="post">
+        <form action="<?= base_url('offer/new/4'); ?>" method="post">
             <?= csrf_field(); ?>
 
             <!-- STEP 3 -->
@@ -28,7 +28,7 @@
                         <div class="card-body py-2 d-flex gap-2 align-items-center">
                             <div class="d-block">
                                 <!-- PAKAI NO. TELP -->
-                                <input type="radio" name="payment_method" id="methodOpt1" class="form-check-input" value="ShopeePay" required checked>
+                                <input type="radio" name="payment_id" id="methodOpt1" class="form-check-input" value="ShopeePay" required checked>
                             </div>
                             <div class="d-block">
                                 <label translate="no" for="methodOpt1" title="ShopeePay" aria-label="ShopeePay" class="form-check-label" data-bs-toggle="tooltip" data-bs-placement="top">
@@ -46,7 +46,7 @@
                         <div class="card-body py-2 d-flex gap-2 align-items-center">
                             <div class="d-block">
                                 <!-- PAKAI NO. TELP -->
-                                <input type="radio" name="payment_method" id="methodOpt2" class="form-check-input" value="OVO" required>
+                                <input type="radio" name="payment_id" id="methodOpt2" class="form-check-input" value="OVO" required>
                             </div>
                             <div class="d-block">
                                 <label translate="no" for="methodOpt2" title="OVO" aria-label="OVO" class="form-check-label" data-bs-toggle="tooltip" data-bs-placement="top">
@@ -64,7 +64,7 @@
                         <div class="card-body py-2 d-flex gap-2 align-items-center">
                             <div class="d-block">
                                 <!-- PAKAI NO. TELP / NO. REKENING + NAMA BANK -->
-                                <input type="radio" name="payment_method" id="methodOpt3" class="form-check-input" value="LinkAja" required>
+                                <input type="radio" name="payment_id" id="methodOpt3" class="form-check-input" value="LinkAja" required>
                             </div>
                             <div class="d-block">
                                 <label translate="no" for="methodOpt3" title="LinkAja" aria-label="LinkAja" class="form-check-label" data-bs-toggle="tooltip" data-bs-placement="top">
@@ -82,7 +82,7 @@
                         <div class="card-body py-2 d-flex gap-2 align-items-center">
                             <div class="d-block">
                                 <!-- PAKAI NO. TELP -->
-                                <input type="radio" name="payment_method" id="methodOpt4" class="form-check-input" value="GoPay" required>
+                                <input type="radio" name="payment_id" id="methodOpt4" class="form-check-input" value="GoPay" required>
                             </div>
                             <div class="d-block">
                                 <label translate="no" for="methodOpt4" title="GoPay" aria-label="GoPay" class="form-check-label" data-bs-toggle="tooltip" data-bs-placement="top">
@@ -100,7 +100,7 @@
                         <div class="card-body py-2 d-flex gap-2 align-items-center">
                             <div class="d-block">
                                 <!-- PAKAI NO. REKENING -->
-                                <input type="radio" name="payment_method" id="methodOpt5" class="form-check-input" value="Rekening BNI" required>
+                                <input type="radio" name="payment_id" id="methodOpt5" class="form-check-input" value="Rekening BNI" required>
                             </div>
                             <div class="d-block">
                                 <label translate="no" for="methodOpt5" title="Rekening BNI" aria-label="Rekening BNI" class="form-check-label" data-bs-toggle="tooltip" data-bs-placement="top">
@@ -117,7 +117,7 @@
                     <div class="card p-0">
                         <div class="card-body py-2 d-flex gap-2 align-items-center">
                             <div class="d-block">
-                                <input type="radio" name="payment_method" id="methodOpt6" class="form-check-input" value="Tunai" required>
+                                <input type="radio" name="payment_id" id="methodOpt6" class="form-check-input" value="Tunai" required>
                             </div>
                             <div class="d-block">
                                 <label translate="no" for="methodOpt6" title="Tunai" aria-label="Tunai" class="form-check-label" data-bs-toggle="tooltip" data-bs-placement="top">
