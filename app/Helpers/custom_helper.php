@@ -2,6 +2,19 @@
 
 use App\Libraries\CodeGenerator;
 
+
+/**
+ * Checking if an array is associative array or not.
+ * @param array $arr The array.
+ * @return bool True if it's an associative array, or false if otherwise.
+ */
+function is_assoc_array(array $arr)
+{
+    if ([] === $arr) return false;
+    return array_keys($arr) !== range(0, count($arr) - 1);
+}
+
+
 /**
  * Generates a code consisting of several digits of a random number, plus a specified prefix or suffix.
  * @param int $numLen [optional] The number of digits of random number. If $hex is true, $numLen must be an even number. The default is 5.

@@ -6,6 +6,7 @@ use App\Models\AccountModel;
 use App\Models\AddressModel;
 use App\Models\ExpeditionModel;
 use App\Models\OfferModel;
+use App\Models\PaymentMethodModel;
 
 class Offer extends BaseController
 {
@@ -13,6 +14,7 @@ class Offer extends BaseController
     protected $addressModel;
     protected $offerModel;
     protected $expeditionModel;
+    protected $paymentMethod;
 
     private $newOfferDefaultSteps = ['Tentukan Lokasi Anda', 'Pilih Metode Transaksi', 'Pilih Metode Pengiriman', 'Pilih Metode Pembayaran', 'Upload Data Buku'];
 
@@ -23,6 +25,7 @@ class Offer extends BaseController
         $this->accountModel = new AccountModel();
         $this->offerModel = new OfferModel();
         $this->expeditionModel = new ExpeditionModel();
+        $this->paymentMethod = new PaymentMethodModel();
     }
 
 
@@ -106,9 +109,8 @@ class Offer extends BaseController
                 return redirect()->to(base_url('offer/new'));
             }
 
-            // $this->updateNewOfferSession('address_id', $addressId);
             session()->set('new_offer', ['address_id' => $addressId]);
-            return $this->newOfferTransactionStep();
+            return redirect()->to(base_url('offer/new/2'));
         }
 
         // --------------------------------------
@@ -152,7 +154,7 @@ class Offer extends BaseController
             }
 
             session()->push('new_offer', ['transaction_method' => $transactionMethod]);
-            return $this->newOfferShippingStep();
+            return redirect()->to(base_url('offer/new/3'));
         }
 
         // --------------------------------------
@@ -193,7 +195,7 @@ class Offer extends BaseController
             }
 
             session()->push('new_offer', ['expedition_id' => $expeditionId]);
-            return $this->newOfferPaymentStep();
+            return redirect()->to(base_url('offer/new/4'));
         }
 
         // --------------------------------------
@@ -226,6 +228,10 @@ class Offer extends BaseController
             dd(session('new_offer'), $this->request->getPost());
         }
 
+        $paymentMethods = (session('new_offer')['transaction_method'] === 'offline')
+            ? $this->paymentMethod->findAll()
+            : $this->paymentMethod->findAll(0, 0, true);
+
         $data = [
             'title' => 'Buat Penawaran | TOKUKAS',
             'loginSession' => session('login'),
@@ -235,9 +241,9 @@ class Offer extends BaseController
                 'list' => $this->newOfferDefaultSteps,
                 'current' => 3,
             ],
+            'paymentMethods' => $paymentMethods,
         ];
 
-        d(session('new_offer'));
         return view('offer/new-step-payment', $data);
     }
 

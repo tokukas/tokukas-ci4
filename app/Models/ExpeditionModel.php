@@ -17,50 +17,47 @@ class ExpeditionModel extends MyModel
 
     public function getLogos(string $expeditionId)
     {
-        return $this->builder('Expedition_Logo')->getWhere(['expedition_id' => $expeditionId])->getResultArray() ?: [];
+        return $this->builder('Expedition_Logo')->getWhere(['expedition_id' => $expeditionId])->getResultArray();
     }
 
 
     public function getLogosFileName(string $expeditionId)
     {
-        $logos = $this->getLogos($expeditionId) ?: [];
-        $logoNameList = [];
-
-        foreach ($logos as $logo) {
-            if (!empty($logo)) {
-                array_push($logoNameList, $logo['file_name']);
-            }
-        }
-
-        return $logoNameList;
+        $logos = $this->getLogos($expeditionId);
+        return array_map(fn ($logo) => $logo['file_name'], $logos);
     }
 
 
     public function find($id = null)
     {
-        $expedition = $this->builder()->getWhere(['id' => $id])->getFirstRow('array') ?: [];
+        $results = parent::find($id);
 
-        if (!empty($expedition)) {
-            $expedition = array_merge($expedition, ['logos' => $this->getLogosFileName($id)]);
+        if (empty($results)) {
+            return $results;
         }
 
-        return $expedition;
+        // add payment method's logos to results
+        if (!is_assoc_array($results)) {
+            foreach ($results as &$method) {
+                $method += ['logos' => $this->getLogosFileName($method['id'])];
+            }
+            unset($method);    // !IMPORTANT to destroy this reference.
+        } else {
+            $results += ['logos' => $this->getLogosFileName($results['id'])];
+        }
+
+        return $results;
     }
 
 
     public function findAll(int $limit = 0, int $offset = 0)
     {
-        $res = [];
-        $expeditions = $this->builder()->orderBy('name', 'ASC')->get($limit, $offset)->getResultArray() ?: [];
+        $expeditions = $this->builder()->orderBy('name', 'ASC')->get($limit, $offset)->getResultArray();
 
-        foreach ($expeditions as $expedition) {
-            $expedition = array_merge($expedition, [
-                'logos' => $this->getLogosFileName($expedition['id'])
-            ]);
-
-            array_push($res, $expedition);
+        foreach ($expeditions as &$expedition) {
+            $expedition += ['logos' => $this->getLogosFileName($expedition['id'])];
         }
-
-        return $res;
+        unset($expedition);    // !IMPORTANT to destroy this reference.
+        return $expeditions;
     }
 }

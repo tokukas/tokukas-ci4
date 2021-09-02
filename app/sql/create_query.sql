@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `Account` (
 
 --
 -- Table structure for table `Expedition`
--- *not executed yet
+-- *already executed
 --
 
 CREATE TABLE IF NOT EXISTS `Expedition` (
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `Expedition` (
 
 --
 -- Table structure for table `Expedition_Logo`
--- *not executed yet
+-- *already executed
 --
 
 CREATE TABLE IF NOT EXISTS `Expedition_Logo` (
@@ -145,12 +145,27 @@ CREATE TABLE IF NOT EXISTS `Address` (
 
 --
 -- Table structure for table `Payment_Method`
--- *not executed yet
+-- *already executed
 --
 
 CREATE TABLE IF NOT EXISTS `Payment_Method` (
     `id` VARCHAR(8) PRIMARY KEY NOT NULL,
-    `name` VARCHAR(100) NOT NULL
+    `name` VARCHAR(100) NOT NULL,
+    `dest_num_used` VARCHAR(100) DEFAULT NULL
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Payment_Logo`
+-- *already executed
+--
+
+CREATE TABLE IF NOT EXISTS `Payment_Logo` (
+    `id` VARCHAR(10) PRIMARY KEY NOT NULL,
+    `payment_id` VARCHAR(8) NOT NULL,
+    `file_name` VARCHAR(255) NOT NULL,
+    FOREIGN KEY (`payment_id`) REFERENCES `Payment_Method`(`id`)
 ) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

@@ -56,7 +56,7 @@
                                     <div class="d-block">
                                         <label translate="no" for="methodOpt<?= $i; ?>" title="<?= $expedition['name']; ?>" aria-label="<?= $expedition['name']; ?>" class="form-check-label" data-bs-toggle="tooltip" data-bs-placement="top">
                                             <picture>
-                                                <source media="(min-width: 640px)" srcset="<?= base_url('assets/' . $expedition['logos'][1]); ?>">
+                                                <source media="(min-width: 640px)" srcset="<?= empty($expedition['logos'][1]) ? '' : base_url('assets/' . $expedition['logos'][1]); ?>">
                                                 <img src="<?= base_url('assets/' . $expedition['logos'][0]); ?>" alt="Logo <?= $expedition['name']; ?>" height="60" width="auto">
                                             </picture>
                                         </label>
@@ -66,7 +66,6 @@
                         </div>
                         <?php ++$i; ?>
                     <?php endforeach; ?>
-
                 </div>
 
                 <div class="row mb-2">
