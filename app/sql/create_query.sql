@@ -144,28 +144,67 @@ CREATE TABLE IF NOT EXISTS `Address` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Payment_Method`
--- *already executed
+-- Table structure for table `Payment_Service`
 --
 
-CREATE TABLE IF NOT EXISTS `Payment_Method` (
+CREATE TABLE IF NOT EXISTS `Payment_Service` (
     `id` VARCHAR(8) PRIMARY KEY NOT NULL,
     `name` VARCHAR(100) NOT NULL,
-    `dest_num_used` VARCHAR(100) DEFAULT NULL
+    `use_phone_number` BOOLEAN DEFAULT NULL
 ) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `Payment_Logo`
--- *already executed
 --
 
 CREATE TABLE IF NOT EXISTS `Payment_Logo` (
     `id` VARCHAR(10) PRIMARY KEY NOT NULL,
-    `payment_id` VARCHAR(8) NOT NULL,
+    `payment_service_id` VARCHAR(8) NOT NULL,
     `file_name` VARCHAR(255) NOT NULL,
-    FOREIGN KEY (`payment_id`) REFERENCES `Payment_Method`(`id`)
+    FOREIGN KEY (`payment_service_id`) REFERENCES `Payment_Service`(`id`)
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Bank`
+--
+
+CREATE TABLE IF NOT EXISTS `Bank` (
+    `id` VARCHAR(8) PRIMARY KEY NOT NULL,
+    `name` VARCHAR(50) NOT NULL,
+    `fullname` VARCHAR(255) DEFAULT NULL
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Bank_Logo`
+--
+
+CREATE TABLE IF NOT EXISTS `Bank_Logo` (
+    `id` VARCHAR(10) PRIMARY KEY NOT NULL,
+    `bank_id` VARCHAR(8) NOT NULL,
+    `file_name` VARCHAR(255) NOT NULL,
+    FOREIGN KEY (`bank_id`) REFERENCES `Bank`(`id`)
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Payment_Service_Bank_Transfer`
+--
+
+CREATE TABLE IF NOT EXISTS `Payment_Service_Bank_Transfer` (
+    `id` VARCHAR(10) PRIMARY KEY NOT NULL,
+    `payment_service_id` VARCHAR(8) NOT NULL,
+    `bank_id` VARCHAR(8) NOT NULL,
+    `admin_fee` INTEGER NOT NULL DEFAULT 0,
+    `transfer_limit` INTEGER NOT NULL DEFAULT 0,
+    FOREIGN KEY (`payment_service_id`) REFERENCES `Payment_Service`(`id`),
+    FOREIGN KEY (`bank_id`) REFERENCES `Bank`(`id`)
 ) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
