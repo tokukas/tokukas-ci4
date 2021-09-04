@@ -19,7 +19,7 @@ class PaymentServiceModel extends MyModel
 
     public function getLogos(string $id)
     {
-        return $this->builder('Payment_Logo')->getWhere(['payment_service_id' => $id])
+        return $this->builder('Payment_Service_Logo')->getWhere(['payment_service_id' => $id])
             ->getResultArray();
     }
 

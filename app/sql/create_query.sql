@@ -156,10 +156,10 @@ CREATE TABLE IF NOT EXISTS `Payment_Service` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Payment_Logo`
+-- Table structure for table `Payment_Service_Logo`
 --
 
-CREATE TABLE IF NOT EXISTS `Payment_Logo` (
+CREATE TABLE IF NOT EXISTS `Payment_Service_Logo` (
     `id` VARCHAR(10) PRIMARY KEY NOT NULL,
     `payment_service_id` VARCHAR(8) NOT NULL,
     `file_name` VARCHAR(255) NOT NULL,

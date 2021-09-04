@@ -51,7 +51,7 @@ class Offer extends BaseController
     }
 
 
-    public function new($step = '')
+    public function new(int $step = 1)
     {
         /**
          * --------------------------------------
@@ -67,21 +67,18 @@ class Offer extends BaseController
          * Form Routing
          * --------------------------------------
          */
-        $step = (int) $step ?: 1;
         $offerSession = session('new_offer');
 
-        if (empty($offerSession)) {
-            return $this->newOfferLocationStep();
-        }
-
-        if ($step === 2 && !empty($offerSession['address_id'])) {
-            return $this->newOfferTransactionStep();
-        } elseif ($step === 3 && !empty($offerSession['transaction_method'])) {
-            return $this->newOfferShippingStep();
-        } elseif ($step === 4 && !empty($offerSession['expedition_id'])) {
-            return $this->newOfferPaymentStep();
-        } elseif ($step === 5 && !empty($offerSession['payment_id'])) {
-            return $this->newOfferBookStep();
+        if (!empty($offerSession)) {
+            if ($step === 2 && !empty($offerSession['address_id'])) {
+                return $this->newOfferTransactionStep();
+            } elseif ($step === 3 && !empty($offerSession['transaction_method'])) {
+                return $this->newOfferShippingStep();
+            } elseif ($step === 4 && !empty($offerSession['expedition_id'])) {
+                return $this->newOfferPaymentStep();
+            } elseif ($step === 5 && !empty($offerSession['payment_id'])) {
+                return $this->newOfferBookStep();
+            }
         }
 
         return $this->newOfferLocationStep();
@@ -225,12 +222,48 @@ class Offer extends BaseController
         // Validate The Request
         // --------------------------------------
         if (!empty($this->request->getPost())) {
-            dd(session('new_offer'), $this->request->getPost());
+            $paymentId = htmlspecialchars($this->request->getPost('payment_id'));
+            $paymentType = $this->paymentMethod->validateType($paymentId);
+
+            if (empty($paymentType)) {
+                set_alert('Metode pembayaran tidak valid', true);
+                return redirect()->to(base_url('offer/new/4'));
+            }
+
+            // set payment id session
+            session()->push('new_offer', ['payment_id' => $paymentId]);
+
+            // get payment destination (phone number / bank account number)
+            return $this->getPaymentDestination($paymentId, $paymentType);
         }
 
-        $paymentMethods = (session('new_offer')['transaction_method'] === 'offline')
-            ? $this->paymentMethod->findAll()
-            : $this->paymentMethod->findAll(0, 0, true);
+        // --------------------------------------
+        // Render Main View
+        // --------------------------------------
+        $data = [
+            'title' => 'Buat Penawaran | TOKUKAS',
+            'loginSession' => session('login'),
+            'variable' => $this->variable,
+            'pageDesc' => 'Pilih metode pembayaran untuk penawaran buku anda',
+            'step' => [
+                'list' => $this->newOfferDefaultSteps,
+                'current' => 3,
+            ],
+            'paymentServices' => $this->paymentMethod->paymentService->findAll(),
+            'banks' => $this->paymentMethod->bank->findAll(),
+            'selectedPayment' => session('new_offer')['payment_id'] ?? null
+        ];
+
+        return view('offer/new-step-payment', $data);
+    }
+
+
+    private function getPaymentDestination(string $paymentId, string $paymentType)
+    {
+        // Go to next step
+        if ($paymentType === 'CASH') {
+            return redirect()->to(base_url('offer/new/5'));
+        }
 
         $data = [
             'title' => 'Buat Penawaran | TOKUKAS',
@@ -241,10 +274,16 @@ class Offer extends BaseController
                 'list' => $this->newOfferDefaultSteps,
                 'current' => 3,
             ],
-            'paymentMethods' => $paymentMethods,
+            'paymentServices' => $this->paymentMethod->paymentService->findAll(),
+            'banks' => $this->paymentMethod->bank->findAll(),
+            'selectedPayment' => session('new_offer')['payment_id'] ?? null
         ];
 
-        return view('offer/new-step-payment', $data);
+        // Go to input payment destination
+        if ($paymentType === 'PAYMENT_SERVICE') {
+            $paymentService = $this->paymentMethod->paymentService->find($paymentId);
+        }
+        dd(session('new_offer'));
     }
 
 

@@ -2,74 +2,62 @@
 
 namespace App\Models;
 
-use CodeIgniter\Model;
-
-class PaymentMethodModel extends MyModel
+class PaymentMethodModel
 {
-    protected $table = 'Payment_Method';
-    protected $primaryKey = 'id';
-    protected $useAutoIncrement = false;
-    protected $allowedFields = [];
-    protected $useTimestamps = false;
-
-    protected $idProperties = [
-        'length' => 8,
-        'use_hex' => true
-    ];
+    private $types = ['PAYMENT_SERVICE', 'BANK', 'CASH'];
+    public $bank;
+    public $paymentService;
 
 
-    public function getLogos(string $id)
+    public function __construct()
     {
-        return $this->builder('Payment_Logo')->getWhere(['payment_id' => $id])->getResultArray();
+        $this->bank = new BankModel();
+        $this->paymentService = new PaymentServiceModel();
     }
 
 
-    public function getLogosFileName(string $id)
+    public function find(string $id)
     {
-        $logos = $this->getLogos($id);
-        return array_map(fn ($logo) => $logo['file_name'], $logos);
+        $paymentService = $this->paymentService->find($id);
+        if (!empty($paymentService)) {
+            return $paymentService;
+        }
+
+        $bank = $this->bank->find($id);
+        if (!empty($bank)) {
+            return $bank;
+        }
+
+        return null;
     }
 
 
-    /**
-     * Get one or more payment method includes its logos.
-     * @param array|integer|string|null $id One payment id or an array of payment ids.
-     * @return array|null The resulting row of data, or null.
-     */
-    public function find($id = null)
+    public function isPaymentService(string $id)
     {
-        $results = parent::find($id);
-
-        if (empty($results)) {
-            return $results;
-        }
-
-        // add payment method's logos to results
-        if (!is_assoc_array($results)) {
-            foreach ($results as &$method) {
-                $method += ['logos' => $this->getLogosFileName($method['id'])];
-            }
-            unset($method);    // !IMPORTANT to destroy this reference.
-        } else {
-            $results += ['logos' => $this->getLogosFileName($results['id'])];
-        }
-
-        return $results;
+        return !empty($this->paymentService->find($id));
     }
 
 
-    public function findAll(int $limit = 0, int $offset = 0, bool $onlineOnly = false)
+    public function isBank(string $id)
     {
-        $queryBuilder = $this->builder()->orderBy('name', 'ASC');
-        ($onlineOnly) && $queryBuilder = $queryBuilder->where('dest_num_used !=', null);
+        return !empty($this->bank->find($id));
+    }
 
-        $paymentMethods = $queryBuilder->get($limit, $offset)->getResultArray();
 
-        // add payment method's logos to results
-        foreach ($paymentMethods as &$method) {
-            $method += ['logos' => $this->getLogosFileName($method['id'])];
+    public function validateType(string $id)
+    {
+        if ($this->isPaymentService($id)) {
+            return $this->types[0];
         }
-        unset($method);    // !IMPORTANT to destroy this reference.
-        return $paymentMethods;
+
+        if ($this->isBank($id)) {
+            return $this->types[1];
+        }
+
+        if (strtoupper($id) === $this->types[2]) {
+            return $this->types[2];
+        }
+
+        return null;
     }
 }
