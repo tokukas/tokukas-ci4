@@ -234,7 +234,7 @@ class Offer extends BaseController
             session()->push('new_offer', ['payment_id' => $paymentId]);
 
             // get payment destination (phone number / bank account number)
-            return $this->getPaymentDestination($paymentId, $paymentType);
+            return $this->getPaymentDestination($paymentType);
         }
 
         // --------------------------------------
@@ -258,7 +258,7 @@ class Offer extends BaseController
     }
 
 
-    private function getPaymentDestination(string $paymentId, string $paymentType)
+    private function getPaymentDestination(string $paymentType)
     {
         // Go to next step
         if ($paymentType === 'CASH') {
@@ -274,16 +274,17 @@ class Offer extends BaseController
                 'list' => $this->newOfferDefaultSteps,
                 'current' => 3,
             ],
-            'paymentServices' => $this->paymentMethod->paymentService->findAll(),
-            'banks' => $this->paymentMethod->bank->findAll(),
-            'selectedPayment' => session('new_offer')['payment_id'] ?? null
+            'paymentType' => $paymentType
         ];
 
         // Go to input payment destination
         if ($paymentType === 'PAYMENT_SERVICE') {
-            $paymentService = $this->paymentMethod->paymentService->find($paymentId);
+            $data['paymentMethod'] = $this->paymentMethod->paymentService;
+        } else {
+            $data['paymentMethod'] = $this->paymentMethod->bank;
         }
-        dd(session('new_offer'));
+
+        return view('offer/new-step-payment-destination', $data);
     }
 
 
