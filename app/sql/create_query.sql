@@ -110,19 +110,6 @@ CREATE TABLE IF NOT EXISTS `Expedition_Logo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Transaction_Method`
--- *not executed yet
---
-
-CREATE TABLE IF NOT EXISTS `Transaction_Method` (
-    `id` VARCHAR(8) PRIMARY KEY NOT NULL,
-    `name` VARCHAR(100) NOT NULL,
-    `description` TEXT
-) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `Address`
 -- *already executed
 --
@@ -149,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `Address` (
 
 CREATE TABLE IF NOT EXISTS `Payment_Service` (
     `id` VARCHAR(8) PRIMARY KEY NOT NULL,
-    `name` VARCHAR(100) NOT NULL,
+    `name` VARCHAR(50) NOT NULL,
     `use_phone_number` BOOLEAN DEFAULT NULL
 ) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
@@ -211,20 +198,62 @@ CREATE TABLE IF NOT EXISTS `Payment_Service_Bank_Transfer` (
 
 --
 -- Table structure for table `Offer`
--- *not executed yet
 --
 
 CREATE TABLE IF NOT EXISTS `Offer` (
     `id` VARCHAR(16) PRIMARY KEY NOT NULL,
     `account_id` VARCHAR(16) NOT NULL,
-    `address` TEXT NOT NULL,
-    `transaction_method` VARCHAR(100) NOT NULL,
-    `payment_used` VARCHAR(100) NOT NULL,
-    `shipping_used` VARCHAR(100) NOT NULL,
+    `address_id` VARCHAR(18),
+    `transaction_method` VARCHAR(100),
+    `shipping_method` VARCHAR(100),
     `is_accepted` BOOLEAN,
+    `proposed_at` TIMESTAMP,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    FOREIGN KEY (`account_id`) REFERENCES `Account`(`id`)
+    FOREIGN KEY (`account_id`) REFERENCES `Account`(`id`),
+    FOREIGN KEY (`address_id`) REFERENCES `Address`(`id`)
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Offer_Payment`
+--
+
+CREATE TABLE IF NOT EXISTS `Offer_Payment` (
+    `id` VARCHAR(16) PRIMARY KEY NOT NULL,
+    `offer_id` VARCHAR(16) NOT NULL,
+    `payment_method` VARCHAR(50) NOT NULL,
+    FOREIGN KEY (`offer_id`) REFERENCES `Offer`(`id`)
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Offer_Transfer_Bank`
+--
+
+CREATE TABLE IF NOT EXISTS `Offer_Transfer_Bank` (
+    `id` VARCHAR(16) PRIMARY KEY NOT NULL,
+    `offer_payment_id` VARCHAR(16) NOT NULL,
+    `bank_name` VARCHAR(50) NOT NULL,
+    `bank_account_number` VARCHAR(100) NOT NULL,
+    `on_behalf_of` VARCHAR(255) NOT NULL,
+    FOREIGN KEY (`offer_payment_id`) REFERENCES `Offer_Payment`(`id`)
+) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Offer_Transfer_Payment_Service`
+--
+
+CREATE TABLE IF NOT EXISTS `Offer_Transfer_Payment_Service` (
+    `id` VARCHAR(16) PRIMARY KEY NOT NULL,
+    `offer_payment_id` VARCHAR(16) NOT NULL,
+    `payment_service_name` VARCHAR(50) NOT NULL,
+    `phone_number` VARCHAR(50) NOT NULL,
+    FOREIGN KEY (`offer_payment_id`) REFERENCES `Offer_Payment`(`id`)
 ) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

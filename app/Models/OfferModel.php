@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use CodeIgniter\Model;
-
 class OfferModel extends MyModel
 {
     protected $table = 'Offer';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = false;
-    protected $allowedFields = ['id', 'account_id', 'address', 'transaction_method', 'payment_used', 'shipping_used'];
+    protected $allowedFields = ['id', 'account_id', 'address_id', 'transaction_method', 'shipping_method', 'proposed_at'];
 
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';
