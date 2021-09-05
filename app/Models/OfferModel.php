@@ -9,7 +9,7 @@ class OfferModel extends MyModel
     protected $table = 'Offer';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = false;
-    protected $allowedFields = ['id', 'account_id', 'address_id', 'transaction_method', 'shipping_method', 'proposed_at'];
+    protected $allowedFields = ['id', 'account_id', 'address_id', 'transaction_method', 'expedition_id', 'proposed_at'];
 
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';

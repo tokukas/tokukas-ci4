@@ -205,13 +205,14 @@ CREATE TABLE IF NOT EXISTS `Offer` (
     `account_id` VARCHAR(16) NOT NULL,
     `address_id` VARCHAR(18),
     `transaction_method` VARCHAR(100),
-    `shipping_method` VARCHAR(100),
+    `expedition_id` VARCHAR(8),
     `is_accepted` BOOLEAN,
-    `proposed_at` TIMESTAMP DEFAULT NULL,
+    `proposed_at` TIMESTAMP NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     FOREIGN KEY (`account_id`) REFERENCES `Account`(`id`),
-    FOREIGN KEY (`address_id`) REFERENCES `Address`(`id`)
+    FOREIGN KEY (`address_id`) REFERENCES `Address`(`id`),
+    FOREIGN KEY (`expedition_id`) REFERENCES `Expedition`(`id`)
 ) ENGINE=InnoDB COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

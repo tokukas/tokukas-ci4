@@ -31,7 +31,7 @@ class Offer extends BaseController
         ],
         [
             'name' => 'Pilih Metode Pembayaran',
-            'prerequisite' => ['address_id', 'transaction_method', 'shipping_method']
+            'prerequisite' => ['address_id', 'transaction_method', 'expedition_id']
         ],
         [
             'name' => 'Upload Data Buku',
@@ -172,6 +172,15 @@ class Offer extends BaseController
         }
 
         if ($step === 3) {
+            $data['pageDesc'] = 'Pilih metode pengiriman';
+            $data['transactionMethod'] = $offer['transaction_method'];
+            $data['expeditions'] = $this->expeditionModel->findAll();
+            $data['selectedExpedition'] = $offer['expedition_id'] ?? null;
+
+            return view('offer/new-step-expedition', $data);
+        }
+
+        if ($step === 4) {
             # code...
         }
 
@@ -226,53 +235,29 @@ class Offer extends BaseController
             (!$savingStatus) && set_alert('Metode transaksi gagal disimpan', true);
         }
 
+        if ($step === 3 && !empty($this->request->getPost('expedition_id'))) {
+            $expeditionId = htmlspecialchars($this->request->getPost('expedition_id'));
+
+            // TODO: needs improvement to support offline-transaction
+            // validate expedition id
+            if (empty($this->expeditionModel->find($expeditionId))) {
+                set_alert('Metode pengiriman tidak valid', true);
+                return redirect()->back();
+            }
+
+            // saving shipping method
+            $savingStatus = $this->offerModel->smartSave([
+                'id' => $offerId,
+                'expedition_id' => $expeditionId
+            ]);
+
+            (!$savingStatus) && set_alert('Metode pengiriman gagal disimpan', true);
+        }
+
         // redirect
         return ($savingStatus)
             ? redirect()->to(base_url('offer/new/' . $step + 1))
             : redirect()->back();
-    }
-
-
-    private function newOfferShippingStep()
-    {
-        // --------------------------------------
-        // Validate The Request
-        // --------------------------------------
-        if (!empty($this->request->getPost('expedition_id'))) {
-            // updating offer session
-            $transactionMethod = session('new_offer')['transaction_method'] ?? null;
-            $expeditionId = htmlspecialchars($this->request->getPost('expedition_id'));
-
-            if (empty($this->expeditionModel->find($expeditionId)) && $transactionMethod === 'online') {
-                set_alert('Metode pengiriman tidak valid', true);
-                return redirect()->to(base_url('offer/new/2'));
-            }
-
-            session()->push('new_offer', ['expedition_id' => $expeditionId]);
-            return redirect()->to(base_url('offer/new/4'));
-        }
-
-        // --------------------------------------
-        // Go to view
-        // --------------------------------------
-        $offerId = session('new_offer');
-        $offer = $this->offerModel->find($offerId);
-
-        $data = [
-            'title' => 'Buat Penawaran | TOKUKAS',
-            'loginSession' => session('login'),
-            'variable' => $this->variable,
-            'pageDesc' => 'Pilih metode pengiriman untuk penawaran buku anda',
-            'step' => [
-                'list' => $this->newOfferSteps,
-                'current' => 2,
-            ],
-            'transactionMethod' => $offer['transaction_method'],
-            'expeditions' => $this->expeditionModel->findAll(),
-            'selectedExpedition' => $offer['expedition_id'] ?? null,
-        ];
-
-        return view('offer/new-step-expedition', $data);
     }
 
 

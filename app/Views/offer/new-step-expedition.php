@@ -55,9 +55,9 @@
                                     </div>
                                     <div class="d-block">
                                         <label translate="no" for="methodOpt<?= $i; ?>" title="<?= $expedition['name']; ?>" aria-label="<?= $expedition['name']; ?>" class="form-check-label" data-bs-toggle="tooltip" data-bs-placement="top">
-                                            <picture>
+                                            <picture draggable="false">
                                                 <source media="(min-width: 640px)" srcset="<?= empty($expedition['logos'][1]) ? '' : base_url('assets/' . $expedition['logos'][1]); ?>">
-                                                <img src="<?= base_url('assets/' . $expedition['logos'][0]); ?>" alt="Logo <?= $expedition['name']; ?>" height="60" width="auto">
+                                                <img src="<?= base_url('assets/' . $expedition['logos'][0]); ?>" alt="Logo <?= $expedition['name']; ?>" height="60" width="auto" draggable="false">
                                             </picture>
                                         </label>
                                     </div>
