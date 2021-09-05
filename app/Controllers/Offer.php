@@ -114,7 +114,7 @@ class Offer extends BaseController
     }
 
 
-    private function formRouting(string $offerId, int $step = 1)
+    private function formRouting(string $offerId, int $step)
     {
         $myOffer = $this->offerModel->find($offerId);
 
@@ -146,7 +146,7 @@ class Offer extends BaseController
     }
 
 
-    private function newOfferRenderView(array $offer, int $step = 1)
+    private function newOfferRenderView(array $offer, int $step)
     {
         $accountId = $this->accountModel->getId(session('login')['email']);
 
@@ -162,6 +162,16 @@ class Offer extends BaseController
 
         // the other steps view
         if ($step === 2) {
+            $address = $this->addressModel->find($offer['address_id'], true);
+
+            $data['pageDesc'] = 'Pilih metode transaksi';
+            $data['selectedTransactionMethod'] = $offer['transaction_method'] ?? 'online';
+            $data['canChoose'] = strpos(strtoupper($address['stringified']), 'KABUPATEN INDRAMAYU');
+
+            return view('offer/new-step-transaction', $data);
+        }
+
+        if ($step === 3) {
             # code...
         }
 
@@ -180,10 +190,10 @@ class Offer extends BaseController
     {
         $savingStatus = false;
 
-        if (!empty($this->request->getPost('address_id'))) {
-            // updating offer session
+        if ($step === 1 && !empty($this->request->getPost('address_id'))) {
             $addressId = htmlspecialchars($this->request->getPost('address_id'));
 
+            // validate address id
             if (empty($this->addressModel->find($addressId, true))) {
                 set_alert('Alamat tidak dapat ditemukan', true);
                 return redirect()->back();
@@ -198,62 +208,28 @@ class Offer extends BaseController
             (!$savingStatus) && set_alert('Alamat anda gagal disimpan', true);
         }
 
+        if ($step === 2 && !empty($this->request->getPost('transaction_method'))) {
+            $transactionMethod = htmlspecialchars($this->request->getPost('transaction_method'));
+
+            // validate transaction method
+            if (!in_array(strtolower($transactionMethod), ['online', 'offline'])) {
+                set_alert('Metode transaksi tidak valid', true);
+                return redirect()->back();
+            }
+
+            // saving transaction method
+            $savingStatus = $this->offerModel->smartSave([
+                'id' => $offerId,
+                'transaction_method' => $transactionMethod
+            ]);
+
+            (!$savingStatus) && set_alert('Metode transaksi gagal disimpan', true);
+        }
+
         // redirect
         return ($savingStatus)
             ? redirect()->to(base_url('offer/new/' . $step + 1))
             : redirect()->back();
-    }
-
-
-    private function newOfferTransactionStep()
-    {
-        // --------------------------------------
-        // Validate The Request
-        // --------------------------------------
-        if (!empty($this->request->getPost('transaction_method'))) {
-            // updating offer session
-            $transactionMethod = htmlspecialchars($this->request->getPost('transaction_method'));
-
-            if (!in_array(strtolower($transactionMethod), ['online', 'offline'])) {
-                set_alert('Metode transaksi tidak valid', true);
-                return redirect()->to(base_url('offer/new'));
-            }
-
-            // saving transaction method
-            $success = $this->offerModel->smartSave([
-                'id' => session('new_offer'),
-                'transaction_method' => $transactionMethod
-            ]);
-
-            if ($success) {
-                return redirect()->to(base_url('offer/new/3'));
-            }
-
-            set_alert('Metode transaksi gagal disimpan', true);
-            return redirect()->back();
-        }
-
-        // --------------------------------------
-        // Go to view
-        // --------------------------------------
-        $offerId = session('new_offer');
-        $offer = $this->offerModel->find($offerId);
-        $address = $this->addressModel->find($offer['address_id'], true);
-
-        $data = [
-            'title' => 'Buat Penawaran | TOKUKAS',
-            'loginSession' => session('login'),
-            'variable' => $this->variable,
-            'pageDesc' => 'Pilih metode transaksi untuk penawaran buku anda',
-            'step' => [
-                'list' => $this->newOfferSteps,
-                'current' => 1,
-            ],
-            'selectedTransactionMethod' => $offer['transaction_method'] ?? 'online',
-            'canChoose' => strpos(strtoupper($address['stringified']), 'KABUPATEN INDRAMAYU'),
-        ];
-
-        return view('offer/new-step-transaction', $data);
     }
 
 
