@@ -1,6 +1,6 @@
 <ol class="list-group list-group-numbered mb-3">
     <?php for ($i = 0; $i < sizeof($step['list']); $i++) : ?>
-        <?php $stepNow = $step['list'][$i]; ?>
+        <?php $stepNow = $step['list'][$i]['name']; ?>
 
         <?php if ($i < $step['current']) : ?>
             <li class="list-group-item d-flex justify-content-between align-items-start">

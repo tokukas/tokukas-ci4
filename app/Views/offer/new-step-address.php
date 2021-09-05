@@ -13,7 +13,7 @@
 
 <div class="card">
     <div class="card-body content">
-        <form action="<?= base_url('offer/new/1'); ?>" method="post">
+        <form action="<?= base_url('offer/new'); ?>" method="post">
             <?= csrf_field(); ?>
 
             <!-- STEP 1 -->

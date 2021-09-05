@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Libraries\CodeGenerator;
 use CodeIgniter\Model;
 use Exception;
+use InvalidArgumentException;
 
 class MyModel extends Model
 {

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use InvalidArgumentException;
+
 class OfferModel extends MyModel
 {
     protected $table = 'Offer';
@@ -17,4 +19,35 @@ class OfferModel extends MyModel
         'length' => 16,
         'use_hex' => true
     ];
+
+
+    public function isFilled(string $offerId, string|array $field)
+    {
+        $validFields = $this->allowedFields + ['payment_method'];
+        $offer = $this->find($offerId);
+
+        if (empty($offer)) {
+            return false;
+        }
+
+        // checking value on allowed fields
+        if (is_array($field) && !is_assoc_array($field)) {
+            foreach ($field as $f) {
+                if (!in_array($f, $validFields)) {
+                    throw new InvalidArgumentException('Field \'' . $f . '\' is invalid');
+                };
+
+                if (empty($offer[$f])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        if (in_array($field, $validFields)) {
+            return !empty($offer[$field]);
+        }
+
+        return false;
+    }
 }

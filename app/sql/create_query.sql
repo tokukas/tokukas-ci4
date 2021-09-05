@@ -207,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `Offer` (
     `transaction_method` VARCHAR(100),
     `shipping_method` VARCHAR(100),
     `is_accepted` BOOLEAN,
-    `proposed_at` TIMESTAMP,
+    `proposed_at` TIMESTAMP DEFAULT NULL,
     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     FOREIGN KEY (`account_id`) REFERENCES `Account`(`id`),
