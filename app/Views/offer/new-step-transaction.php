@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="col-lg-6 mb-3">
-                    <?php if ($canChoose) : ?>
+                    <!-- <?php if ($canChoose) : ?>
                         <div class="card p-0">
                             <div class="card-body">
                                 <div class="form-check">
@@ -53,7 +53,13 @@
                                 <p class="card-text">Anda <strong>tidak bisa</strong> memilih Transaksi Offline karena lokasi anda terlalu jauh dari toko.</p>
                             </div>
                         </div>
-                    <?php endif; ?>
+                        <?php endif; ?> -->
+                    <div class="card p-0">
+                        <div class="card-body text-muted">
+                            <p class="card-title fw-bold">Transaksi Offline</p>
+                            <p class="card-text">Saat ini, transaksi offline masih dalam pengembangan.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

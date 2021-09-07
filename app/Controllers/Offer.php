@@ -221,7 +221,8 @@ class Offer extends BaseController
             $transactionMethod = htmlspecialchars($this->request->getPost('transaction_method'));
 
             // validate transaction method
-            if (!in_array(strtolower($transactionMethod), ['online', 'offline'])) {
+            // TODO: offline trancastion is unavailable now
+            if (!in_array(strtolower($transactionMethod), ['online'])) {
                 set_alert('Metode transaksi tidak valid', true);
                 return redirect()->back();
             }
